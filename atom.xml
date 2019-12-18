@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://henta.github.io/</id>
     <title>Henta</title>
-    <updated>2019-12-18T07:19:51.823Z</updated>
+    <updated>2019-12-18T07:28:34.616Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://henta.github.io/"/>
     <link rel="self" href="http://henta.github.io//atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>一个码农的自我描述</subtitle>
     <logo>http://henta.github.io//images/avatar.png</logo>
     <icon>http://henta.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Henta</rights>
@@ -16,111 +16,9 @@
         <link href="http://henta.github.io//post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao">
         </link>
         <updated>2019-12-18T07:12:15.000Z</updated>
+        <summary type="html"><![CDATA[<p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
+]]></summary>
         <content type="html"><![CDATA[<p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
-<h4 id="案例1">案例1</h4>
-<pre><code class="language-java">public interface AService {
-    public void a();
-    public void b();
-}
-
-@Service
-public class AServiceImpl implements AService{
-
-    public void a() {
-        this.b();
-    }
-
-    @Transactional(rollbackFor={Exception.class})
-       public void b() {
-         insert();
-         update();
-    }
-}
-</code></pre>
-<p><mark>同类</mark>中一个没有@Transaction的方法调用有@Transaction的方法时，事务将会失效</p>
-<ul>
-<li>原因<br>
-根本原因在于spring对于事务的管理方式：spring使用aop去管理事务<br>
-对于上述AServiceImpl，在运行时，spring会自动生成其代理类如下：</li>
-</ul>
-<pre><code class="language-java">public class AServiceImplProxy implements AService{
-
-    public void a() {
-      //反射调用目标类的a方法
-	AServiceImpl.a();
-    }
-
-    public void b() {
-     //启动事务的代码
-     begin;
-     try{
-       //反射调用目标类的b方法
-        AServiceImpl.b();
-     }catch{
-	rollback;
-     }
-     //事务提交的代码
-     commit;
-    }
-}
-
-</code></pre>
-<p><img src="https://i.loli.net/2019/11/22/Gz3AvxIw1eXan9i.png" alt="title"><br>
-在调用getBean(&quot;AServiceImpl&quot;).a()时，实际上执行的是AServiceImplProxy.a(),而AServiceImplProxy.a()调用的是源类中的a()方法，源类中a()再去调用b(),显而易见，并没有用到代理类中的AServiceImplProxy.b(),自然不会有事务管理。</p>
-<h4 id="案例2">案例2</h4>
-<p>a()有@Transaction b()有@Transaction或无@Transaction</p>
-<pre><code class="language-java">@Service
-public class AServiceImpl implements AService{
-    @Transactional(rollbackFor={Exception.class})
-    public void a() {
-        this.b();
-    }
-
-    @Transactional(rollbackFor={Exception.class})
-       public void b() {
-         insert();
-         update();
-    }
-}
-</code></pre>
-<ul>
-<li>其实原理流程和案例1的差不多，上层类调用a()时，只会开启对于a()的事务，b的事务并没有起作用，但是因为spring的机制，会将b()自动加入到a()的事务中，所以a()方法也将b()管理了起来。</li>
-<li>对于案例1，a()连事务都没有调用，自然也不会自动将b()管理到a()</li>
-<li>注意点：虽然a()的事务会将b()管理起来，但是其实在b()上的注解是失效的，也就是说如果你想用不同的事务传播机制(如这种PROPAGATION_SUPPORTS)，机制将会失效,rollbackFor也只能沿用a()定义的</li>
-</ul>
-<h4 id="解决方案">解决方案</h4>
-<ol>
-<li>显式的事务编程(不推荐，丧失了aop的方便性)</li>
-<li>显式的调用代理类中的b()
-<ul>
-<li>将暴露Proxy类设置为true@EnableAspectJAutoProxy(exposeProxy = true)</li>
-<li>然后显式调用代理类的b()</li>
-</ul>
-</li>
-</ol>
-<pre><code class="language-java">@Transactional(rollbackFor={Exception.class})
-
-public void a() {
-
-    ((AService) AopContext.currentProxy()).b();
-
-    //即调用AOP代理对象的b方法即可执行事务切面进行事务增强
-
-}
-</code></pre>
-<p>这种做法很方便，但是不能保证以后新添加的代码不出现相同的问题<br>
-3. 进行接口下沉，避免出现案例1的情况<br>
-- 将一些操作数据库的通用方法放到另外的service里，这样不会出现同类调用transaction的尴尬情况<br>
-- 这种做法比较优雅，也能完全避免出现事务失效的情况</p>
-<h4 id="总结">总结</h4>
-<ol>
-<li>不仅仅是@Transaction注解，几乎所有与AOP有关的注解都存在上述的问题，工作中需要格外注意</li>
-<li>现在代码大部分情况都是案例2中的情况，小部分是案例1中的情况，以后写代码的时候如果需要对注解有格外的定义，要记住案例2的情况中，注解将会失效</li>
-<li>其实还是要在写代码的时候有规范意识，不要所有东西都写在一起，专业的类干专业的事</li>
-<li>查看mybatis和事务日志：<br>
-logging.level.com.okcoin.vault.service.dao.mapper=debug<br>
-logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=debug</li>
-</ol>
 ]]></content>
     </entry>
     <entry>
@@ -129,63 +27,11 @@ logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=d
         <link href="http://henta.github.io//post/shan-dian-wang-luo">
         </link>
         <updated>2019-12-18T06:17:44.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
+<p>闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。</p>
+]]></summary>
         <content type="html"><![CDATA[<h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
 <p>闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。</p>
-<ol>
-<li>openChannel（建立交易通道）：A和B协商好双方投入的资金，然后在比特币链上创建一个2/2的多重签名交易，需要花费output需要双方共同签名</li>
-<li>开始交易：建立好通道后，双方可以通过这个链下的通道进行交易，在第一步双方投入的金额内，交易可以进行无线多次，这些交易都不上链，双方只会&quot;记账&quot;</li>
-<li>closeChannel（关闭交易通道）：双方交易结束后需要将最终的账单统合，并且共同去花费第1步的output，进行最终的上链过程<br>
-<img src="https://i.loli.net/2019/12/10/udfWicAGqV9X6UM.png" alt="title"></li>
-</ol>
-<p>问题:这种想法虽然好，但是怎么保证双方诚信？如果最后A舍弃了自己剩余的0.3btc（可能是故意或者私钥丢了），就是不配合B去花费2/2的output，这样B就损失了0.7个btc。当初说好的给彼此之间一点信任呢？</p>
-<h3 id="原理">原理</h3>
-<p>首先，上述问题的根本在于output是2/2的脚本，需要两个人共同花费，对于陌生的交易双方来说，风险太大，所以闪电网络需要设计出任意一方都可以将output正确花费的方法</p>
-<ol>
-<li>A和B在openChannel后，都为那个2/2的output构建一笔新交易</li>
-</ol>
-<ul>
-<li>图中[]表示现在还不具备的东西，R表示随机数，Ra表示A的随机数，Rb表示b的随机数，Revocable Sequence Maturity Contract (RSMC) 可撤销序列成熟合约<br>
-<img src="https://i.loli.net/2019/12/10/y8hN3tznLcdiGr4.png" alt="title"></li>
-</ul>
-<ol start="2">
-<li>A和B将各自签名好的交易互相交换，现在可以观察一下，A和B都可以将对方给的交易上链了，但是如果对方不同意的话，RSMC脚本只能通过等待1000个区块去花费了，这就是强制上链的惩罚，而对方同意的话，可以直接通过对方的签名去花费这个RSMC，也就是可以即时花费
-<ul>
-<li>RSMC的原理其实就是多签脚本，时间锁条件是用比特币自带的参数timelock实现，需要R解锁的条件是利用了Hash不可逆推实现，B先会给A R的hash让A去构建这个交易脚本，之后拥有R解锁这个hash合约</li>
-</ul>
-</li>
-</ol>
-<p>这样一来任一方都可以closeChannel，只不过分为和平关闭和强制关闭 这就是为什么双方都同意建立交易通道的原因：只要我愿意，我们的交易一定会上链</p>
-<ol start="3">
-<li>现在双方在交易通道里继续交易记账 比如，A支付给了B 0.1btc，这时候双方会重新签一个未完成交易给对方：<br>
-<img src="https://i.loli.net/2019/12/10/l4hZ28cRrODUAyN.png" alt="title"></li>
-</ol>
-<p>通道内转账更新账单其实就是双方更新签名交易</p>
-<ul>
-<li>问题来了，现在A手里有两个时期的未上链交易，A一看，我肯定愿意把最开始双方都得0.5btc的交易签名上链啊，这时候B肯定不同意，但是A却强制上链了，A只需要等待1000个块确认就能使用0.5btc了，白赚了0.1btc</li>
-</ul>
-<p>于是闪电网络规定，废弃掉上一个账单的时候，你必须把自己的随机数R交给对方，那么再来看看这个规定后的场景</p>
-<ul>
-<li>A同样想要把0.5btc的那笔交易上链，假设他也这么做了，A需要等待1000个确认才能花费RSMC中的0.5btc，而这个时候B发现A干坏事了，由于A之前已经把Ra给了B，B可以直接通过Bsig+Ra的方式先一步使用RSMC脚本花费掉这0.5btc，这样一来B其实就拥有了1btc。 这也是闪电网络对不诚信节点的惩罚</li>
-</ul>
-<ol start="4">
-<li>上述的情况都是发生在A直接能连到B的情况下，但是闪电网络是一个巨大的网络，A并不能保证每次都能直接连到B，这时候C节点刚好连着B，于是A就将C节点当成中间人去和A交易<br>
-比如：A要转0.1btc给D<br>
-<img src="https://i.loli.net/2019/12/10/7RBlPEJXe2gqHoi.png" alt="title">
-<ol>
-<li>Dave准备一个随机数R，并计算其哈希H，将H给了Alice</li>
-<li>Alice和Bob建立通道的时候约定，如果3天内Bob能给出R，那Alice给Bob0.102btc，超过3天，拿回这些币</li>
-<li>Bob和Carol建立通道的时候约定，如果2天内Carol能给出R，Bob就给Carol0.101btc</li>
-<li>Carol和Dave建立通道的时候约定，如果1天内Dave能给出R，Carol就给Dave0.1btc<br>
-最终，Dave把自己拥有的R给了Carol拿到了0.1btc，Carol用这个R换到了Bob的0.101btc，而Bob用R换到了Alice的0.102btc 皆大欢喜。</li>
-</ol>
-</li>
-</ol>
-<p>上述的流程就是闪电网络中的HTLC（Hashed Timelock Contract）哈希时间锁定合约来实现的，原理和上面差不多，比特币脚本是支持生成这种规则的output的</p>
-<h3 id="总结">总结</h3>
-<ul>
-<li>现在的闪电网络都是需要收款方先提供一个二维码或者code给付款者的，这个code包含的信息其实就有H、金额等信息</li>
-<li>技术方面逻辑都很清晰成熟，现在闪电网络的运行也比较平稳，还没有听说有丢币事件。</li>
-</ul>
 ]]></content>
     </entry>
     <entry>
@@ -199,25 +45,6 @@ logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=d
 ]]></summary>
         <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>

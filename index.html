@@ -1,211 +1,186 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>Henta</title>
-<meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="http://henta.github.io//favicon.ico?v=1576653587359">
+<meta name="description" content="一个码农的自我描述">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="http://henta.github.io//favicon.ico?v=1576653839949">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="http://henta.github.io//styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="http://henta.github.io/">
-  <img class="avatar" src="http://henta.github.io//images/avatar.png?v=1576653587359" alt="">
-  </a>
-  <h1 class="site-title">
-    Henta
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="http://henta.github.io/">
+        <img src="http://henta.github.io//images/avatar.png?v=1576653839949" class="site-logo">
+        <h1 class="site-title">Henta</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      一个码农的自我描述
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://henta.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-    
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="http://henta.github.io//post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao">
-        <h2 class="post-title">同类调用导致的spring事务失效</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2019-12-18
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="http://henta.github.io//tag/_BtyPd5WF" class="post-tag">
-            # spring
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="http://henta.github.io//post/shan-dian-wang-luo">
-        <h2 class="post-title">闪电网络原理</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2019-12-18
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-          <a href="http://henta.github.io//tag/AHXH31IEv" class="post-tag">
-            # ⚡️闪电网络
-          </a>
-        
-      </div>
-      
-        <a href="http://henta.github.io//post/shan-dian-wang-luo" class="post-feature-image" style="background-image: url('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2007937068,1605435968&amp;fm=11&amp;gp=0.jpg')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="http://henta.github.io//post/hello-gridea">
-        <h2 class="post-title">Hello Gridea</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2018-12-12
-        </span>
-        <span>
-          2 min read
-        </span>
-        
-          <a href="http://henta.github.io//tag/7QsosURxD" class="post-tag">
-            # Gridea
-          </a>
-        
-      </div>
-      
-        <a href="http://henta.github.io//post/hello-gridea" class="post-feature-image" style="background-image: url('http://henta.github.io//post-images/hello-gridea.png')">
-        </a>
-      
-      <div class="post-abstract">
-        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="http://henta.github.io//post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao">
+                  <h2 class="post-title">同类调用导致的spring事务失效</h2>
+                </a>
+                <div class="post-date">
+                  2019-12-18
+                </div>
+                <div class="post-abstract">
+                  <p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="http://henta.github.io//post/shan-dian-wang-luo">
+                  <h2 class="post-title">闪电网络原理</h2>
+                </a>
+                <div class="post-date">
+                  2019-12-18
+                </div>
+                <div class="post-abstract">
+                  <h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
+<p>闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。</p>
+
+                </div>
+              </div>
+              
+                <a class="right" href="http://henta.github.io//post/shan-dian-wang-luo">
+                  <div class="feature-container" style="background-image: url('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2007937068,1605435968&amp;fm=11&amp;gp=0.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="http://henta.github.io//post/hello-gridea">
+                  <h2 class="post-title">Hello Gridea</h2>
+                </a>
+                <div class="post-date">
+                  2018-12-12
+                </div>
+                <div class="post-abstract">
+                  <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 
+                </div>
+              </div>
+              
+                <a class="right" href="http://henta.github.io//post/hello-gridea">
+                  <div class="feature-container" style="background-image: url('http://henta.github.io//post-images/hello-gridea.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
       </div>
-    </article>
-  
-</div>
+    </div>
 
-    
-        <div class="pagination-container">
-  
-  
-</div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-    
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="http://henta.github.io//atom.xml" target="_blank">RSS</a>
-</div>
+<script type="application/javascript">
 
-<script>
-  hljs.initHighlightingOnLoad()
+AOS.init();
 
-  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+hljs.initHighlightingOnLoad()
 
-  // This should probably be throttled.
-  // Especially because it triggers during smooth scrolling.
-  // https://lodash.com/docs/4.17.10#throttle
-  // You could do like...
-  // window.addEventListener("scroll", () => {
-  //    _.throttle(doThatStuff, 100);
-  // });
-  // Only not doing it here to keep this Pen dependency-free.
-
-  window.addEventListener("scroll", event => {
-    let fromTop = window.scrollY;
-
-    mainNavLinks.forEach((link, index) => {
-      let section = document.getElementById(decodeURI(link.hash).substring(1));
-      let nextSection = null
-      if (mainNavLinks[index + 1]) {
-        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-      }
-      if (section.offsetTop <= fromTop) {
-        if (nextSection) {
-          if (nextSection.offsetTop > fromTop) {
-            link.classList.add("current");
-          } else {
-            link.classList.remove("current");    
-          }
-        } else {
-          link.classList.add("current");
-        }
-      } else {
-        link.classList.remove("current");
-      }
-    });
-  });
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
 
-      </div>
-    </div>
+
+
+
   </body>
 </html>
