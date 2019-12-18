@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>闪电网络原理 | Gridea</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1576650191178">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://localhost:4000">
+  <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1576650191178" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="http://localhost:4000/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="http://localhost:4000/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="http://localhost:4000/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="http://localhost:4000/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              闪电网络原理
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-18
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
+<p>闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。</p>
+<ol>
+<li>openChannel（建立交易通道）：A和B协商好双方投入的资金，然后在比特币链上创建一个2/2的多重签名交易，需要花费output需要双方共同签名</li>
+<li>开始交易：建立好通道后，双方可以通过这个链下的通道进行交易，在第一步双方投入的金额内，交易可以进行无线多次，这些交易都不上链，双方只会&quot;记账&quot;</li>
+<li>closeChannel（关闭交易通道）：双方交易结束后需要将最终的账单统合，并且共同去花费第1步的output，进行最终的上链过程<br>
+<img src="https://i.loli.net/2019/12/10/udfWicAGqV9X6UM.png" alt="title"></li>
+</ol>
+<p>问题:这种想法虽然好，但是怎么保证双方诚信？如果最后A舍弃了自己剩余的0.3btc（可能是故意或者私钥丢了），就是不配合B去花费2/2的output，这样B就损失了0.7个btc。当初说好的给彼此之间一点信任呢？</p>
+<h3 id="原理">原理</h3>
+<p>首先，上述问题的根本在于output是2/2的脚本，需要两个人共同花费，对于陌生的交易双方来说，风险太大，所以闪电网络需要设计出任意一方都可以将output正确花费的方法</p>
+<ol>
+<li>A和B在openChannel后，都为那个2/2的output构建一笔新交易</li>
+</ol>
+<ul>
+<li>图中[]表示现在还不具备的东西，R表示随机数，Ra表示A的随机数，Rb表示b的随机数，Revocable Sequence Maturity Contract (RSMC) 可撤销序列成熟合约<br>
+<img src="https://i.loli.net/2019/12/10/y8hN3tznLcdiGr4.png" alt="title"></li>
+</ul>
+<ol start="2">
+<li>A和B将各自签名好的交易互相交换，现在可以观察一下，A和B都可以将对方给的交易上链了，但是如果对方不同意的话，RSMC脚本只能通过等待1000个区块去花费了，这就是强制上链的惩罚，而对方同意的话，可以直接通过对方的签名去花费这个RSMC，也就是可以即时花费
+<ul>
+<li>RSMC的原理其实就是多签脚本，时间锁条件是用比特币自带的参数timelock实现，需要R解锁的条件是利用了Hash不可逆推实现，B先会给A R的hash让A去构建这个交易脚本，之后拥有R解锁这个hash合约</li>
+</ul>
+</li>
+</ol>
+<p>这样一来任一方都可以closeChannel，只不过分为和平关闭和强制关闭 这就是为什么双方都同意建立交易通道的原因：只要我愿意，我们的交易一定会上链</p>
+<ol start="3">
+<li>现在双方在交易通道里继续交易记账 比如，A支付给了B 0.1btc，这时候双方会重新签一个未完成交易给对方：<br>
+<img src="https://i.loli.net/2019/12/10/l4hZ28cRrODUAyN.png" alt="title"></li>
+</ol>
+<p>通道内转账更新账单其实就是双方更新签名交易</p>
+<ul>
+<li>问题来了，现在A手里有两个时期的未上链交易，A一看，我肯定愿意把最开始双方都得0.5btc的交易签名上链啊，这时候B肯定不同意，但是A却强制上链了，A只需要等待1000个块确认就能使用0.5btc了，白赚了0.1btc</li>
+</ul>
+<p>于是闪电网络规定，废弃掉上一个账单的时候，你必须把自己的随机数R交给对方，那么再来看看这个规定后的场景</p>
+<ul>
+<li>A同样想要把0.5btc的那笔交易上链，假设他也这么做了，A需要等待1000个确认才能花费RSMC中的0.5btc，而这个时候B发现A干坏事了，由于A之前已经把Ra给了B，B可以直接通过Bsig+Ra的方式先一步使用RSMC脚本花费掉这0.5btc，这样一来B其实就拥有了1btc。 这也是闪电网络对不诚信节点的惩罚</li>
+</ul>
+<ol start="4">
+<li>上述的情况都是发生在A直接能连到B的情况下，但是闪电网络是一个巨大的网络，A并不能保证每次都能直接连到B，这时候C节点刚好连着B，于是A就将C节点当成中间人去和A交易<br>
+比如：A要转0.1btc给D<br>
+<img src="https://i.loli.net/2019/12/10/7RBlPEJXe2gqHoi.png" alt="title">
+<ol>
+<li>Dave准备一个随机数R，并计算其哈希H，将H给了Alice</li>
+<li>Alice和Bob建立通道的时候约定，如果3天内Bob能给出R，那Alice给Bob0.102btc，超过3天，拿回这些币</li>
+<li>Bob和Carol建立通道的时候约定，如果2天内Carol能给出R，Bob就给Carol0.101btc</li>
+<li>Carol和Dave建立通道的时候约定，如果1天内Dave能给出R，Carol就给Dave0.1btc<br>
+最终，Dave把自己拥有的R给了Carol拿到了0.1btc，Carol用这个R换到了Bob的0.101btc，而Bob用R换到了Alice的0.102btc 皆大欢喜。</li>
+</ol>
+</li>
+</ol>
+<p>上述的流程就是闪电网络中的HTLC（Hashed Timelock Contract）哈希时间锁定合约来实现的，原理和上面差不多，比特币脚本是支持生成这种规则的output的</p>
+<h3 id="总结">总结</h3>
+<ul>
+<li>现在的闪电网络都是需要收款方先提供一个二维码或者code给付款者的，这个code包含的信息其实就有H、金额等信息</li>
+<li>技术方面逻辑都很清晰成熟，现在闪电网络的运行也比较平稳，还没有听说有丢币事件。</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%97%AA%E7%94%B5%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E6%AD%A5%E9%AA%A4">闪电网络基本概念和步骤</a></li>
+<li><a href="#%E5%8E%9F%E7%90%86">原理</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://localhost:4000/post/hello-gridea">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
