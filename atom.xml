@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://henta.github.io/</id>
     <title>Henta</title>
-    <updated>2019-12-18T07:06:21.456Z</updated>
+    <updated>2019-12-18T07:19:51.823Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://henta.github.io/"/>
     <link rel="self" href="http://henta.github.io//atom.xml"/>
@@ -10,6 +10,119 @@
     <logo>http://henta.github.io//images/avatar.png</logo>
     <icon>http://henta.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Henta</rights>
+    <entry>
+        <title type="html"><![CDATA[同类调用导致的spring事务失效]]></title>
+        <id>http://henta.github.io//post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao</id>
+        <link href="http://henta.github.io//post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao">
+        </link>
+        <updated>2019-12-18T07:12:15.000Z</updated>
+        <content type="html"><![CDATA[<p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
+<h4 id="案例1">案例1</h4>
+<pre><code class="language-java">public interface AService {
+    public void a();
+    public void b();
+}
+
+@Service
+public class AServiceImpl implements AService{
+
+    public void a() {
+        this.b();
+    }
+
+    @Transactional(rollbackFor={Exception.class})
+       public void b() {
+         insert();
+         update();
+    }
+}
+</code></pre>
+<p><mark>同类</mark>中一个没有@Transaction的方法调用有@Transaction的方法时，事务将会失效</p>
+<ul>
+<li>原因<br>
+根本原因在于spring对于事务的管理方式：spring使用aop去管理事务<br>
+对于上述AServiceImpl，在运行时，spring会自动生成其代理类如下：</li>
+</ul>
+<pre><code class="language-java">public class AServiceImplProxy implements AService{
+
+    public void a() {
+      //反射调用目标类的a方法
+	AServiceImpl.a();
+    }
+
+    public void b() {
+     //启动事务的代码
+     begin;
+     try{
+       //反射调用目标类的b方法
+        AServiceImpl.b();
+     }catch{
+	rollback;
+     }
+     //事务提交的代码
+     commit;
+    }
+}
+
+</code></pre>
+<p><img src="https://i.loli.net/2019/11/22/Gz3AvxIw1eXan9i.png" alt="title"><br>
+在调用getBean(&quot;AServiceImpl&quot;).a()时，实际上执行的是AServiceImplProxy.a(),而AServiceImplProxy.a()调用的是源类中的a()方法，源类中a()再去调用b(),显而易见，并没有用到代理类中的AServiceImplProxy.b(),自然不会有事务管理。</p>
+<h4 id="案例2">案例2</h4>
+<p>a()有@Transaction b()有@Transaction或无@Transaction</p>
+<pre><code class="language-java">@Service
+public class AServiceImpl implements AService{
+    @Transactional(rollbackFor={Exception.class})
+    public void a() {
+        this.b();
+    }
+
+    @Transactional(rollbackFor={Exception.class})
+       public void b() {
+         insert();
+         update();
+    }
+}
+</code></pre>
+<ul>
+<li>其实原理流程和案例1的差不多，上层类调用a()时，只会开启对于a()的事务，b的事务并没有起作用，但是因为spring的机制，会将b()自动加入到a()的事务中，所以a()方法也将b()管理了起来。</li>
+<li>对于案例1，a()连事务都没有调用，自然也不会自动将b()管理到a()</li>
+<li>注意点：虽然a()的事务会将b()管理起来，但是其实在b()上的注解是失效的，也就是说如果你想用不同的事务传播机制(如这种PROPAGATION_SUPPORTS)，机制将会失效,rollbackFor也只能沿用a()定义的</li>
+</ul>
+<h4 id="解决方案">解决方案</h4>
+<ol>
+<li>显式的事务编程(不推荐，丧失了aop的方便性)</li>
+<li>显式的调用代理类中的b()
+<ul>
+<li>将暴露Proxy类设置为true@EnableAspectJAutoProxy(exposeProxy = true)</li>
+<li>然后显式调用代理类的b()</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-java">@Transactional(rollbackFor={Exception.class})
+
+public void a() {
+
+    ((AService) AopContext.currentProxy()).b();
+
+    //即调用AOP代理对象的b方法即可执行事务切面进行事务增强
+
+}
+</code></pre>
+<p>这种做法很方便，但是不能保证以后新添加的代码不出现相同的问题<br>
+3. 进行接口下沉，避免出现案例1的情况<br>
+- 将一些操作数据库的通用方法放到另外的service里，这样不会出现同类调用transaction的尴尬情况<br>
+- 这种做法比较优雅，也能完全避免出现事务失效的情况</p>
+<h4 id="总结">总结</h4>
+<ol>
+<li>不仅仅是@Transaction注解，几乎所有与AOP有关的注解都存在上述的问题，工作中需要格外注意</li>
+<li>现在代码大部分情况都是案例2中的情况，小部分是案例1中的情况，以后写代码的时候如果需要对注解有格外的定义，要记住案例2的情况中，注解将会失效</li>
+<li>其实还是要在写代码的时候有规范意识，不要所有东西都写在一起，专业的类干专业的事</li>
+<li>查看mybatis和事务日志：<br>
+logging.level.com.okcoin.vault.service.dao.mapper=debug<br>
+logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=debug</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[闪电网络原理]]></title>
         <id>http://henta.github.io//post/shan-dian-wang-luo</id>
