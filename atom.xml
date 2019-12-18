@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://henta.github.io/</id>
     <title>Henta</title>
-    <updated>2019-12-18T07:28:34.616Z</updated>
+    <updated>2019-12-18T07:32:39.992Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://henta.github.io/"/>
     <link rel="self" href="http://henta.github.io//atom.xml"/>
@@ -10,6 +10,23 @@
     <logo>http://henta.github.io//images/avatar.png</logo>
     <icon>http://henta.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Henta</rights>
+    <entry>
+        <title type="html"><![CDATA[spring定时任务]]></title>
+        <id>http://henta.github.io//post/spring-ding-shi-ren-wu</id>
+        <link href="http://henta.github.io//post/spring-ding-shi-ren-wu">
+        </link>
+        <updated>2019-12-18T07:31:25.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="spring定时任务schedule">spring定时任务Schedule</h3>
+<ul>
+<li>我们使用@Scheduled来创建定时任务，并通过在启动类上加上@EnableScheduling注解开启定时任务。 这个注解用来标注一个定时任务方法。通过看@Scheduled源码可以看出它支持多种参数：</li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="spring定时任务schedule">spring定时任务Schedule</h3>
+<ul>
+<li>我们使用@Scheduled来创建定时任务，并通过在启动类上加上@EnableScheduling注解开启定时任务。 这个注解用来标注一个定时任务方法。通过看@Scheduled源码可以看出它支持多种参数：</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[同类调用导致的spring事务失效]]></title>
         <id>http://henta.github.io//post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao</id>
