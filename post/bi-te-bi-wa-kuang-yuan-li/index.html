@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Henta</title>
+<title>比特币挖矿原理 | Henta</title>
 <meta name="description" content="一个码农的自我描述">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,20 +91,90 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="tags-container">
+          <div class="post-detail">
+            <h2 class="post-title">比特币挖矿原理</h2>
+            <div class="post-date">2020-02-17</div>
             
-              <a class="tag" href="http://henta.github.io//tag/lg-mGLSXR">比特币</a>
+            <div class="post-content">
+              <h1 id="挖矿原理">挖矿原理</h1>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/01/30/5c51130ab6418.png" alt="挖矿原理示意图"></figure>
+<ul>
+<li>挖矿的过程就是不断改变Nonce计算hash的过程</li>
+<li>以551675区块为例，模拟挖矿过程：
+<ul>
+<li>将区块头中的六个参数以16进制的<mark>小端结尾</mark>方式连接在一起
+<ul>
+<li>小端结尾就是将字节颠倒顺序，在16进制表示中，2个16进制数值代表了1个字节，所以就两个两个的颠倒</li>
+</ul>
+</li>
+<li>版本号：0x20000000
+<ul>
+<li>version=&quot;02000000&quot;</li>
+</ul>
+</li>
+<li>上一块的hash：000000000000000000080f18263448e7d679c4ef5f2781a1272146556b824a54
+<ul>
+<li>pre_version=&quot;544a826b55462127a181275fefc479d6e7483426180f08000000000000000000&quot;</li>
+</ul>
+</li>
+<li>merkle_root:2c16a0662dfbeec9d13d8d9bc54d995e47492e8baf8e6344e5617b1e70b4baf8
+<ul>
+<li>merkle_root=&quot;f8bab4701e7b61e544638eaf8b2e49475e994dc59b8d3dd1c9eefb2d66a0162c&quot;</li>
+</ul>
+</li>
+<li>时间戳：1543275021（2018-11-27 07:30:21，转16进制为5bfc820d）
+<ul>
+<li>time_stamp=&quot;0d82fc5b&quot;</li>
+</ul>
+</li>
+<li>难度目标Bits：388648495 16进制:172a4e2f
+<ul>
+<li>bits=&quot;2f4e2a17&quot;</li>
+</ul>
+</li>
+<li>Nonce: 3039957436 16进制：b53211bc
+<ul>
+<li>nonce=&quot;bc1132b5&quot;</li>
+</ul>
+</li>
+<li>head_hex=version+pre_hash+merkle_root+time_stamp+bits+nonce=<br>
+02000000544a826b55462127a181275fefc479d6e7483426180f08000000000000000000f8bab4701e7b61e544638eaf8b2e49475e994dc59b8d3dd1c9eefb2d66a0162c0d82fc5b2f4e2a17bc1132b5</li>
+<li>再计算两次hash256并且转码</li>
+<li>转回大端</li>
+<li>比对目标大小，需要实际计算的hash值&lt;目标hash大小才算验证成功</li>
+</ul>
+</li>
+</ul>
+
+            </div>
             
-              <a class="tag" href="http://henta.github.io//tag/9kbd3Vs4HD">区块链</a>
+              <div class="tag-container">
+                
+                  <a href="http://henta.github.io//tag/lg-mGLSXR" class="tag">
+                    比特币
+                  </a>
+                
+                  <a href="http://henta.github.io//tag/9kbd3Vs4HD" class="tag">
+                    区块链
+                  </a>
+                
+              </div>
             
-              <a class="tag" href="http://henta.github.io//tag/_BtyPd5WF">spring</a>
             
-              <a class="tag" href="http://henta.github.io//tag/AHXH31IEv">⚡️闪电网络</a>
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="http://henta.github.io//post/spring-ding-shi-ren-wu">
+                  <h3 class="post-title">
+                    spring定时任务
+                  </h3>
+                </a>
+              </div>
             
-              <a class="tag" href="http://henta.github.io//tag/7QsosURxD">Gridea</a>
+
             
+
           </div>
+
         </div>
       </div>
     </div>

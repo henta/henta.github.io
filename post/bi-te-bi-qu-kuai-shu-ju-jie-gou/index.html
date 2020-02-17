@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Henta</title>
+<title>比特币区块数据结构 | Henta</title>
 <meta name="description" content="一个码农的自我描述">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,20 +91,72 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="tags-container">
+          <div class="post-detail">
+            <h2 class="post-title">比特币区块数据结构</h2>
+            <div class="post-date">2020-02-17</div>
             
-              <a class="tag" href="http://henta.github.io//tag/lg-mGLSXR">比特币</a>
+            <div class="post-content">
+              <h2 id="区块相关信息">区块相关信息</h2>
+<ul>
+<li>区块包括：区块头和区块体</li>
+<li>区块体记录了交易详情、交易计数器、区块大小</li>
+<li>区块头：每个区块的前<mark>80个字节（640bits）</mark>，包含6部分信息
+<ul>
+<li>Version版本号，4字节</li>
+<li>前一个区块的hash值，32字节</li>
+<li>本区块所有交易的默克尔根，32字节</li>
+<li>时间戳，4字节
+<ul>
+<li>比特币是p2p网络，无中心服务器，每个节点的时间戳可能不同，因此有规定：</li>
+</ul>
+<ol>
+<li>新区快时间戳要大于前11个区块平均时间戳；</li>
+<li>不超过当前网络时间的两小时。</li>
+</ol>
+<ul>
+<li>所以后一个区块时间戳小于前一个也是有可能的。</li>
+</ul>
+</li>
+<li>难度Bits，4字节</li>
+<li>随机数Nonce，4字节
+<ul>
+<li>Nonce是全网矿工计算当前区块hash值得核心参数。</li>
+<li><mark>Nonce的取值范围是0-2的32次方（42亿）</mark></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
             
-              <a class="tag" href="http://henta.github.io//tag/9kbd3Vs4HD">区块链</a>
+              <div class="tag-container">
+                
+                  <a href="http://henta.github.io//tag/lg-mGLSXR" class="tag">
+                    比特币
+                  </a>
+                
+                  <a href="http://henta.github.io//tag/9kbd3Vs4HD" class="tag">
+                    区块链
+                  </a>
+                
+              </div>
             
-              <a class="tag" href="http://henta.github.io//tag/_BtyPd5WF">spring</a>
             
-              <a class="tag" href="http://henta.github.io//tag/AHXH31IEv">⚡️闪电网络</a>
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="http://henta.github.io//post/bi-te-bi-si-yao">
+                  <h3 class="post-title">
+                    比特币私钥
+                  </h3>
+                </a>
+              </div>
             
-              <a class="tag" href="http://henta.github.io//tag/7QsosURxD">Gridea</a>
+
             
+
           </div>
+
         </div>
       </div>
     </div>

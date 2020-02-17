@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>比特币交易和签名 | Henta</title>
+<meta name="description" content="一个码农的自我描述">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="http://henta.github.io//favicon.ico?v=1581916777865">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="http://henta.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="http://henta.github.io/">
+        <img src="http://henta.github.io//images/avatar.png?v=1581916777865" class="site-logo">
+        <h1 class="site-title">Henta</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      一个码农的自我描述
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://henta.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">比特币交易和签名</h2>
+            <div class="post-date">2020-02-17</div>
+            
+            <div class="post-content">
+              <h1 id="比特币交易和签名">比特币交易和签名</h1>
+<hr>
+<h3 id="概述">概述</h3>
+<ul>
+<li>交易是比特币系统中最重要的部分</li>
+<li>每一笔交易的每一项输出严格意义上并不是指向一个地址，而是指向一个脚本
+<ul>
+<li>脚本类似一套规则，他约束着收币方必须满足一定条件才能花掉收币地址上锁定的资产。</li>
+<li>交易的本质是包含了一组输入和输出的数据结构，也就是转账记录。
+<ul>
+<li>输入和输出可以简单理解为：发币地址是输入，收币地址是输出。</li>
+<li>输入中包含解锁脚本（unlocking script）
+<ul>
+<li>解锁脚本是锁定脚本对应的脚本。锁定脚本相当于出了一个加密难题，而解锁脚本相当于是解开锁定脚本的一个题解。当解锁脚本满足锁定脚本要求的条件，就能花掉锁定脚本上对应的资产。用scripSig表示。</li>
+<li>简单的交易类型中的解锁脚本就是支付方用自己的私钥所做的签名。</li>
+</ul>
+</li>
+<li>输出中包含锁定脚本（locking script）
+<ul>
+<li>交易输出中包含了交易的转账金额以及收币方的比特币地址。而锁定脚本就是在交易输出上附加了一个条件。</li>
+<li>由于锁定脚本往往含有一个公钥或者比特币地址，所以曾经就被称为公钥脚本。在代码中常用scriptPubKey表示。其实这种脚本技术存在更为广泛的可能性，更确切的叫法应该是锁定脚本</li>
+<li>在简单的交易类型中，锁定脚本中附加的条件就是收币方的公钥，将收币方的公钥与转账资产锁定在一起，意思就是只有拥有这个公钥的人才能解锁并有权花费其中的资产。</li>
+<li>要花费这笔被锁定的资产，就需要证明自己是锁定脚本里的那个公钥的所有者，最有利的证据就是用配套的私钥来证明，但是出于安全考虑，私钥是不能公开到网络中的，于是采用私钥生成的签名来代替私钥。如果签名与锁定资产的公钥相匹配，那么就有权花费这笔被锁定的资产。</li>
+<li>签名是通过secp256K1椭圆曲线加密算法实现的，知道签名也没有办法逆推出私钥，所以这是安全的签名方法。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="交易链">交易链</h3>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/01/30/5c51137a79df7.png" alt="20190130110112-image.png"></figure>
+<ul>
+<li>前一笔交易的输出是一个加密难题，需要用这笔钱的时候，就需要在新交易中的输入中加入解锁脚本解开加密难题</li>
+</ul>
+<hr>
+<h3 id="签名序列化der">签名序列化（DER）￼</h3>
+<ul>
+<li>什么是DER？
+<ol>
+<li>DER（Distinguish Encoding Rules，可辨别编码规则）</li>
+<li>椭圆曲线加密算法对数据签名可以产生由两个值组成的签名Sig，通常称为R和S</li>
+<li>计算出R和S后，需要使用DER国际标准编码方案，将其序列化为16进制字节码格式</li>
+<li>椭圆曲线的数字签名其实是R和S值的序列化字节码。</li>
+</ol>
+</li>
+<li>签名格式分析如下图<br>
+<img src="https://i.loli.net/2019/01/30/5c51138d16449.png" alt="20190130110131-image.png"></li>
+<li>第二部分序列的长度值决定了数字签名的总长度
+<ul>
+<li>序列长度为44，签名总长度为71字节（142位16进制数字）</li>
+<li>序列长度为45，签名总长度为72字节（144位16进制数字）</li>
+<li>序列长度为46，签名总长度为73字节（146位16进制数字）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="secp256k1实现交易签名及签名验证">Secp256K1实现交易签名及签名验证</h3>
+<hr>
+<h3 id="比特币交易生命周期">比特币交易生命周期</h3>
+<ul>
+<li>交易流程就是交易的生命周期。区块链的交易并不是通常意义上的一手交钱一手交货的交易，而是转账。比特币的交易可以包含多个输入和输出。可以理解成一笔交易可以有多个银行卡的资金来源，并且一次交易可以转账给多个人。</li>
+<li>比特币交易的生命周期包括：创建交易、广播交易、打包交易、交易上链、交易回退。
+<ol>
+<li>
+<p>创建交易：</p>
+<ul>
+<li>支付方A的客户端钱包优先搜索A用户的UTXO列表信息，找寻A是否有足够的资金进行支付。</li>
+<li>如果A有UTXO，那么A需要用自己的私钥，对每一个UTXO做签名，同时附加上每一个UTXO对应的公钥，以证明自己对该笔资金具有使用权。这些信息附加在A的支付方地址上，这就是解锁脚本。</li>
+<li>A在给收币方B转账过程中，会在转账金额末尾附加一个加密难题，从而将该笔转账资金进行锁定，只有满足条件的人才有权使用该笔资金。这就是锁定脚本。锁定脚本中一般锁定的是收币方的公钥或者公钥hash。</li>
+<li>比特币交易中的每个输出可以设置多个加密难题，那么该输出下次被使用时就需要多个签名来解密。</li>
+<li>交易一旦被创建也就意味着交易的生命周期开始了</li>
+</ul>
+</li>
+<li>
+<p>广播交易：</p>
+<ul>
+<li>比特币交易被创建后，会广播到比特币网络中，网络中邻近的全节点收到交易信息，先放到本地的内存，然后对交易进行验证。比如这笔交易的input中引用的交易是否属于UTXO。若验证不成功，则交易会被认为是invalid Transaction--无效交易。若验证成功后这些交易会被认为是Unconfirm Transation--未确认交易，”未确认交易“会被放置在节点的有效交易池中等待被打包。</li>
+<li>比特币是一种全网记账的系统,因此每笔交易发生后,会在全网广播。每一个收到交易的比持币节点都会首先验证交易,有效的交易将被传递到临近的节点,这确保了只有有效的交易才会在网络中传播,而无效的交易将会在第一个节点处就被废弃。周边的全节点接到这笔交易后,也一样先放入内存进行验证,验证通过再放入有效交易池中等待被打包。
+<ul>
+<li>钱包收到比特币，其实就是钱包检测到了可用的UTXO。通过钱包控制的秘钥，可以把这些UTXO花出去。因此，用户的比特币”余额“是指用户钱包中可用的UTXO总和。</li>
+<li>全节点客户端中, chainstate目录下的*.ldb文件中存放的就是UTXO记录。</li>
+<li>一个UTXO可以是1”聪“的任意整数倍。尽管UTXO可以是任意值，但一旦被创造出来，即不可分割。这是UTXO值得被强调的一个重要特性：一个UTXO只能在一次交易中作为一个整体被消耗。但是比特币系统也可以找零。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>打包交易</p>
+<ul>
+<li>挖矿节点每次开始挖矿就按一定的优先级次序从交易池中抽取近千笔未确认交易，打包进区块，打包时会将上一个区块的Hash值也加入包中。然后开始执行挖矿。</li>
+</ul>
+</li>
+<li>
+<p>交易上链：</p>
+<ul>
+<li>争夺记账权:挖矿节点利用工作量证明来争夺记账权。当挖矿成功,该节点生成新区块后,整个过程并没有结束,该节点接下来会发起一次全网记账。</li>
+<li>全网记账:挖矿成功的节点,将新区块的数据记录在自己的硬盘上,并同时将数据广播至全网,周边的节点接收到之后再传递给其它周边的节点,直到全网都收到这个信息。接收到信息的节点对新区块数据进行核对。验证通过后,各个节点将该区块数据追加到比特币主链的最后端,其实就是记录到自己节点的硬盘中,这样来确保本地的区块链数据更新为最新的数据。</li>
+<li>更新交易池:挖矿节点在接收并验证新区块数据后,会检查自己内存池中的全部交易,移除已经在新区块中出现过的交易记录,确保任何留在内存池中的交易都是未确认的。而那些被移除的交易记录其实就获得了一次交易“确认”。</li>
+<li>更新UTXO索引:每一次交易都代表这UTXO集合的变化,交易结束,节点会更新UTXO索引。</li>
+<li>把包含在区块内且被添加到区块链上的交易称为“确认”交易,交易经过6次“确认”之后,就认为交易是安全不可更改的。此时交易接收方就能花费他在交易中得到的比特币。至此交易就永久被保存在了区块链上而不能被篡改和删除,也就意味着交易的生命周期结束了。</li>
+</ul>
+</li>
+<li>
+<p>交易回退：如果不巧出现临时分叉，则等到最长连诞生后，分叉的区块会断链并将其中记录的交易回退到交易池中，等待重新被打包上链。</p>
+</li>
+</ol>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="http://henta.github.io//tag/lg-mGLSXR" class="tag">
+                    比特币
+                  </a>
+                
+                  <a href="http://henta.github.io//tag/9kbd3Vs4HD" class="tag">
+                    区块链
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="http://henta.github.io//post/bi-te-bi-wa-kuang-yuan-li">
+                  <h3 class="post-title">
+                    比特币挖矿原理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

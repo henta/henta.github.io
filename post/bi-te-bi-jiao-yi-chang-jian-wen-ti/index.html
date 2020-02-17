@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>比特币交易常见问题 | Henta</title>
+<meta name="description" content="一个码农的自我描述">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="http://henta.github.io//favicon.ico?v=1581916777865">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="http://henta.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="http://henta.github.io/">
+        <img src="http://henta.github.io//images/avatar.png?v=1581916777865" class="site-logo">
+        <h1 class="site-title">Henta</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      一个码农的自我描述
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://henta.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">比特币交易常见问题</h2>
+            <div class="post-date">2020-02-17</div>
+            
+            <div class="post-content">
+              <h1 id="比特币交易常见问题">比特币交易常见问题</h1>
+<h3 id="比特币私钥">比特币私钥</h3>
+<ul>
+<li>原始私钥是32字节，也就是256位2进制数字，换算成16进制数字就是64位长度；</li>
+<li>私钥有16进制格式、WIF格式、WIF-compressed格式（WIF压缩格式）；</li>
+<li>WIF格式经过Base58check编码并以5作为前缀，WIF-compressed格式同样经过Base58Check编码并以K或L开头；</li>
+<li>私钥常常以WIF-compressed格式来展示，展示为以K或L开头的52位长度的数字和字母</li>
+</ul>
+<hr>
+<h3 id="椭圆曲线算法ecc">椭圆曲线算法（ECC）</h3>
+<ul>
+<li>椭圆曲线算法是不可逆的，很容易向一个方向计算，但是不可以向相反方向倒退；</li>
+<li>比特币采用了SECP256K1算法（椭圆曲线算法的一种），将私钥生成公钥。</li>
+<li>SECP256K1是不可逆的，所以即使公钥公开暴露，也对私钥的安全性不会造成影响。</li>
+</ul>
+<hr>
+<h3 id="base64-base58check">Base64、Base58Check</h3>
+<ul>
+<li>Base64就是一种基于64个可打印字符来表示二进制数据的方法</li>
+<li>Base64字符集A~Z a~z 0~9+/</li>
+<li>Base58是用于比特币中的一种独特的编码方式，主要用于产生比特币钱包的地址</li>
+<li>相比Base64，Base58去除了一些容易混淆的相似字符：数字0和大写字母O，大写字母I和小写字母i，以及+和/</li>
+</ul>
+<hr>
+<h3 id="公钥私钥和比特币地址之间的关系">公钥私钥和比特币地址之间的关系</h3>
+<ul>
+<li>随机私钥生成公钥，公钥再生成比特币地址，且过程不可逆<br>
+<img src="https://i.loli.net/2019/01/30/5c5113448ae38.png" alt="20190130110018-image.png"></li>
+</ul>
+<hr>
+<h3 id="utxounspent-transaction-outputs未花费交易输出">UTXO（unspent transaction outputs，未花费交易输出）</h3>
+<ul>
+<li>用户比特币余额是用户钱包中可用的UTXO的总和。他们可能分布在数百个交易和区块中</li>
+<li>这些UTXO由用户所有的秘钥来控制花费行为。UTXO的面值为聪，是不可分割的价值单元，一个UTXO只能在一次交易中作为整体消耗</li>
+<li>每个比特币地址对应的UTXO，在交易过程中如同一张纸币一样（面额就是该比特币地址上的金额），不可以撕开使用，必须是作为一个整体来交易。</li>
+<li>未被交易的交易索引：检查inputs中的交易的txn是否在未被支付交易索引中即可。</li>
+</ul>
+<hr>
+<h3 id="比特币交易验证">比特币交易验证</h3>
+<ul>
+<li>一笔交易就是一个地址的比特币，转移到另一个地址。由于比特币的交易记录全部是公开的，哪个地址拥有多少比特币，都是可以查到的。因此，支付方是否有足够的比特币，完成这笔交易，是很容易验证的。问题在于怎么防止其他人，冒用你的名义申报交易。</li>
+<li>申报交易的时候，除了交易金额，转出比特币的一方还必须提供以下数据。
+<ul>
+<li>上一笔交易的Hash（你从哪里得到的这些比特币）</li>
+<li>本次交易双方的地址</li>
+<li>支付方的公钥</li>
+<li>支付方的私钥生成的数字签名</li>
+</ul>
+</li>
+<li>验证这笔交易是否属实，要经过三步
+<ul>
+<li>第一步，找到上一笔交易，确认支付方比特币的来源</li>
+<li>第二步，算出支付方公钥的指纹，确认与支付方的地址一致（因为通过公钥可以算出地址），从而保证公钥属实</li>
+<li>第三步，用公钥去解开数字签名（数字签名只有拥有私钥才能生成），保证签名属实，私钥属实。</li>
+<li>经过上面三步，就可以认定这笔交易是真实的</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="http://henta.github.io//tag/lg-mGLSXR" class="tag">
+                    比特币
+                  </a>
+                
+                  <a href="http://henta.github.io//tag/9kbd3Vs4HD" class="tag">
+                    区块链
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="http://henta.github.io//post/bi-te-bi-qu-kuai-shu-ju-jie-gou">
+                  <h3 class="post-title">
+                    比特币区块数据结构
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -2,14 +2,56 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://henta.github.io/</id>
     <title>Henta</title>
-    <updated>2019-12-18T07:35:17.264Z</updated>
+    <updated>2020-02-17T05:19:47.819Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://henta.github.io/"/>
     <link rel="self" href="http://henta.github.io//atom.xml"/>
     <subtitle>一个码农的自我描述</subtitle>
     <logo>http://henta.github.io//images/avatar.png</logo>
     <icon>http://henta.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, Henta</rights>
+    <rights>All rights reserved 2020, Henta</rights>
+    <entry>
+        <title type="html"><![CDATA[比特币交易常见问题]]></title>
+        <id>http://henta.github.io//post/bi-te-bi-jiao-yi-chang-jian-wen-ti</id>
+        <link href="http://henta.github.io//post/bi-te-bi-jiao-yi-chang-jian-wen-ti">
+        </link>
+        <updated>2020-02-17T05:19:21.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[比特币区块数据结构]]></title>
+        <id>http://henta.github.io//post/bi-te-bi-qu-kuai-shu-ju-jie-gou</id>
+        <link href="http://henta.github.io//post/bi-te-bi-qu-kuai-shu-ju-jie-gou">
+        </link>
+        <updated>2020-02-17T05:18:26.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[比特币私钥]]></title>
+        <id>http://henta.github.io//post/bi-te-bi-si-yao</id>
+        <link href="http://henta.github.io//post/bi-te-bi-si-yao">
+        </link>
+        <updated>2020-02-17T05:17:45.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[比特币交易的数据结构]]></title>
+        <id>http://henta.github.io//post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou</id>
+        <link href="http://henta.github.io//post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou">
+        </link>
+        <updated>2020-02-17T05:17:02.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[比特币交易和签名]]></title>
+        <id>http://henta.github.io//post/bi-te-bi-jiao-yi-he-qian-ming</id>
+        <link href="http://henta.github.io//post/bi-te-bi-jiao-yi-he-qian-ming">
+        </link>
+        <updated>2020-02-17T05:15:42.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[比特币挖矿原理]]></title>
+        <id>http://henta.github.io//post/bi-te-bi-wa-kuang-yuan-li</id>
+        <link href="http://henta.github.io//post/bi-te-bi-wa-kuang-yuan-li">
+        </link>
+        <updated>2020-02-17T05:14:23.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[spring定时任务]]></title>
         <id>http://henta.github.io//post/spring-ding-shi-ren-wu</id>

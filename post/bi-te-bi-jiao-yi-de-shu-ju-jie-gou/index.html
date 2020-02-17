@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>比特币交易的数据结构 | Henta</title>
+<meta name="description" content="一个码农的自我描述">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="http://henta.github.io//favicon.ico?v=1581916777865">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="http://henta.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="http://henta.github.io/">
+        <img src="http://henta.github.io//images/avatar.png?v=1581916777865" class="site-logo">
+        <h1 class="site-title">Henta</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      一个码农的自我描述
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://henta.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">比特币交易的数据结构</h2>
+            <div class="post-date">2020-02-17</div>
+            
+            <div class="post-content">
+              <h1 id="比特币交易的数据结构">比特币交易的数据结构</h1>
+<hr>
+<h3 id="比特币区块的结构">比特币区块的结构</h3>
+<ul>
+<li>每一个数据区块记录了5个内容：<mark>魔法数、区块大小、区块头信息、交易数量、交易详情</mark>
+<ol>
+<li>魔法数（Magic no.）
+<ul>
+<li>占4字节</li>
+<li>正式网络中的魔法数：0xD9B4BEF9(实际区块中存储为小头位序，显示为 F9 BE B4 D9)</li>
+<li>测试网络中魔法数:0×07091108(实际区块中存储为小头位序,显示为0B 11 09 07）</li>
+<li>私链网络中魔法数:0xDAB5BFA(实际区块中存储为小头位序,显示为 FA BF B5 DA）</li>
+</ul>
+</li>
+<li>区块大小(Blocksize)
+<ul>
+<li>占4字节</li>
+</ul>
+</li>
+<li>区块头(Blockheader)
+<ul>
+<li>包含6个数据项,共占80字节</li>
+<li>区域版本号(Version),占4字节</li>
+<li>前一区块Hash(hashPrevBlock),占32字节</li>
+<li>Merkle根Hash,占32字节</li>
+<li>时间戳(Time),占4字节</li>
+<li>难度目标hash(bits),占4字节</li>
+<li>随机数( nonce),占4字节</li>
+</ul>
+</li>
+<li>交易数量（Transaction counter）
+<ul>
+<li>占1~9字节</li>
+</ul>
+</li>
+<li>交易详情（Transactions）
+<ul>
+<li>包含6个数据项，字节大小取决了交易中输入和输出的数量</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="比特币交易的数据结构-2">比特币交易的数据结构</h3>
+<ol>
+<li>交易数据格式的版本号(version)
+<ul>
+<li>占4字节</li>
+</ul>
+</li>
+<li>交易中输入的数量( tx_in_count)
+<ul>
+<li>占1-9字节</li>
+</ul>
+</li>
+<li>交易中输入的列表信息(tx_in)
+<ul>
+<li>最少占41字节</li>
+<li>标准的P2PKH交易的输入包含8项信息
+<ul>
+<li>上笔交易的hosh。占32字节</li>
+<li>该交易是上一笔交易的输出中的第几条。占4字节(索引下标从0开始)</li>
+<li>解锁脚本总长度。占106-108字节(私钥签名+压缩公钥的长度+2字节标记)</li>
+<li>私钥签名的长度。占1字节</li>
+<li>私钥签名的DER编码格式。占71~73字节</li>
+<li>压缩公钥的长度。占1字节</li>
+<li>压缩公钥。占33字节</li>
+<li>发送者定义的交易版本。就是JSON格式中的 sequence。占4字节。常用于识别交易的一个输入结束。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>交易中输出的数量(tx_out_count)
+<ul>
+<li>占1~9字节</li>
+</ul>
+</li>
+<li>交易中输出的列表信息(tx_out)
+<ul>
+<li>最少占8字节</li>
+<li>交易的输出包含3项信息
+<ul>
+<li>交易金额。占8字节</li>
+<li>锁定脚本长度。至少占1字节</li>
+<li>锁定脚本内容。不定长度，根据脚本的复杂程度而可变长度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>锁定时间（lock_time）
+<ul>
+<li>占4字节</li>
+<li>锁定时间表示在某个高度的区块诞生之前或某个时间点之前，该交易出于锁定状态而不能被收录进区块链中。只有在满足锁定条件后才能打包上链。
+<ul>
+<li>lock_time==0,表示该交易可以立即被打包。</li>
+<li>lock_time&lt;500000000,lock_time表示区块高度，就是说这笔交易只能被打包进高度大于lock_time的区块</li>
+<li>lock_time&gt;=500000000,lock_time表示Unix时间戳，就是说这笔交易只能等待到当前时间大于lock_time</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="p2pkh交易的数据解析案例">P2PKH交易的数据解析案例</h3>
+<ul>
+<li>P2PKH交易的原始数据
+<ol>
+<li>原始记录：
+<ul>
+<li>交易记录的查询网址：https://blockchain.info/rawtx/ffc90e4b4ce15a97c1b560ad148da63cadaa898e366bf270ae307857a2606430?format=hex</li>
+<li>rawtx后面接交易id号format=hex表示以十六进制表示，不加就以json格式展示</li>
+</ul>
+</li>
+<li>交易记录的16进制文件
+<ul>
+<li>交易hash：ffc90e4b4ce15a97c1b560ad148da63cadaa898e366bf270ae307857a2606430</li>
+<li>16进制文件如下：0100000002738522d9350e2edb9fd7b287e78d89f361acbc4ddb8463b1a83f757103ad7f3d010000006b483045022100eae02b94ca5a88168327e4cc4a15256745658e5c1022e51f134d07c7c192f8d102207a527ee05457420661d2f8e583a69847fb86586c2206d57df121c7842117b672012103b66167e405a3b5483750cb21a14bff75d2080e1785dcfc21801f322382fb5ed5ffffffffbe5535e467861a3061f8a6ca30a6375ad14389425c77515092698d7fdd33544e010000006a4730440220689198269768623e755a5d9e617a70ffd045d4c9f99d859a8c609bff6cea0349022059d9da5c5737e407e45b5bc836161bff77eb5fae273899f0bc43bc98616e6683012102387d8b1a297e71327dc3f01137e8edcf66a2a7531935c2baca498726482529ceffffffff027cc5c800000000001976a9149bf3e6b720106f7a802fa5a84a461fa1c660163888ac80c3c9010000000017a914c4f45400fc2c1eeff8ae8fb709f9b9ce1eef952b8700000000</li>
+<li>计算机存储的16进制数据是小头位序排列格式，即低位在前，高位在后。区块链浏览器中16进制数值显示是大头位序排列形式，因为人们的读写习惯，数值从左至右读，左侧是大数，右侧是小数。所以在解析16进制文件时，需要将数据转成大头位序排列格式后再运算。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>交易数据结构解析
+<ol>
+<li>版本号
+<ul>
+<li>01000000 //转成大头位序排列为：00000001，所以版本号为1</li>
+</ul>
+</li>
+<li>交易中的输入数量
+<ul>
+<li>02 //输入数量为2个</li>
+</ul>
+</li>
+<li>交易中输入的列表信息
+<ol>
+<li>第一笔交易输入</li>
+</ol>
+<ul>
+<li>上一笔交易的hash，占32字节 738522d9350e2edb9fd7b287e78d89f361acbc4ddb8463b1a83f757103ad7f3d</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="coinbase交易输出结构">coinbase交易输出结构</h3>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="http://henta.github.io//tag/lg-mGLSXR" class="tag">
+                    比特币
+                  </a>
+                
+                  <a href="http://henta.github.io//tag/9kbd3Vs4HD" class="tag">
+                    区块链
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="http://henta.github.io//post/bi-te-bi-jiao-yi-he-qian-ming">
+                  <h3 class="post-title">
+                    比特币交易和签名
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
