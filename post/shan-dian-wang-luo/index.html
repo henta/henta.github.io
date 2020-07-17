@@ -9,9 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="http://henta.github.io//favicon.ico?v=1594955675604">
+<link rel="shortcut icon" href="https://henta.github.io//favicon.ico?v=1594956712674">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="http://henta.github.io//styles/main.css">
+<link rel="stylesheet" href="https://henta.github.io//styles/main.css">
 
 
 
@@ -29,8 +29,8 @@
       <div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
-      <a class="site-title-container" href="http://henta.github.io/">
-        <img src="http://henta.github.io//images/avatar.png?v=1594955675604" class="site-logo">
+      <a class="site-title-container" href="https://henta.github.io/">
+        <img src="https://henta.github.io//images/avatar.png?v=1594956712674" class="site-logo">
         <h1 class="site-title">Henta</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -83,7 +83,7 @@
       一个码农的自我描述
     </div>
     <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://henta.github.io//atom.xml" target="_blank">RSS</a>
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://henta.github.io//atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
@@ -106,7 +106,7 @@
 <li>openChannel（建立交易通道）：A和B协商好双方投入的资金，然后在比特币链上创建一个2/2的多重签名交易，需要花费output需要双方共同签名</li>
 <li>开始交易：建立好通道后，双方可以通过这个链下的通道进行交易，在第一步双方投入的金额内，交易可以进行无线多次，这些交易都不上链，双方只会&quot;记账&quot;</li>
 <li>closeChannel（关闭交易通道）：双方交易结束后需要将最终的账单统合，并且共同去花费第1步的output，进行最终的上链过程<br>
-<img src="https://i.loli.net/2019/12/10/udfWicAGqV9X6UM.png" alt="title"></li>
+<img src="https://i.loli.net/2019/12/10/udfWicAGqV9X6UM.png" alt="title" loading="lazy"></li>
 </ol>
 <p>问题:这种想法虽然好，但是怎么保证双方诚信？如果最后A舍弃了自己剩余的0.3btc（可能是故意或者私钥丢了），就是不配合B去花费2/2的output，这样B就损失了0.7个btc。当初说好的给彼此之间一点信任呢？</p>
 <h3 id="原理">原理</h3>
@@ -116,7 +116,7 @@
 </ol>
 <ul>
 <li>图中[]表示现在还不具备的东西，R表示随机数，Ra表示A的随机数，Rb表示b的随机数，Revocable Sequence Maturity Contract (RSMC) 可撤销序列成熟合约<br>
-<img src="https://i.loli.net/2019/12/10/y8hN3tznLcdiGr4.png" alt="title"></li>
+<img src="https://i.loli.net/2019/12/10/y8hN3tznLcdiGr4.png" alt="title" loading="lazy"></li>
 </ul>
 <ol start="2">
 <li>A和B将各自签名好的交易互相交换，现在可以观察一下，A和B都可以将对方给的交易上链了，但是如果对方不同意的话，RSMC脚本只能通过等待1000个区块去花费了，这就是强制上链的惩罚，而对方同意的话，可以直接通过对方的签名去花费这个RSMC，也就是可以即时花费
@@ -128,7 +128,7 @@
 <p>这样一来任一方都可以closeChannel，只不过分为和平关闭和强制关闭 这就是为什么双方都同意建立交易通道的原因：只要我愿意，我们的交易一定会上链</p>
 <ol start="3">
 <li>现在双方在交易通道里继续交易记账 比如，A支付给了B 0.1btc，这时候双方会重新签一个未完成交易给对方：<br>
-<img src="https://i.loli.net/2019/12/10/l4hZ28cRrODUAyN.png" alt="title"></li>
+<img src="https://i.loli.net/2019/12/10/l4hZ28cRrODUAyN.png" alt="title" loading="lazy"></li>
 </ol>
 <p>通道内转账更新账单其实就是双方更新签名交易</p>
 <ul>
@@ -141,7 +141,7 @@
 <ol start="4">
 <li>上述的情况都是发生在A直接能连到B的情况下，但是闪电网络是一个巨大的网络，A并不能保证每次都能直接连到B，这时候C节点刚好连着B，于是A就将C节点当成中间人去和A交易<br>
 比如：A要转0.1btc给D<br>
-<img src="https://i.loli.net/2019/12/10/7RBlPEJXe2gqHoi.png" alt="title">
+<img src="https://i.loli.net/2019/12/10/7RBlPEJXe2gqHoi.png" alt="title" loading="lazy">
 <ol>
 <li>Dave准备一个随机数R，并计算其哈希H，将H给了Alice</li>
 <li>Alice和Bob建立通道的时候约定，如果3天内Bob能给出R，那Alice给Bob0.102btc，超过3天，拿回这些币</li>
@@ -162,7 +162,7 @@
             
               <div class="tag-container">
                 
-                  <a href="http://henta.github.io//tag/AHXH31IEv" class="tag">
+                  <a href="https://henta.github.io/tag/AHXH31IEv/" class="tag">
                     ⚡️闪电网络
                   </a>
                 
@@ -171,7 +171,7 @@
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="http://henta.github.io//post/hello-gridea">
+                <a href="https://henta.github.io/post/hello-gridea/">
                   <h3 class="post-title">
                     Hello Gridea
                   </h3>
