@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://henta.github.io//favicon.ico?v=1595321034217">
+<link rel="shortcut icon" href="https://henta.github.io//favicon.ico?v=1595326189766">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://henta.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://henta.github.io/">
-        <img src="https://henta.github.io//images/avatar.png?v=1595321034217" class="site-logo">
+        <img src="https://henta.github.io//images/avatar.png?v=1595326189766" class="site-logo">
         <h1 class="site-title">Henta</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -107,7 +107,7 @@
 <li>Carol有了R之后自然可以领取到Bob的悬赏，得到了1.01个Btc，并将R交给了Bob</li>
 <li>Bob有了R之后自然可以领取到Alice的悬赏，得到了1.02个Btc，并将R交给了Alice</li>
 </ol>
-<figure data-type="image" tabindex="1"><img src="https://henta.github.io//post-images/1595320485399.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://henta.github.io//post-images/1595320485399.png" alt="HTLC" loading="lazy"></figure>
 <p>上述是HTLC工作的简易流程，有以下几点需要补充说明：</p>
 <ul>
 <li>总的来说HTLC的工作流程是<mark>将H正向传输，将R反向传输</mark></li>
@@ -121,7 +121,16 @@
 <li>实际上，HTLC在闪电网络中的应用远没有如此简单，由于虫洞攻击并不复杂，这里并不对HTLC进行深入剖析。</li>
 </ul>
 <h2 id="虫洞攻击">虫洞攻击</h2>
-<p>所有使用HTLC进行建设的Layer-2都有这个问题</p>
+<p>我们看回到上面的图片中，可以发现如果进行正常的HTLC交易，Alice需要支付1.02个btc，Bob和Carol可以得到0.01Btc的报酬，Dave也可以正常得到1Btc。</p>
+<ul>
+<li>现在我们假设Dave和Bob是攻击者，Carol是无辜的受害者</li>
+<li>从HTLC的流程中可知Dave本应将R交给Carol，而现在Dave和Bob合谋，Dave直接将R给了Bob</li>
+<li>由于Carol一直没有得到R，在50个区块之后，他将步骤4中的HTLC取回了，Carol没有损失资金，也没有得到0.01Btc的手续费</li>
+<li>Bob得到R之后将R交给了Alice，得到了1.02个Btc，其中0.02Btc手续费（报酬）由于Carol没有将R给Bob，Bob在100个区块后将步骤3中的HTCL取回，到这里，我们可以看到Bob将Carol的手续费给私吞了。</li>
+</ul>
+<p>这就是虫洞攻击，事实上，合谋者之间有多少受害人，他们就可以获得多少受害人本应得到的手续费，目前所有使用HTLC进行建设的Layer-2都有这个问题</p>
+<h2 id="解决方案">解决方案</h2>
+<p>目前闪电网络团队正在试验一种新的多跳支付方式<mark>PTLC</mark>来取代HTLC</p>
 
             </div>
             
