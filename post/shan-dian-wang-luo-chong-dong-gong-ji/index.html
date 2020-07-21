@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Henta</title>
+<title>闪电网络-虫洞攻击 | Henta</title>
 <meta name="description" content="一个码农的自我描述">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -92,20 +92,49 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">闪电网络-虫洞攻击</h2>
+            <div class="post-date">2020-07-21</div>
             
             <div class="post-content">
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+              <h2 id="htlc">HTLC</h2>
+<p>Alice的目标是要将1btc转给Dave，但是自己并没有与之相连的通道，这时候就要找到与Dave的通道连接的节点，间接将钱支付给Dave</p>
+<ol>
+<li>Dave创建一个随机数R，并且Hash（R），我们将其称为H，然后将H传输给Alice</li>
+<li>Alice发布一个悬赏：也就是HTLC，悬赏的大致意思是:谁能将R给我，我就给谁1.02个btc</li>
+<li>Bob接下了Alice的悬赏，但是Bob并没有R，所以Bob也发布了一个悬赏：谁能将R给我，我就给谁1.01个btc</li>
+<li>Carol接下了Bob的悬赏，但是Carol也没有R，所以Carol发布悬赏：谁能将R给我，我就给谁1.00个btc，因为通道相连，Dave直接接下这个悬赏，并且将R给了Carol</li>
+<li>Carol接收到了R</li>
+<li>Carol有了R之后自然可以领取到Bob的悬赏，得到了1.01个Btc，并将R交给了Bob</li>
+<li>Bob有了R之后自然可以领取到Alice的悬赏，得到了1.02个Btc，并将R交给了Alice</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://user-gold-cdn.xitu.io/2020/7/21/1737080a650743e8?w=1710&amp;h=542&amp;f=png&amp;s=91522" alt="HTLC" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://henta.github.io//post-images/1595320485399.png" alt="" loading="lazy"></figure>
+<p>上述是HTLC工作的简易流程，有以下几点需要补充说明：</p>
+<ul>
+<li>总的来说HTLC的工作流程是<mark>将H正向传输，将R反向传输</mark></li>
+<li>流程图中的HTLC(1.02,200,H)三个参数分别指的是
+<ul>
+<li>支付1.02个Btc</li>
+<li>如果200个块之后依然没有人将R给我，我自己则可以回收这笔交易</li>
+<li>正向传输H给后继节点</li>
+</ul>
+</li>
+<li>实际上，HTLC在闪电网络中的应用远没有如此简单，由于虫洞攻击并不复杂，这里并不对HTLC进行深入剖析。</li>
+</ul>
+<h2 id="虫洞攻击">虫洞攻击</h2>
+<p>所有使用HTLC进行建设的Layer-2都有这个问题</p>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/">
+                  <h3 class="post-title">
+                    比特币交易常见问题
+                  </h3>
+                </a>
+              </div>
             
 
             
