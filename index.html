@@ -1,295 +1,2442 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
 
-<title>Henta</title>
+<head>
+  <meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="一个码农的自我描述">
+<meta name="theme-color" content="#000">
+<title>Henta</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1595385725516">
+<link rel="stylesheet" href="/media/css/gemini.css">
+<link rel="stylesheet" href="/media/fonts/font-awesome.css">
+<link
+  href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+  rel="stylesheet" type="text/css">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="/media/hljs/styles/Atom-One-Dark.css"
+  rel="stylesheet">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://henta.github.io//favicon.ico?v=1595327252702">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://henta.github.io//styles/main.css">
+<link rel="stylesheet" href="/styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+  integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 
 
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+  integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+  integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
 
-  </head>
-  <body>
-    <div id="app" class="main">
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://henta.github.io/">
-        <img src="https://henta.github.io//images/avatar.png?v=1595327252702" class="site-logo">
-        <h1 class="site-title">Henta</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+
+
+
+</head>
+
+<body>
+  <div class="head-top-line"></div>
+  <div class="header-box">
+    
+<div class="gemini">
+  <header class="header  ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
+        </div>
       </div>
+      <div class="site-meta">       
+        <div class="site-title">
+          
+            <a href="/" class="brand">
+              <span>Henta</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">程序员的自我修养</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            
+            
+              
+            
+            <li class="nav-item nav-item-active">
+              
+              
+                <a href="/" target="_self">
+                  <i class="fa fa-home"></i> 首页
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/archives/" target="_self">
+                  <i class="fa fa-archive"></i> 归档
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/tags/" target="_self">
+                  <i class="fa fa-tags"></i> 标签
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/post/about/" target="_self">
+                  <i class="fa fa-user"></i> 关于
+                </a>
+              
+            </li>
+          
+          
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> 友情链接
+                  
+                </a>
+              </li>
+            
+          
+          
+            <li id="fa_search" class="nav-item">
+              <a href="javascript:void(0);">
+                <i class="fa fa-search"></i> <span class="language" data-lan="search">搜索</span>
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
     </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      一个码农的自我描述
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://henta.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
+  </header>
 </div>
 
+<script type="text/javascript"> 
+ 
+  let showNav = true;
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
+  let navToggle = document.querySelector('#nav_toggle'),
+  siteNav = document.querySelector('#site_nav');
+  
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    let navUl = document.querySelector('#nav_ul');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      siteNav.style = "height: " + (navUl.children.length * 42) +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  navToggle.addEventListener('click',navClick);  
+</script>
+  </div>
+  <div class="main-continer">
+    
+    <div
+      class="section-layout gemini ">
+      <div class="section-layout-wrapper">
+        <div id="sidebarMeta" class="sidebar">
+    
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="/images/avatar.png"/>
+    <p class="site-author-name">henta</p>
+    
+  </div>
+  <div class="sidebar-item side-item-stat right-motion">
+    <div class="sidebar-item-box">
+      <a href="/archives/">
+        
+        <span class="site-item-stat-count">11</span>
+        <span class="site-item-stat-name language" data-lan="article">文章</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="">
+        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-name language" data-lan="category">分类</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="/tags/">
+        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-name language" data-lan="tag">标签</span>
+      </a>
+    </div>
+  </div>
+  
+    
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://henta.github.io//atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
+    
+  
+  
+
+
+
+</div>
+</div>
+<script>
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
+      }
+    });
+  }
+  </script>
+        <div class="section-box gemini">
+          <section class="section  posts-expand slide-down-in">
+            
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/">
+      闪电网络-虫洞攻击
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-07-21 16:32:55">2020-07-21</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/AHXH31IEv/">
+        <span>⚡️闪电网络</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>3<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>701<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/">
-                  <h2 class="post-title">闪电网络-虫洞攻击</h2>
-                </a>
-                <div class="post-date">
-                  2020-07-21
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
               
-                <a class="right" href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/">
-                  <div class="feature-container" style="background-image: url('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2007937068,1605435968&amp;fm=11&amp;gp=0.jpg')">
-                  </div>
-                </a>
               
-            </article>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h2 id="htlc">HTLC</h2>
+<p>Alice的目标是要将1btc转给Dave，但是自己并没有与之相连的通道，这时候就要找到与Dave的通道连接的节点，间接将钱支付给Dave</p>
+<ol>
+<li>Dave创建一个随机数R，并且Hash（R），我们将其称为H，然后将H传输给Alice</li>
+<li>Alice发布一个悬赏：也就是HTLC，悬赏的大致意思是:谁能将R给我，我就给谁1.02个btc</li>
+
+                
+              <p>
+            
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/">
-                  <h2 class="post-title">比特币交易常见问题</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-17
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/">
+      比特币交易常见问题
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-02-17 13:19:21">2020-02-17</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>873<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/bi-te-bi-qu-kuai-shu-ju-jie-gou/">
-                  <h2 class="post-title">比特币区块数据结构</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-17
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
               
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/bi-te-bi-si-yao/">
-                  <h2 class="post-title">比特币私钥</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-17
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
               
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou/">
-                  <h2 class="post-title">比特币交易的数据结构</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-17
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
               
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/bi-te-bi-jiao-yi-he-qian-ming/">
-                  <h2 class="post-title">比特币交易和签名</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-17
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
+            
               
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/">
-                  <h2 class="post-title">比特币挖矿原理</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-17
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
               
-            </article>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h1 id="比特币交易常见问题">比特币交易常见问题</h1>
+<h3 id="比特币私钥">比特币私钥</h3>
+<ul>
+<li>原始私钥是32字节，也就是256位2进制数字，换算成16进制数字就是64位长度；</li>
+<li>私钥有16进制格式、WIF格式、WIF-compressed格式（WIF压缩格式）；</li>
+
+                
+              <p>
+            
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/spring-ding-shi-ren-wu/">
-                  <h2 class="post-title">spring定时任务</h2>
-                </a>
-                <div class="post-date">
-                  2019-12-18
-                </div>
-                <div class="post-abstract">
-                  <h3 id="spring定时任务schedule">spring定时任务Schedule</h3>
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-qu-kuai-shu-ju-jie-gou/">
+      比特币区块数据结构
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-02-17 13:18:26">2020-02-17</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>223<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h2 id="区块相关信息">区块相关信息</h2>
+<ul>
+<li>区块包括：区块头和区块体</li>
+<li>区块体记录了交易详情、交易计数器、区块大小</li>
+<li>区块头：每个区块的前<mark>80个字节（640bits）</mark>，包含6部分信息
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-qu-kuai-shu-ju-jie-gou/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-si-yao/">
+      比特币私钥
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-02-17 13:17:45">2020-02-17</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>113<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h1 id="比特币私钥">比特币私钥</h1>
+<ul>
+<li>原始私钥是32字节，也就是256位2进制数字，换算成16进制数字就是64位长度；</li>
+<li>私钥有16进制格式、WIF格式、WIF-compressed格式（WIF压缩格式）；</li>
+<li>WIF格式经过Base58check编码并以5作为前缀，WIF-compressed格式同样经过Base58Check编码并以K或L开头；</li>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-si-yao/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou/">
+      比特币交易的数据结构
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-02-17 13:17:02">2020-02-17</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>988<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h1 id="比特币交易的数据结构">比特币交易的数据结构</h1>
+<hr>
+<h3 id="比特币区块的结构">比特币区块的结构</h3>
+<ul>
+<li>每一个数据区块记录了5个内容：<mark>魔法数、区块大小、区块头信息、交易数量、交易详情</mark>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-jiao-yi-he-qian-ming/">
+      比特币交易和签名
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-02-17 13:15:42">2020-02-17</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>8<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>2326<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h1 id="比特币交易和签名">比特币交易和签名</h1>
+<hr>
+<h3 id="概述">概述</h3>
+<ul>
+<li>交易是比特币系统中最重要的部分</li>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-jiao-yi-he-qian-ming/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/">
+      比特币挖矿原理
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-02-17 13:14:23">2020-02-17</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>217<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h1 id="挖矿原理">挖矿原理</h1>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/01/30/5c51130ab6418.png" alt="挖矿原理示意图" loading="lazy"></figure>
+<ul>
+<li>挖矿的过程就是不断改变Nonce计算hash的过程</li>
+<li>以551675区块为例，模拟挖矿过程：
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/spring-ding-shi-ren-wu/">
+      spring定时任务
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2019-12-18 15:31:25">2019-12-18</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/_BtyPd5WF/">
+        <span>spring</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>1048<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <h3 id="spring定时任务schedule">spring定时任务Schedule</h3>
 <ul>
 <li>我们使用@Scheduled来创建定时任务，并通过在启动类上加上@EnableScheduling注解开启定时任务。 这个注解用来标注一个定时任务方法。通过看@Scheduled源码可以看出它支持多种参数：</li>
 </ul>
 
-                </div>
-              </div>
-              
-            </article>
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao/">
-                  <h2 class="post-title">同类调用导致的spring事务失效</h2>
-                </a>
-                <div class="post-date">
-                  2019-12-18
-                </div>
-                <div class="post-abstract">
-                  <p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/spring-ding-shi-ren-wu/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
 
-                </div>
-              </div>
-              
-            </article>
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao/">
+      同类调用导致的spring事务失效
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2019-12-18 15:12:15">2019-12-18</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/_BtyPd5WF/">
+        <span>spring</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>854<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://henta.github.io/post/shan-dian-wang-luo/">
-                  <h2 class="post-title">闪电网络原理</h2>
-                </a>
-                <div class="post-date">
-                  2019-12-18
-                </div>
-                <div class="post-abstract">
-                  <h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
+            <p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
+
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/shan-dian-wang-luo/">
+      闪电网络原理
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2019-12-18 14:17:44">2019-12-18</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/AHXH31IEv/">
+        <span>⚡️闪电网络</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>5<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>1351<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
 <p>闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://henta.github.io/post/shan-dian-wang-luo/">
-                  <div class="feature-container" style="background-image: url('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2007937068,1605435968&amp;fm=11&amp;gp=0.jpg')">
-                  </div>
-                </a>
-              
-            </article>
           
-
-          <div class="pagination-container">
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/shan-dian-wang-luo/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
   
-  
-    <a href="https://henta.github.io/page/2" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
-  
+            
+            
+<div class="page bg-color">
+  <ul class="pagination-ul">
+    
+    
+      
+        <li class="pagination-li pagination-active">
+            <a href="/page/../">
+              1
+            </a>
+        </li>
+      
+        <li class="pagination-li ">
+            <a href="/page/2">
+              2
+            </a>
+        </li>
+      
+    
+    
+      <li class="pagination-dir">
+        <a href="/page/2">
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </li>
+    
+  </ul>
 </div>
-
+          </section>
         </div>
       </div>
     </div>
+    <div class="footer-box">
+  <footer class="footer">
+    <div class="copyright">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | © 2019-2020 Theme By <a
+        href="https://github.com/hsxyhao/gridea-theme-next" target="_blank">HsxyHao</a>
+    </div>
+    <div class="poweredby">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </footer>
+  
+  
+  <div class="gemini back-to-top" id="back_to_top">
+    <i class="fa fa-arrow-up"></i>
+    
+    <span class="scrollpercent">
+      <span id="back_to_top_text">0</span>%
+    </span>
+    
+  </div>
+  
+  
+  
+</div>
+<script>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  let sideBarOpen = 'sidebar-open';
+  let body = document.body;
+  let back2Top = document.querySelector('#back_to_top'),
+    back2TopText = document.querySelector('#back_to_top_text'),
+    drawerBox = document.querySelector('#drawer_box'),
+    rightSideBar = document.querySelector('.sidebar'),
+    viewport = document.querySelector('body');
 
-<script type="application/javascript">
+  function scrollAnimation(currentY, targetY) {
 
-AOS.init();
+    let needScrollTop = targetY - currentY
+    let _currentY = currentY
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10)
+      _currentY += dist
+      window.scrollTo(_currentY, currentY)
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY)
+      } else {
+        window.scrollTo(_currentY, targetY)
+      }
+    }, 1)
+  }
 
-hljs.initHighlightingOnLoad()
+  back2Top.addEventListener("click", function (e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+  window.addEventListener('scroll', function (e) {
+    let percent = document.scrollingElement.scrollTop / (document.scrollingElement.scrollHeight - document.scrollingElement.clientHeight) * 100;
+    if (percent > 1 && !back2Top.classList.contains('back-top-active')) {
+      back2Top.classList.add('back-top-active');
+    }
+    if (percent == 0) {
+      back2Top.classList.remove('back-top-active');
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
 
+
+  let hasCacu = false;
+  window.onresize = function () {
+    calcuHeight();
+  }
+
+  function calcuHeight() {
+    // 动态调整站点概览高度
+    if (!hasCacu && back2Top.classList.contains('pisces') || back2Top.classList.contains('gemini')) {
+      let sideBar = document.querySelector('.sidebar');
+      let navUl = document.querySelector('#site_nav');
+      sideBar.style = 'margin-top:' + (navUl.offsetHeight + navUl.offsetTop + 15) + 'px;';
+      hasCacu = true;
+    }
+  }
+  calcuHeight();
+
+  let open = false, MOTION_TIME = 300, RIGHT_MOVE_DIS = '320px';
+
+  if (drawerBox) {
+    let rightMotions = document.querySelectorAll('.right-motion');
+    let right = drawerBox.classList.contains('right');
+
+    let transitionDir = right ? "transition.slideRightIn" : "transition.slideLeftIn";
+
+    let openProp, closeProp;
+    if (right) {
+      openProp = {
+        paddingRight: RIGHT_MOVE_DIS
+      };
+      closeProp = {
+        paddingRight: '0px'
+      };
+    } else {
+      openProp = {
+        paddingLeft: RIGHT_MOVE_DIS
+      };
+      closeProp = {
+        paddingLeft: '0px'
+      };
+    }
+
+    drawerBox.onclick = function () {
+      open = !open;
+      window.Velocity(rightSideBar, 'stop');
+      window.Velocity(viewport, 'stop');
+      window.Velocity(rightMotions, 'stop');
+      if (open) {
+        window.Velocity(rightSideBar, {
+          width: RIGHT_MOVE_DIS
+        }, {
+          duration: MOTION_TIME,
+          begin: function () {
+            window.Velocity(rightMotions, transitionDir, {});
+          }
+        })
+        window.Velocity(viewport, openProp, {
+          duration: MOTION_TIME
+        });
+      } else {
+        window.Velocity(rightSideBar, {
+          width: '0px'
+        }, {
+          duration: MOTION_TIME,
+          begin: function () {
+            window.Velocity(rightMotions, {
+              opacity: 0
+            });
+          }
+        })
+        window.Velocity(viewport, closeProp, {
+          duration: MOTION_TIME
+        });
+      }
+      for (let i = 0; i < drawerBox.children.length; i++) {
+        drawerBox.children[i].classList.toggle('muse-line');
+      }
+      drawerBox.classList.toggle(sideBarOpen);
+    }
+  }
+
+  // 链接跳转
+  let newWindow = 'false'
+  if (newWindow === 'true') {
+    let links = document.querySelectorAll('.post-body a')
+    links.forEach(item => {
+      if (!item.classList.contains('btn')) {
+        item.setAttribute("target", "_blank");
+      }
+    })
+  }
+
+  let faSearch = document.querySelector('#fa_search');
+  faSearch.addEventListener('click', function () {
+    document.querySelector('#search_mask').style = ''
+  })
+
+  // 代码高亮
+  hljs.initHighlightingOnLoad();
+  
+  // 离开当前页title变化
+  var leaveTitle = "";
+  if (leaveTitle) {
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState == 'hidden') {
+        normal_title = document.title;
+        document.title = leaveTitle;
+      } else {
+        document.title = normal_title;
+      }
+    });
+  }
+
+</script>
+    <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick = () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function (e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px;border-radius: 2px;`;
+      lightImg.onclick = function () {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
+</script>
+  </div>
+</body>
+
+<div class="search-mask" id="search_mask" style="display: none;">
+  <div class="search-box">
+    <div class="search-title">
+      <i class="fa fa-search"></i>
+      <div class="input-box">
+        <input id="search" type="text" class="language" data-lan="search" placeholder="搜索">
+      </div>
+      <i id="close" class="fa fa-times-circle"></i>
+    </div>
+    <div class="stat-box">
+      <span id="stat_count">0</span><span class="language" data-lan="stat">条相关条目，使用了</span><span id="stat_times">0</span><span class="language" data-lan="stat-time">毫秒</span>
+      <hr>
+    </div>
+    <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/"" data-c="
+          &lt;h2 id=&#34;htlc&#34;&gt;HTLC&lt;/h2&gt;
+&lt;p&gt;Alice的目标是要将1btc转给Dave，但是自己并没有与之相连的通道，这时候就要找到与Dave的通道连接的节点，间接将钱支付给Dave&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Dave创建一个随机数R，并且Hash（R），我们将其称为H，然后将H传输给Alice&lt;/li&gt;
+&lt;li&gt;Alice发布一个悬赏：也就是HTLC，悬赏的大致意思是:谁能将R给我，我就给谁1.02个btc&lt;/li&gt;
+&lt;li&gt;Bob接下了Alice的悬赏，但是Bob并没有R，所以Bob也发布了一个悬赏：谁能将R给我，我就给谁1.01个btc&lt;/li&gt;
+&lt;li&gt;Carol接下了Bob的悬赏，但是Carol也没有R，所以Carol发布悬赏：谁能将R给我，我就给谁1.00个btc，因为通道相连，Dave直接接下这个悬赏，并且将R给了Carol&lt;/li&gt;
+&lt;li&gt;Carol接收到了R&lt;/li&gt;
+&lt;li&gt;Carol有了R之后自然可以领取到Bob的悬赏，得到了1.01个Btc，并将R交给了Bob&lt;/li&gt;
+&lt;li&gt;Bob有了R之后自然可以领取到Alice的悬赏，得到了1.02个Btc，并将R交给了Alice&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://henta.github.io//post-images/1595320485399.png&#34; alt=&#34;HTLC&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;上述是HTLC工作的简易流程，有以下几点需要补充说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;总的来说HTLC的工作流程是&lt;mark&gt;将H正向传输，将R反向传输&lt;/mark&gt;&lt;/li&gt;
+&lt;li&gt;流程图中的HTLC(1.02,200,H)三个参数分别指的是
+&lt;ul&gt;
+&lt;li&gt;支付1.02个Btc&lt;/li&gt;
+&lt;li&gt;如果200个块之后依然没有人将R给我，我自己则可以回收这笔交易&lt;/li&gt;
+&lt;li&gt;正向传输H给后继节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;实际上，HTLC在闪电网络中的应用远没有如此简单，由于虫洞攻击并不复杂，这里并不对HTLC进行深入剖析。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;虫洞攻击&#34;&gt;虫洞攻击&lt;/h2&gt;
+&lt;p&gt;我们看回到上面的图片中，可以发现如果进行正常的HTLC交易，Alice需要支付1.02个btc，Bob和Carol可以得到0.01Btc的报酬，Dave也可以正常得到1Btc。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;现在我们假设Dave和Bob是攻击者，Carol是无辜的受害者&lt;/li&gt;
+&lt;li&gt;从HTLC的流程中可知Dave本应将R交给Carol，而现在Dave和Bob合谋，Dave直接将R给了Bob&lt;/li&gt;
+&lt;li&gt;由于Carol一直没有得到R，在50个区块之后，他将步骤4中的HTLC取回了，Carol没有损失资金，也没有得到0.01Btc的手续费&lt;/li&gt;
+&lt;li&gt;Bob得到R之后将R交给了Alice，得到了1.02个Btc，其中0.02Btc手续费（报酬）由于Carol没有将R给Bob，Bob在100个区块后将步骤3中的HTCL取回，到这里，我们可以看到Bob将Carol的手续费给私吞了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这就是虫洞攻击，事实上，合谋者之间有多少受害人，他们就可以获得多少受害人本应得到的手续费，目前所有使用HTLC进行建设的Layer-2都有这个问题&lt;/p&gt;
+&lt;h2 id=&#34;解决方案&#34;&gt;解决方案&lt;/h2&gt;
+&lt;p&gt;目前闪电网络团队正在试验一种新的多跳支付方式&lt;mark&gt;PTLC&lt;/mark&gt;来取代HTLC&lt;/p&gt;
+">闪电网络-虫洞攻击</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/"" data-c="
+          &lt;h1 id=&#34;比特币交易常见问题&#34;&gt;比特币交易常见问题&lt;/h1&gt;
+&lt;h3 id=&#34;比特币私钥&#34;&gt;比特币私钥&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;原始私钥是32字节，也就是256位2进制数字，换算成16进制数字就是64位长度；&lt;/li&gt;
+&lt;li&gt;私钥有16进制格式、WIF格式、WIF-compressed格式（WIF压缩格式）；&lt;/li&gt;
+&lt;li&gt;WIF格式经过Base58check编码并以5作为前缀，WIF-compressed格式同样经过Base58Check编码并以K或L开头；&lt;/li&gt;
+&lt;li&gt;私钥常常以WIF-compressed格式来展示，展示为以K或L开头的52位长度的数字和字母&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;椭圆曲线算法ecc&#34;&gt;椭圆曲线算法（ECC）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;椭圆曲线算法是不可逆的，很容易向一个方向计算，但是不可以向相反方向倒退；&lt;/li&gt;
+&lt;li&gt;比特币采用了SECP256K1算法（椭圆曲线算法的一种），将私钥生成公钥。&lt;/li&gt;
+&lt;li&gt;SECP256K1是不可逆的，所以即使公钥公开暴露，也对私钥的安全性不会造成影响。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;base64-base58check&#34;&gt;Base64、Base58Check&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Base64就是一种基于64个可打印字符来表示二进制数据的方法&lt;/li&gt;
+&lt;li&gt;Base64字符集A~Z a~z 0~9+/&lt;/li&gt;
+&lt;li&gt;Base58是用于比特币中的一种独特的编码方式，主要用于产生比特币钱包的地址&lt;/li&gt;
+&lt;li&gt;相比Base64，Base58去除了一些容易混淆的相似字符：数字0和大写字母O，大写字母I和小写字母i，以及+和/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;公钥私钥和比特币地址之间的关系&#34;&gt;公钥私钥和比特币地址之间的关系&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;随机私钥生成公钥，公钥再生成比特币地址，且过程不可逆&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/01/30/5c5113448ae38.png&#34; alt=&#34;20190130110018-image.png&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;utxounspent-transaction-outputs未花费交易输出&#34;&gt;UTXO（unspent transaction outputs，未花费交易输出）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用户比特币余额是用户钱包中可用的UTXO的总和。他们可能分布在数百个交易和区块中&lt;/li&gt;
+&lt;li&gt;这些UTXO由用户所有的秘钥来控制花费行为。UTXO的面值为聪，是不可分割的价值单元，一个UTXO只能在一次交易中作为整体消耗&lt;/li&gt;
+&lt;li&gt;每个比特币地址对应的UTXO，在交易过程中如同一张纸币一样（面额就是该比特币地址上的金额），不可以撕开使用，必须是作为一个整体来交易。&lt;/li&gt;
+&lt;li&gt;未被交易的交易索引：检查inputs中的交易的txn是否在未被支付交易索引中即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;比特币交易验证&#34;&gt;比特币交易验证&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一笔交易就是一个地址的比特币，转移到另一个地址。由于比特币的交易记录全部是公开的，哪个地址拥有多少比特币，都是可以查到的。因此，支付方是否有足够的比特币，完成这笔交易，是很容易验证的。问题在于怎么防止其他人，冒用你的名义申报交易。&lt;/li&gt;
+&lt;li&gt;申报交易的时候，除了交易金额，转出比特币的一方还必须提供以下数据。
+&lt;ul&gt;
+&lt;li&gt;上一笔交易的Hash（你从哪里得到的这些比特币）&lt;/li&gt;
+&lt;li&gt;本次交易双方的地址&lt;/li&gt;
+&lt;li&gt;支付方的公钥&lt;/li&gt;
+&lt;li&gt;支付方的私钥生成的数字签名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;验证这笔交易是否属实，要经过三步
+&lt;ul&gt;
+&lt;li&gt;第一步，找到上一笔交易，确认支付方比特币的来源&lt;/li&gt;
+&lt;li&gt;第二步，算出支付方公钥的指纹，确认与支付方的地址一致（因为通过公钥可以算出地址），从而保证公钥属实&lt;/li&gt;
+&lt;li&gt;第三步，用公钥去解开数字签名（数字签名只有拥有私钥才能生成），保证签名属实，私钥属实。&lt;/li&gt;
+&lt;li&gt;经过上面三步，就可以认定这笔交易是真实的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">比特币交易常见问题</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/bi-te-bi-qu-kuai-shu-ju-jie-gou/"" data-c="
+          &lt;h2 id=&#34;区块相关信息&#34;&gt;区块相关信息&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;区块包括：区块头和区块体&lt;/li&gt;
+&lt;li&gt;区块体记录了交易详情、交易计数器、区块大小&lt;/li&gt;
+&lt;li&gt;区块头：每个区块的前&lt;mark&gt;80个字节（640bits）&lt;/mark&gt;，包含6部分信息
+&lt;ul&gt;
+&lt;li&gt;Version版本号，4字节&lt;/li&gt;
+&lt;li&gt;前一个区块的hash值，32字节&lt;/li&gt;
+&lt;li&gt;本区块所有交易的默克尔根，32字节&lt;/li&gt;
+&lt;li&gt;时间戳，4字节
+&lt;ul&gt;
+&lt;li&gt;比特币是p2p网络，无中心服务器，每个节点的时间戳可能不同，因此有规定：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;新区快时间戳要大于前11个区块平均时间戳；&lt;/li&gt;
+&lt;li&gt;不超过当前网络时间的两小时。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;所以后一个区块时间戳小于前一个也是有可能的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;难度Bits，4字节&lt;/li&gt;
+&lt;li&gt;随机数Nonce，4字节
+&lt;ul&gt;
+&lt;li&gt;Nonce是全网矿工计算当前区块hash值得核心参数。&lt;/li&gt;
+&lt;li&gt;&lt;mark&gt;Nonce的取值范围是0-2的32次方（42亿）&lt;/mark&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">比特币区块数据结构</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/bi-te-bi-si-yao/"" data-c="
+          &lt;h1 id=&#34;比特币私钥&#34;&gt;比特币私钥&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;原始私钥是32字节，也就是256位2进制数字，换算成16进制数字就是64位长度；&lt;/li&gt;
+&lt;li&gt;私钥有16进制格式、WIF格式、WIF-compressed格式（WIF压缩格式）；&lt;/li&gt;
+&lt;li&gt;WIF格式经过Base58check编码并以5作为前缀，WIF-compressed格式同样经过Base58Check编码并以K或L开头；&lt;/li&gt;
+&lt;li&gt;私钥常常以WIF-compressed格式来展示，展示为以K或L开头的52位长度的数字和字母&lt;/li&gt;
+&lt;/ul&gt;
+">比特币私钥</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou/"" data-c="
+          &lt;h1 id=&#34;比特币交易的数据结构&#34;&gt;比特币交易的数据结构&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;比特币区块的结构&#34;&gt;比特币区块的结构&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;每一个数据区块记录了5个内容：&lt;mark&gt;魔法数、区块大小、区块头信息、交易数量、交易详情&lt;/mark&gt;
+&lt;ol&gt;
+&lt;li&gt;魔法数（Magic no.）
+&lt;ul&gt;
+&lt;li&gt;占4字节&lt;/li&gt;
+&lt;li&gt;正式网络中的魔法数：0xD9B4BEF9(实际区块中存储为小头位序，显示为 F9 BE B4 D9)&lt;/li&gt;
+&lt;li&gt;测试网络中魔法数:0×07091108(实际区块中存储为小头位序,显示为0B 11 09 07）&lt;/li&gt;
+&lt;li&gt;私链网络中魔法数:0xDAB5BFA(实际区块中存储为小头位序,显示为 FA BF B5 DA）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;区块大小(Blocksize)
+&lt;ul&gt;
+&lt;li&gt;占4字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;区块头(Blockheader)
+&lt;ul&gt;
+&lt;li&gt;包含6个数据项,共占80字节&lt;/li&gt;
+&lt;li&gt;区域版本号(Version),占4字节&lt;/li&gt;
+&lt;li&gt;前一区块Hash(hashPrevBlock),占32字节&lt;/li&gt;
+&lt;li&gt;Merkle根Hash,占32字节&lt;/li&gt;
+&lt;li&gt;时间戳(Time),占4字节&lt;/li&gt;
+&lt;li&gt;难度目标hash(bits),占4字节&lt;/li&gt;
+&lt;li&gt;随机数( nonce),占4字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易数量（Transaction counter）
+&lt;ul&gt;
+&lt;li&gt;占1~9字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易详情（Transactions）
+&lt;ul&gt;
+&lt;li&gt;包含6个数据项，字节大小取决了交易中输入和输出的数量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;比特币交易的数据结构-2&#34;&gt;比特币交易的数据结构&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;交易数据格式的版本号(version)
+&lt;ul&gt;
+&lt;li&gt;占4字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易中输入的数量( tx_in_count)
+&lt;ul&gt;
+&lt;li&gt;占1-9字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易中输入的列表信息(tx_in)
+&lt;ul&gt;
+&lt;li&gt;最少占41字节&lt;/li&gt;
+&lt;li&gt;标准的P2PKH交易的输入包含8项信息
+&lt;ul&gt;
+&lt;li&gt;上笔交易的hosh。占32字节&lt;/li&gt;
+&lt;li&gt;该交易是上一笔交易的输出中的第几条。占4字节(索引下标从0开始)&lt;/li&gt;
+&lt;li&gt;解锁脚本总长度。占106-108字节(私钥签名+压缩公钥的长度+2字节标记)&lt;/li&gt;
+&lt;li&gt;私钥签名的长度。占1字节&lt;/li&gt;
+&lt;li&gt;私钥签名的DER编码格式。占71~73字节&lt;/li&gt;
+&lt;li&gt;压缩公钥的长度。占1字节&lt;/li&gt;
+&lt;li&gt;压缩公钥。占33字节&lt;/li&gt;
+&lt;li&gt;发送者定义的交易版本。就是JSON格式中的 sequence。占4字节。常用于识别交易的一个输入结束。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易中输出的数量(tx_out_count)
+&lt;ul&gt;
+&lt;li&gt;占1~9字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易中输出的列表信息(tx_out)
+&lt;ul&gt;
+&lt;li&gt;最少占8字节&lt;/li&gt;
+&lt;li&gt;交易的输出包含3项信息
+&lt;ul&gt;
+&lt;li&gt;交易金额。占8字节&lt;/li&gt;
+&lt;li&gt;锁定脚本长度。至少占1字节&lt;/li&gt;
+&lt;li&gt;锁定脚本内容。不定长度，根据脚本的复杂程度而可变长度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁定时间（lock_time）
+&lt;ul&gt;
+&lt;li&gt;占4字节&lt;/li&gt;
+&lt;li&gt;锁定时间表示在某个高度的区块诞生之前或某个时间点之前，该交易出于锁定状态而不能被收录进区块链中。只有在满足锁定条件后才能打包上链。
+&lt;ul&gt;
+&lt;li&gt;lock_time==0,表示该交易可以立即被打包。&lt;/li&gt;
+&lt;li&gt;lock_time&amp;lt;500000000,lock_time表示区块高度，就是说这笔交易只能被打包进高度大于lock_time的区块&lt;/li&gt;
+&lt;li&gt;lock_time&amp;gt;=500000000,lock_time表示Unix时间戳，就是说这笔交易只能等待到当前时间大于lock_time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;p2pkh交易的数据解析案例&#34;&gt;P2PKH交易的数据解析案例&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;P2PKH交易的原始数据
+&lt;ol&gt;
+&lt;li&gt;原始记录：
+&lt;ul&gt;
+&lt;li&gt;交易记录的查询网址：https://blockchain.info/rawtx/ffc90e4b4ce15a97c1b560ad148da63cadaa898e366bf270ae307857a2606430?format=hex&lt;/li&gt;
+&lt;li&gt;rawtx后面接交易id号format=hex表示以十六进制表示，不加就以json格式展示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易记录的16进制文件
+&lt;ul&gt;
+&lt;li&gt;交易hash：ffc90e4b4ce15a97c1b560ad148da63cadaa898e366bf270ae307857a2606430&lt;/li&gt;
+&lt;li&gt;16进制文件如下：0100000002738522d9350e2edb9fd7b287e78d89f361acbc4ddb8463b1a83f757103ad7f3d010000006b483045022100eae02b94ca5a88168327e4cc4a15256745658e5c1022e51f134d07c7c192f8d102207a527ee05457420661d2f8e583a69847fb86586c2206d57df121c7842117b672012103b66167e405a3b5483750cb21a14bff75d2080e1785dcfc21801f322382fb5ed5ffffffffbe5535e467861a3061f8a6ca30a6375ad14389425c77515092698d7fdd33544e010000006a4730440220689198269768623e755a5d9e617a70ffd045d4c9f99d859a8c609bff6cea0349022059d9da5c5737e407e45b5bc836161bff77eb5fae273899f0bc43bc98616e6683012102387d8b1a297e71327dc3f01137e8edcf66a2a7531935c2baca498726482529ceffffffff027cc5c800000000001976a9149bf3e6b720106f7a802fa5a84a461fa1c660163888ac80c3c9010000000017a914c4f45400fc2c1eeff8ae8fb709f9b9ce1eef952b8700000000&lt;/li&gt;
+&lt;li&gt;计算机存储的16进制数据是小头位序排列格式，即低位在前，高位在后。区块链浏览器中16进制数值显示是大头位序排列形式，因为人们的读写习惯，数值从左至右读，左侧是大数，右侧是小数。所以在解析16进制文件时，需要将数据转成大头位序排列格式后再运算。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;交易数据结构解析
+&lt;ol&gt;
+&lt;li&gt;版本号
+&lt;ul&gt;
+&lt;li&gt;01000000 //转成大头位序排列为：00000001，所以版本号为1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易中的输入数量
+&lt;ul&gt;
+&lt;li&gt;02 //输入数量为2个&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交易中输入的列表信息
+&lt;ol&gt;
+&lt;li&gt;第一笔交易输入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;上一笔交易的hash，占32字节 738522d9350e2edb9fd7b287e78d89f361acbc4ddb8463b1a83f757103ad7f3d&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;coinbase交易输出结构&#34;&gt;coinbase交易输出结构&lt;/h3&gt;
+">比特币交易的数据结构</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/bi-te-bi-jiao-yi-he-qian-ming/"" data-c="
+          &lt;h1 id=&#34;比特币交易和签名&#34;&gt;比特币交易和签名&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;概述&#34;&gt;概述&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;交易是比特币系统中最重要的部分&lt;/li&gt;
+&lt;li&gt;每一笔交易的每一项输出严格意义上并不是指向一个地址，而是指向一个脚本
+&lt;ul&gt;
+&lt;li&gt;脚本类似一套规则，他约束着收币方必须满足一定条件才能花掉收币地址上锁定的资产。&lt;/li&gt;
+&lt;li&gt;交易的本质是包含了一组输入和输出的数据结构，也就是转账记录。
+&lt;ul&gt;
+&lt;li&gt;输入和输出可以简单理解为：发币地址是输入，收币地址是输出。&lt;/li&gt;
+&lt;li&gt;输入中包含解锁脚本（unlocking script）
+&lt;ul&gt;
+&lt;li&gt;解锁脚本是锁定脚本对应的脚本。锁定脚本相当于出了一个加密难题，而解锁脚本相当于是解开锁定脚本的一个题解。当解锁脚本满足锁定脚本要求的条件，就能花掉锁定脚本上对应的资产。用scripSig表示。&lt;/li&gt;
+&lt;li&gt;简单的交易类型中的解锁脚本就是支付方用自己的私钥所做的签名。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;输出中包含锁定脚本（locking script）
+&lt;ul&gt;
+&lt;li&gt;交易输出中包含了交易的转账金额以及收币方的比特币地址。而锁定脚本就是在交易输出上附加了一个条件。&lt;/li&gt;
+&lt;li&gt;由于锁定脚本往往含有一个公钥或者比特币地址，所以曾经就被称为公钥脚本。在代码中常用scriptPubKey表示。其实这种脚本技术存在更为广泛的可能性，更确切的叫法应该是锁定脚本&lt;/li&gt;
+&lt;li&gt;在简单的交易类型中，锁定脚本中附加的条件就是收币方的公钥，将收币方的公钥与转账资产锁定在一起，意思就是只有拥有这个公钥的人才能解锁并有权花费其中的资产。&lt;/li&gt;
+&lt;li&gt;要花费这笔被锁定的资产，就需要证明自己是锁定脚本里的那个公钥的所有者，最有利的证据就是用配套的私钥来证明，但是出于安全考虑，私钥是不能公开到网络中的，于是采用私钥生成的签名来代替私钥。如果签名与锁定资产的公钥相匹配，那么就有权花费这笔被锁定的资产。&lt;/li&gt;
+&lt;li&gt;签名是通过secp256K1椭圆曲线加密算法实现的，知道签名也没有办法逆推出私钥，所以这是安全的签名方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;交易链&#34;&gt;交易链&lt;/h3&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://i.loli.net/2019/01/30/5c51137a79df7.png&#34; alt=&#34;20190130110112-image.png&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;前一笔交易的输出是一个加密难题，需要用这笔钱的时候，就需要在新交易中的输入中加入解锁脚本解开加密难题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;签名序列化der&#34;&gt;签名序列化（DER）￼&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是DER？
+&lt;ol&gt;
+&lt;li&gt;DER（Distinguish Encoding Rules，可辨别编码规则）&lt;/li&gt;
+&lt;li&gt;椭圆曲线加密算法对数据签名可以产生由两个值组成的签名Sig，通常称为R和S&lt;/li&gt;
+&lt;li&gt;计算出R和S后，需要使用DER国际标准编码方案，将其序列化为16进制字节码格式&lt;/li&gt;
+&lt;li&gt;椭圆曲线的数字签名其实是R和S值的序列化字节码。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;签名格式分析如下图&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/01/30/5c51138d16449.png&#34; alt=&#34;20190130110131-image.png&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;li&gt;第二部分序列的长度值决定了数字签名的总长度
+&lt;ul&gt;
+&lt;li&gt;序列长度为44，签名总长度为71字节（142位16进制数字）&lt;/li&gt;
+&lt;li&gt;序列长度为45，签名总长度为72字节（144位16进制数字）&lt;/li&gt;
+&lt;li&gt;序列长度为46，签名总长度为73字节（146位16进制数字）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;secp256k1实现交易签名及签名验证&#34;&gt;Secp256K1实现交易签名及签名验证&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;比特币交易生命周期&#34;&gt;比特币交易生命周期&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;交易流程就是交易的生命周期。区块链的交易并不是通常意义上的一手交钱一手交货的交易，而是转账。比特币的交易可以包含多个输入和输出。可以理解成一笔交易可以有多个银行卡的资金来源，并且一次交易可以转账给多个人。&lt;/li&gt;
+&lt;li&gt;比特币交易的生命周期包括：创建交易、广播交易、打包交易、交易上链、交易回退。
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建交易：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支付方A的客户端钱包优先搜索A用户的UTXO列表信息，找寻A是否有足够的资金进行支付。&lt;/li&gt;
+&lt;li&gt;如果A有UTXO，那么A需要用自己的私钥，对每一个UTXO做签名，同时附加上每一个UTXO对应的公钥，以证明自己对该笔资金具有使用权。这些信息附加在A的支付方地址上，这就是解锁脚本。&lt;/li&gt;
+&lt;li&gt;A在给收币方B转账过程中，会在转账金额末尾附加一个加密难题，从而将该笔转账资金进行锁定，只有满足条件的人才有权使用该笔资金。这就是锁定脚本。锁定脚本中一般锁定的是收币方的公钥或者公钥hash。&lt;/li&gt;
+&lt;li&gt;比特币交易中的每个输出可以设置多个加密难题，那么该输出下次被使用时就需要多个签名来解密。&lt;/li&gt;
+&lt;li&gt;交易一旦被创建也就意味着交易的生命周期开始了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;广播交易：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;比特币交易被创建后，会广播到比特币网络中，网络中邻近的全节点收到交易信息，先放到本地的内存，然后对交易进行验证。比如这笔交易的input中引用的交易是否属于UTXO。若验证不成功，则交易会被认为是invalid Transaction--无效交易。若验证成功后这些交易会被认为是Unconfirm Transation--未确认交易，”未确认交易“会被放置在节点的有效交易池中等待被打包。&lt;/li&gt;
+&lt;li&gt;比特币是一种全网记账的系统,因此每笔交易发生后,会在全网广播。每一个收到交易的比持币节点都会首先验证交易,有效的交易将被传递到临近的节点,这确保了只有有效的交易才会在网络中传播,而无效的交易将会在第一个节点处就被废弃。周边的全节点接到这笔交易后,也一样先放入内存进行验证,验证通过再放入有效交易池中等待被打包。
+&lt;ul&gt;
+&lt;li&gt;钱包收到比特币，其实就是钱包检测到了可用的UTXO。通过钱包控制的秘钥，可以把这些UTXO花出去。因此，用户的比特币”余额“是指用户钱包中可用的UTXO总和。&lt;/li&gt;
+&lt;li&gt;全节点客户端中, chainstate目录下的*.ldb文件中存放的就是UTXO记录。&lt;/li&gt;
+&lt;li&gt;一个UTXO可以是1”聪“的任意整数倍。尽管UTXO可以是任意值，但一旦被创造出来，即不可分割。这是UTXO值得被强调的一个重要特性：一个UTXO只能在一次交易中作为一个整体被消耗。但是比特币系统也可以找零。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打包交易&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;挖矿节点每次开始挖矿就按一定的优先级次序从交易池中抽取近千笔未确认交易，打包进区块，打包时会将上一个区块的Hash值也加入包中。然后开始执行挖矿。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;交易上链：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;争夺记账权:挖矿节点利用工作量证明来争夺记账权。当挖矿成功,该节点生成新区块后,整个过程并没有结束,该节点接下来会发起一次全网记账。&lt;/li&gt;
+&lt;li&gt;全网记账:挖矿成功的节点,将新区块的数据记录在自己的硬盘上,并同时将数据广播至全网,周边的节点接收到之后再传递给其它周边的节点,直到全网都收到这个信息。接收到信息的节点对新区块数据进行核对。验证通过后,各个节点将该区块数据追加到比特币主链的最后端,其实就是记录到自己节点的硬盘中,这样来确保本地的区块链数据更新为最新的数据。&lt;/li&gt;
+&lt;li&gt;更新交易池:挖矿节点在接收并验证新区块数据后,会检查自己内存池中的全部交易,移除已经在新区块中出现过的交易记录,确保任何留在内存池中的交易都是未确认的。而那些被移除的交易记录其实就获得了一次交易“确认”。&lt;/li&gt;
+&lt;li&gt;更新UTXO索引:每一次交易都代表这UTXO集合的变化,交易结束,节点会更新UTXO索引。&lt;/li&gt;
+&lt;li&gt;把包含在区块内且被添加到区块链上的交易称为“确认”交易,交易经过6次“确认”之后,就认为交易是安全不可更改的。此时交易接收方就能花费他在交易中得到的比特币。至此交易就永久被保存在了区块链上而不能被篡改和删除,也就意味着交易的生命周期结束了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;交易回退：如果不巧出现临时分叉，则等到最长连诞生后，分叉的区块会断链并将其中记录的交易回退到交易池中，等待重新被打包上链。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">比特币交易和签名</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/"" data-c="
+          &lt;h1 id=&#34;挖矿原理&#34;&gt;挖矿原理&lt;/h1&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://i.loli.net/2019/01/30/5c51130ab6418.png&#34; alt=&#34;挖矿原理示意图&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;挖矿的过程就是不断改变Nonce计算hash的过程&lt;/li&gt;
+&lt;li&gt;以551675区块为例，模拟挖矿过程：
+&lt;ul&gt;
+&lt;li&gt;将区块头中的六个参数以16进制的&lt;mark&gt;小端结尾&lt;/mark&gt;方式连接在一起
+&lt;ul&gt;
+&lt;li&gt;小端结尾就是将字节颠倒顺序，在16进制表示中，2个16进制数值代表了1个字节，所以就两个两个的颠倒&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;版本号：0x20000000
+&lt;ul&gt;
+&lt;li&gt;version=&amp;quot;02000000&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;上一块的hash：000000000000000000080f18263448e7d679c4ef5f2781a1272146556b824a54
+&lt;ul&gt;
+&lt;li&gt;pre_version=&amp;quot;544a826b55462127a181275fefc479d6e7483426180f08000000000000000000&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;merkle_root:2c16a0662dfbeec9d13d8d9bc54d995e47492e8baf8e6344e5617b1e70b4baf8
+&lt;ul&gt;
+&lt;li&gt;merkle_root=&amp;quot;f8bab4701e7b61e544638eaf8b2e49475e994dc59b8d3dd1c9eefb2d66a0162c&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;时间戳：1543275021（2018-11-27 07:30:21，转16进制为5bfc820d）
+&lt;ul&gt;
+&lt;li&gt;time_stamp=&amp;quot;0d82fc5b&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;难度目标Bits：388648495 16进制:172a4e2f
+&lt;ul&gt;
+&lt;li&gt;bits=&amp;quot;2f4e2a17&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Nonce: 3039957436 16进制：b53211bc
+&lt;ul&gt;
+&lt;li&gt;nonce=&amp;quot;bc1132b5&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;head_hex=version+pre_hash+merkle_root+time_stamp+bits+nonce=&lt;br&gt;
+02000000544a826b55462127a181275fefc479d6e7483426180f08000000000000000000f8bab4701e7b61e544638eaf8b2e49475e994dc59b8d3dd1c9eefb2d66a0162c0d82fc5b2f4e2a17bc1132b5&lt;/li&gt;
+&lt;li&gt;再计算两次hash256并且转码&lt;/li&gt;
+&lt;li&gt;转回大端&lt;/li&gt;
+&lt;li&gt;比对目标大小，需要实际计算的hash值&amp;lt;目标hash大小才算验证成功&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">比特币挖矿原理</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/spring-ding-shi-ren-wu/"" data-c="
+          &lt;h3 id=&#34;spring定时任务schedule&#34;&gt;spring定时任务Schedule&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;我们使用@Scheduled来创建定时任务，并通过在启动类上加上@EnableScheduling注解开启定时任务。 这个注解用来标注一个定时任务方法。通过看@Scheduled源码可以看出它支持多种参数：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code&gt;1. cron：cron表达式，指定任务在特定时间执行；
+2. fixedDelay：表示上一次任务执行完成后多久再次执行，参数类型为long，单位ms；
+3. fixedDelayString：与fixedDelay含义一样，只是参数类型变为String；
+4. fixedRate：表示按一定的频率执行任务，参数类型为long，单位ms；
+5. fixedRateString: 与fixedRate的含义一样，只是将参数类型变为String；
+6. initialDelay：表示延迟多久再第一次执行任务，参数类型为long，单位ms；
+7. initialDelayString：与initialDelay的含义一样，只是将参数类型变为String；
+8. zone：时区，默认为当前时区，一般没有用到。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;定时任务默认是单线程启动的，想要多线程执行定时任务，可以做如下配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
+//所有的定时任务都放在一个线程池中，定时任务启动时使用不同都线程。
+public class ScheduleConfig implements SchedulingConfigurer {
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+        //设定一个长度10的定时任务线程池
+        taskRegistrar.setScheduler(Executors.newScheduledThreadPool(10));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;cron详解&#34;&gt;cron详解&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Cron表达式是一个字符串，是由空格隔开的6或7个域组成，每一个域对应一个含义（秒 分 时 每月第几天 月 星期 年）其中年是可选字段。 但是，spring的schedule值支持6个域的表达式，也就是不能设定年，如果超过六个则会报错。&lt;/li&gt;
+&lt;li&gt;各域支持的类型：
+&lt;ol&gt;
+&lt;li&gt;秒：可出现&amp;quot;, - * /&amp;quot;四个字符，有效范围为0-59的整数&lt;/li&gt;
+&lt;li&gt;分：可出现&amp;quot;, - * /&amp;quot;四个字符，有效范围为0-59的整数&lt;/li&gt;
+&lt;li&gt;时：可出现&amp;quot;, - * /&amp;quot;四个字符，有效范围为0-23的整数&lt;/li&gt;
+&lt;li&gt;每月第几天：可出现&amp;quot;, - * / ? L W C&amp;quot;八个字符，有效范围为0-31的整数&lt;/li&gt;
+&lt;li&gt;月：可出现&amp;quot;, - * /&amp;quot;四个字符，有效范围为1-12的整数或JAN-DEc&lt;/li&gt;
+&lt;li&gt;星期：可出现&amp;quot;, - * / ? L C #&amp;quot;四个字符，有效范围为1-7的整数或SUN-SAT两个范围。1表示星期天，2表示星期一， 依次类推&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;特殊字符含义
+&lt;ol&gt;
+&lt;li&gt;*:表示匹配该域的任意值，比如在秒*, 就表示每秒都会触发事件；&lt;/li&gt;
+&lt;li&gt;? : 只能用在每月第几天和星期两个域。表示不指定值，当2个子表达式其中之一被指定了值以后，为了避免冲突，需要将另一个子表达式的值设为“?”；&lt;/li&gt;
+&lt;li&gt;-: 表示范围，例如在分域使用5-20，表示从5分到20分钟每分钟触发一次&lt;/li&gt;
+&lt;li&gt;/: 表示起始时间开始触发，然后每隔固定时间触发一次，例如在分域使用5/20,则意味着5分，25分，45分，分别触发一次.&lt;/li&gt;
+&lt;li&gt;,: 表示列出枚举值。例如：在分域使用5,20，则意味着在5和20分时触发一次&lt;/li&gt;
+&lt;li&gt;L : 表示最后，只能出现在星期和每月第几天域，如果在星期域使用1L,意味着在最后的一个星期日触发&lt;/li&gt;
+&lt;li&gt;W : 表示有效工作日(周一到周五),只能出现在每月第几日域，系统将在离指定日期的最近的有效工作日触发事件。注意一点，W的最近寻找不会跨过月份&lt;/li&gt;
+&lt;li&gt;LW : 这两个字符可以连用，表示在某个月最后一个工作日，即最后一个星期五&lt;/li&gt;
+&lt;li&gt;#: 用于确定每个月第几个星期几，只能出现在每月第几天域。例如在1#3，表示某月的第三个星期日&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;例子
+&lt;ol&gt;
+&lt;li&gt;0 0 * * * *                    表示每小时0分0秒执行一次&lt;/li&gt;
+&lt;li&gt;*/10 * * * * *                 表示每10秒执行一次&lt;/li&gt;
+&lt;li&gt;0 0 8-10 * * *				表示每天8，9，10点执行&lt;/li&gt;
+&lt;li&gt;0 0/30 8-10 * * *			表示每天8点到10点，每半小时执行&lt;/li&gt;
+&lt;li&gt;0 0 9-17 * * MON-FRI			表示每周一至周五，9点到17点的0分0秒执行&lt;/li&gt;
+&lt;li&gt;0 0 0 25 12 ?				表示每年圣诞节（12月25日）0时0分0秒执行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">spring定时任务</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao/"" data-c="
+          &lt;p&gt;本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h4 id=&#34;案例1&#34;&gt;案例1&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public interface AService {
+    public void a();
+    public void b();
+}
+
+@Service
+public class AServiceImpl implements AService{
+
+    public void a() {
+        this.b();
+    }
+
+    @Transactional(rollbackFor={Exception.class})
+       public void b() {
+         insert();
+         update();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;mark&gt;同类&lt;/mark&gt;中一个没有@Transaction的方法调用有@Transaction的方法时，事务将会失效&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原因&lt;br&gt;
+根本原因在于spring对于事务的管理方式：spring使用aop去管理事务&lt;br&gt;
+对于上述AServiceImpl，在运行时，spring会自动生成其代理类如下：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class AServiceImplProxy implements AService{
+
+    public void a() {
+      //反射调用目标类的a方法
+	AServiceImpl.a();
+    }
+
+    public void b() {
+     //启动事务的代码
+     begin;
+     try{
+       //反射调用目标类的b方法
+        AServiceImpl.b();
+     }catch{
+	rollback;
+     }
+     //事务提交的代码
+     commit;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/11/22/Gz3AvxIw1eXan9i.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+在调用getBean(&amp;quot;AServiceImpl&amp;quot;).a()时，实际上执行的是AServiceImplProxy.a(),而AServiceImplProxy.a()调用的是源类中的a()方法，源类中a()再去调用b(),显而易见，并没有用到代理类中的AServiceImplProxy.b(),自然不会有事务管理。&lt;/p&gt;
+&lt;h4 id=&#34;案例2&#34;&gt;案例2&lt;/h4&gt;
+&lt;p&gt;a()有@Transaction b()有@Transaction或无@Transaction&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Service
+public class AServiceImpl implements AService{
+    @Transactional(rollbackFor={Exception.class})
+    public void a() {
+        this.b();
+    }
+
+    @Transactional(rollbackFor={Exception.class})
+       public void b() {
+         insert();
+         update();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;其实原理流程和案例1的差不多，上层类调用a()时，只会开启对于a()的事务，b的事务并没有起作用，但是因为spring的机制，会将b()自动加入到a()的事务中，所以a()方法也将b()管理了起来。&lt;/li&gt;
+&lt;li&gt;对于案例1，a()连事务都没有调用，自然也不会自动将b()管理到a()&lt;/li&gt;
+&lt;li&gt;注意点：虽然a()的事务会将b()管理起来，但是其实在b()上的注解是失效的，也就是说如果你想用不同的事务传播机制(如这种PROPAGATION_SUPPORTS)，机制将会失效,rollbackFor也只能沿用a()定义的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;解决方案&#34;&gt;解决方案&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;显式的事务编程(不推荐，丧失了aop的方便性)&lt;/li&gt;
+&lt;li&gt;显式的调用代理类中的b()
+&lt;ul&gt;
+&lt;li&gt;将暴露Proxy类设置为true@EnableAspectJAutoProxy(exposeProxy = true)&lt;/li&gt;
+&lt;li&gt;然后显式调用代理类的b()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Transactional(rollbackFor={Exception.class})
+
+public void a() {
+
+    ((AService) AopContext.currentProxy()).b();
+
+    //即调用AOP代理对象的b方法即可执行事务切面进行事务增强
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这种做法很方便，但是不能保证以后新添加的代码不出现相同的问题&lt;br&gt;
+3. 进行接口下沉，避免出现案例1的情况&lt;br&gt;
+- 将一些操作数据库的通用方法放到另外的service里，这样不会出现同类调用transaction的尴尬情况&lt;br&gt;
+- 这种做法比较优雅，也能完全避免出现事务失效的情况&lt;/p&gt;
+&lt;h4 id=&#34;总结&#34;&gt;总结&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;不仅仅是@Transaction注解，几乎所有与AOP有关的注解都存在上述的问题，工作中需要格外注意&lt;/li&gt;
+&lt;li&gt;现在代码大部分情况都是案例2中的情况，小部分是案例1中的情况，以后写代码的时候如果需要对注解有格外的定义，要记住案例2的情况中，注解将会失效&lt;/li&gt;
+&lt;li&gt;其实还是要在写代码的时候有规范意识，不要所有东西都写在一起，专业的类干专业的事&lt;/li&gt;
+&lt;li&gt;查看mybatis和事务日志：&lt;br&gt;
+logging.level.com.okcoin.vault.service.dao.mapper=debug&lt;br&gt;
+logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=debug&lt;/li&gt;
+&lt;/ol&gt;
+">同类调用导致的spring事务失效</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/shan-dian-wang-luo/"" data-c="
+          &lt;h3 id=&#34;闪电网络基本概念和步骤&#34;&gt;闪电网络基本概念和步骤&lt;/h3&gt;
+&lt;p&gt;闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;ol&gt;
+&lt;li&gt;openChannel（建立交易通道）：A和B协商好双方投入的资金，然后在比特币链上创建一个2/2的多重签名交易，需要花费output需要双方共同签名&lt;/li&gt;
+&lt;li&gt;开始交易：建立好通道后，双方可以通过这个链下的通道进行交易，在第一步双方投入的金额内，交易可以进行无线多次，这些交易都不上链，双方只会&amp;quot;记账&amp;quot;&lt;/li&gt;
+&lt;li&gt;closeChannel（关闭交易通道）：双方交易结束后需要将最终的账单统合，并且共同去花费第1步的output，进行最终的上链过程&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/12/10/udfWicAGqV9X6UM.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;问题:这种想法虽然好，但是怎么保证双方诚信？如果最后A舍弃了自己剩余的0.3btc（可能是故意或者私钥丢了），就是不配合B去花费2/2的output，这样B就损失了0.7个btc。当初说好的给彼此之间一点信任呢？&lt;/p&gt;
+&lt;h3 id=&#34;原理&#34;&gt;原理&lt;/h3&gt;
+&lt;p&gt;首先，上述问题的根本在于output是2/2的脚本，需要两个人共同花费，对于陌生的交易双方来说，风险太大，所以闪电网络需要设计出任意一方都可以将output正确花费的方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A和B在openChannel后，都为那个2/2的output构建一笔新交易&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;图中[]表示现在还不具备的东西，R表示随机数，Ra表示A的随机数，Rb表示b的随机数，Revocable Sequence Maturity Contract (RSMC) 可撤销序列成熟合约&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/12/10/y8hN3tznLcdiGr4.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;A和B将各自签名好的交易互相交换，现在可以观察一下，A和B都可以将对方给的交易上链了，但是如果对方不同意的话，RSMC脚本只能通过等待1000个区块去花费了，这就是强制上链的惩罚，而对方同意的话，可以直接通过对方的签名去花费这个RSMC，也就是可以即时花费
+&lt;ul&gt;
+&lt;li&gt;RSMC的原理其实就是多签脚本，时间锁条件是用比特币自带的参数timelock实现，需要R解锁的条件是利用了Hash不可逆推实现，B先会给A R的hash让A去构建这个交易脚本，之后拥有R解锁这个hash合约&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这样一来任一方都可以closeChannel，只不过分为和平关闭和强制关闭 这就是为什么双方都同意建立交易通道的原因：只要我愿意，我们的交易一定会上链&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;现在双方在交易通道里继续交易记账 比如，A支付给了B 0.1btc，这时候双方会重新签一个未完成交易给对方：&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/12/10/l4hZ28cRrODUAyN.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通道内转账更新账单其实就是双方更新签名交易&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;问题来了，现在A手里有两个时期的未上链交易，A一看，我肯定愿意把最开始双方都得0.5btc的交易签名上链啊，这时候B肯定不同意，但是A却强制上链了，A只需要等待1000个块确认就能使用0.5btc了，白赚了0.1btc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;于是闪电网络规定，废弃掉上一个账单的时候，你必须把自己的随机数R交给对方，那么再来看看这个规定后的场景&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A同样想要把0.5btc的那笔交易上链，假设他也这么做了，A需要等待1000个确认才能花费RSMC中的0.5btc，而这个时候B发现A干坏事了，由于A之前已经把Ra给了B，B可以直接通过Bsig+Ra的方式先一步使用RSMC脚本花费掉这0.5btc，这样一来B其实就拥有了1btc。 这也是闪电网络对不诚信节点的惩罚&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;上述的情况都是发生在A直接能连到B的情况下，但是闪电网络是一个巨大的网络，A并不能保证每次都能直接连到B，这时候C节点刚好连着B，于是A就将C节点当成中间人去和A交易&lt;br&gt;
+比如：A要转0.1btc给D&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/12/10/7RBlPEJXe2gqHoi.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;
+&lt;ol&gt;
+&lt;li&gt;Dave准备一个随机数R，并计算其哈希H，将H给了Alice&lt;/li&gt;
+&lt;li&gt;Alice和Bob建立通道的时候约定，如果3天内Bob能给出R，那Alice给Bob0.102btc，超过3天，拿回这些币&lt;/li&gt;
+&lt;li&gt;Bob和Carol建立通道的时候约定，如果2天内Carol能给出R，Bob就给Carol0.101btc&lt;/li&gt;
+&lt;li&gt;Carol和Dave建立通道的时候约定，如果1天内Dave能给出R，Carol就给Dave0.1btc&lt;br&gt;
+最终，Dave把自己拥有的R给了Carol拿到了0.1btc，Carol用这个R换到了Bob的0.101btc，而Bob用R换到了Alice的0.102btc 皆大欢喜。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上述的流程就是闪电网络中的HTLC（Hashed Timelock Contract）哈希时间锁定合约来实现的，原理和上面差不多，比特币脚本是支持生成这种规则的output的&lt;/p&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;现在的闪电网络都是需要收款方先提供一个二维码或者code给付款者的，这个code包含的信息其实就有H、金额等信息&lt;/li&gt;
+&lt;li&gt;技术方面逻辑都很清晰成熟，现在闪电网络的运行也比较平稳，还没有听说有丢币事件。&lt;/li&gt;
+&lt;/ul&gt;
+">闪电网络原理</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/about/"" data-c="
+          &lt;blockquote&gt;
+&lt;p&gt;欢迎来到我的小站呀，很高兴遇见你！🤝&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;关于本站&#34;&gt;🏠 关于本站&lt;/h2&gt;
+&lt;h2 id=&#34;博主是谁&#34;&gt;👨‍💻 博主是谁&lt;/h2&gt;
+&lt;h2 id=&#34;兴趣爱好&#34;&gt;⛹ 兴趣爱好&lt;/h2&gt;
+&lt;h2 id=&#34;联系我呀&#34;&gt;📬 联系我呀&lt;/h2&gt;
+">关于</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/hello-gridea/"" data-c="
+          &lt;p&gt;👏  欢迎使用 &lt;strong&gt;Gridea&lt;/strong&gt; ！&lt;br&gt;
+✍️  &lt;strong&gt;Gridea&lt;/strong&gt; 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/getgridea/gridea&#34;&gt;Github&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://gridea.dev/&#34;&gt;Gridea 主页&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;http://fehey.com/&#34;&gt;示例网站&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;特性&#34;&gt;特性👇&lt;/h2&gt;
+&lt;p&gt;📝  你可以使用最酷的 &lt;strong&gt;Markdown&lt;/strong&gt; 语法，进行快速创作&lt;/p&gt;
+&lt;p&gt;🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片&lt;/p&gt;
+&lt;p&gt;🏷️  你可以对文章进行标签分组&lt;/p&gt;
+&lt;p&gt;📋  你可以自定义菜单，甚至可以创建外部链接菜单&lt;/p&gt;
+&lt;p&gt;💻  你可以在 &lt;strong&gt;Windows&lt;/strong&gt;，&lt;strong&gt;MacOS&lt;/strong&gt; 或 &lt;strong&gt;Linux&lt;/strong&gt; 设备上使用此客户端&lt;/p&gt;
+&lt;p&gt;🌎  你可以使用 &lt;strong&gt;𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌&lt;/strong&gt; 或 &lt;strong&gt;Coding Pages&lt;/strong&gt; 向世界展示，未来将支持更多平台&lt;/p&gt;
+&lt;p&gt;💬  你可以进行简单的配置，接入 &lt;a href=&#34;https://github.com/gitalk/gitalk&#34;&gt;Gitalk&lt;/a&gt; 或 &lt;a href=&#34;https://github.com/SukkaW/DisqusJS&#34;&gt;DisqusJS&lt;/a&gt; 评论系统&lt;/p&gt;
+&lt;p&gt;🇬🇧  你可以使用&lt;strong&gt;中文简体&lt;/strong&gt;或&lt;strong&gt;英语&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力&lt;/p&gt;
+&lt;p&gt;🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步&lt;/p&gt;
+&lt;p&gt;🌱 当然 &lt;strong&gt;Gridea&lt;/strong&gt; 还很年轻，有很多不足，但请相信，它会不停向前 🏃&lt;/p&gt;
+&lt;p&gt;未来，它一定会成为你离不开的伙伴&lt;/p&gt;
+&lt;p&gt;尽情发挥你的才华吧！&lt;/p&gt;
+&lt;p&gt;😘 Enjoy~&lt;/p&gt;
+">Hello Gridea</a>
+      </div>
+      
+    </div>
+    <div class="page">
+      <div id="page_ul"></div>
+    </div>
+  </div>
+</div>
+<script>
+  !function () {
+    let searchMask = document.querySelector('#search_mask');
+    let result = document.querySelector('#result');
+    let items = document.querySelectorAll('.item');
+    let searchBox = document.querySelector('#search');
+    let statCount = document.querySelector('#stat_count');
+    let statTimes = document.querySelector('#stat_times');
+    let pageUl = document.querySelector('#page_ul');
+    let close = document.querySelector('#close');
+    
+    close.addEventListener('click', function() {
+      searchMask.style = 'display: none;'
+    })
+
+    let finds = [];
+    let contents = [];
+    let pageSize = 10;
+    items.forEach(item => {
+      let a = item.querySelector('a');
+      contents.push({
+        title: a.innerText,
+        details: a.dataset.c,
+        link: a.href
+      })
+      item.remove();
+    })
+
+    function insertStr(soure, start, count) {
+      let newStr = soure.substr(start, count);
+      return soure.slice(0, start) + '<em>' + newStr + '</em>' + soure.slice(start + count);
+    }
+
+    pageUl.addEventListener('click', function(event) {
+      let target = event.target;
+      if (target.__proto__ === HTMLSpanElement.prototype) {
+        appendResults(parseInt(target.dataset.i));
+      }
+    })
+
+    function appendResults(index) {
+      let htmlResult = '';
+      let start = index || 0;
+      let end = Math.min(start + pageSize, finds.length);
+      for (let i = start; i < end; i++) {
+        const current = finds[i];
+        let html = current.title;
+        let sum = 0;
+        let positions = current.positions;
+        positions.forEach(position => {
+          html = insertStr(html, position.start + sum, position.count);
+          sum += 9;
+        })
+        htmlResult += `<div class="item"><a class="result-title" href="${current.link}">${html}</a></div>`;
+      }
+      result.innerHTML = htmlResult;
+      pageUl.innerHTML = '';
+      let count = finds.length / pageSize;
+      let lis = '';
+      if (start !== 0) {
+        lis += `<span class="fa fa-angle-left" data-i='${start - 1}'></span>`;
+      }
+      for (let i = 0; i < count; i++) {
+        lis += `<span class='${i === start?'current':''}' data-i='${i}'>${i+1}</span>`;     
+      }
+      if (start+1 < count) {
+        lis += `<span class="fa fa-angle-right" data-i='${start+1}'></span>`;  
+      }
+      pageUl.innerHTML = lis;
+    }
+
+    function search(delay) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          let start = Date.now();
+          let segments = searchBox.value.split(' ').filter(c => c != '');
+          if (segments.length <= 0) {
+            return;
+          }
+          finds = [];
+          let htmlResult = '';
+          contents.forEach(content => {
+            let title = content.title;
+            let positions = [];
+            let find = false;
+            segments.forEach((segment) => {
+              if (content.title.includes(segment)) {
+                find = true;
+                positions.push({
+                  start: content.title.indexOf(segment),
+                  count: segment.length
+                })
+              } else if (content.details.includes(segment)) {
+                find = true;
+              }
+            });
+            if (find) {
+              finds.push({
+                title: content.title,
+                link: content.link,
+                positions
+              });
+            }
+          })
+          appendResults(0);
+          statCount.textContent = finds.length;
+          statTimes.textContent = Date.now() - start;
+        }, delay)
+      }
+    }
+    searchBox.addEventListener('input', search(200));
+  }()
+</script>
+
+<input hidden id="copy" />
+<script>
+  !function () {
+    let times = document.querySelectorAll('.publish-time');
+    for (let i = 0; i < times.length; i++) {
+      let date = times[i].dataset.t;
+      let time = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
+      if (time < 60) {
+        str = time + '秒之前';
+      } else if (time < 3600) {
+        str = Math.floor(time / 60) + '分钟之前';
+      } else if (time >= 3600 && time < 86400) {
+        str = Math.floor(time / 3600) + '小时之前';
+      } else if (time >= 86400 && time < 259200) {
+        str = Math.floor(time / 86400) + '天之前';
+      } else {
+        str = times[i].textContent;
+      }
+      times[i].textContent = str;
+    }
+  }();
+</script>
+
+<script>
+  let language = '';
+  if (language !== '') {
+    let map = new Map();
+    if (language === 'en') {
+      map.set('search', 'Search');
+      map.set('category', 'Categories');
+      map.set('article', 'Articles');
+      map.set('tag', 'Tags');
+      map.set('top', 'Top');
+      map.set('publish', 'published');
+      map.set('minute', ' minutes');
+      map.set('read-more', 'Read More');
+      map.set('view', 'View');
+      map.set('words', ' words');
+      map.set('category-in', 'category in');
+      map.set('preview', 'Meta');
+      map.set('index', 'Toc');
+      map.set('no-archives', "You haven't created yet");
+      map.set('archives', " articles in total");
+      map.set('cloud-tags', " tags in total");
+      map.set('copyright', "Copyright: ");
+      map.set('author', "Author: ");
+      map.set('link', "Link: ");
+      map.set('leave-message', "Leave a message");
+      map.set('format', "Links Format");
+      map.set('site-name', "Name: ");
+      map.set('site-link', "Link: ");
+      map.set('site-desc', "Desc: ");
+      map.set('stat', " related results, taking ");
+      map.set('stat-time', " ms");
+      map.set('site-img', "Image: ");
+    }
+
+    if (map.size > 0) {
+      let lanElems = document.querySelectorAll('.language');
+      lanElems.forEach(elem => {
+        let lan = elem.dataset.lan, text = map.get(lan);
+        if (elem.__proto__ === HTMLInputElement.prototype) {
+          elem.placeholder = text
+        } else {
+          if (elem.dataset.count) {
+            text = elem.dataset.count + text;
+          }
+          elem.textContent = text;
+        }
+      })
+    }
+  }
+  //拿来主义(真香)^_^，Clipboard 实现摘自掘金 https://juejin.im/post/5aefeb6e6fb9a07aa43c20af
+  window.Clipboard = (function (window, document, navigator) {
+    var textArea,
+      copy;
+
+    // 判断是不是ios端
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+    //创建文本元素
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      textArea.style.width = 0;
+      textArea.style.height = 0;
+      textArea.clientHeight = 0;
+      textArea.clientWidth = 0;
+      document.body.appendChild(textArea);
+    }
+    //选择内容
+    function selectText() {
+      var range,
+        selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    //复制到剪贴板
+    function copyToClipboard() {
+      try {
+        document.execCommand("Copy")
+      } catch (err) {
+        alert("复制错误！请手动复制！")
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copy = function (text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+  })(window, document, navigator);
+
+  function copyCode(e) {
+    if (e.srcElement.tagName === 'SPAN' && e.srcElement.classList.contains('copy-code')) {
+      let code = e.currentTarget.querySelector('code');
+      var text = code.innerText;
+      if (e.srcElement.textContent === '复制成功') {
+        return;
+      }
+      e.srcElement.textContent = '复制成功';
+      (function (elem) {
+        setTimeout(() => {
+          if (elem.textContent === '复制成功') {
+            elem.textContent = '复制代码'
+          }
+        }, 1000);
+      })(e.srcElement)
+      Clipboard.copy(text);
+    }
+  }
+
+  let pres = document.querySelectorAll('pre');
+  pres.forEach(pre => {
+    let code = pre.querySelector('code');
+    let copyElem = document.createElement('span');
+    copyElem.classList.add('copy-code');
+    copyElem.textContent = '复制代码';
+    pre.appendChild(copyElem);
+    pre.onclick = copyCode
+  })
+
+</script>
+<script src="/media/js/motion.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script>
+  var scroll = new SmoothScroll('a[href*="#"]', {
+    speed: 200
+  });
 </script>
 
 
 
+<script src="/media/js/cool.js"></script>
 
-  </body>
+
+
+
 </html>
