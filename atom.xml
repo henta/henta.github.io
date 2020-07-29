@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://henta.github.io/</id>
     <title>Henta</title>
-    <updated>2020-07-29T06:32:52.146Z</updated>
+    <updated>2020-07-29T06:35:41.363Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://henta.github.io/"/>
     <link rel="self" href="https://henta.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://henta.github.io/images/avatar.png</logo>
     <icon>https://henta.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Henta</rights>
+    <entry>
+        <title type="html"><![CDATA[椭圆曲线算法与其安全性探究]]></title>
+        <id>https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/</id>
+        <link href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/">
+        </link>
+        <updated>2020-07-29T06:34:21.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Schnorr签名以及其带来的随机数问题]]></title>
         <id>https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/</id>
@@ -181,17 +188,6 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
 <ul>
 <li>我们使用@Scheduled来创建定时任务，并通过在启动类上加上@EnableScheduling注解开启定时任务。 这个注解用来标注一个定时任务方法。通过看@Scheduled源码可以看出它支持多种参数：</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[同类调用导致的spring事务失效]]></title>
-        <id>https://henta.github.io/post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao/</id>
-        <link href="https://henta.github.io/post/tong-lei-diao-yong-dao-zhi-de-spring-shi-wu-shi-xiao/">
-        </link>
-        <updated>2019-12-18T07:12:15.000Z</updated>
-        <summary type="html"><![CDATA[<p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
 ]]></content>
     </entry>
 </feed>

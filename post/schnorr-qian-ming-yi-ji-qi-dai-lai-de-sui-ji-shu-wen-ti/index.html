@@ -9,7 +9,7 @@
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
 <title>Schnorr签名以及其带来的随机数问题 | Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1596004366439">
+<link rel="shortcut icon" href="/favicon.ico?v=1596004535437">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -39,7 +39,7 @@
 
 
   <meta name="description" content="Schnorr签名以及其带来的随机数问题" />
-  <meta name="keywords" content="比特币,区块链,⚡️闪电网络" />
+  <meta name="keywords" content="密码学,比特币,区块链" />
 </head>
 
 <body>
@@ -202,19 +202,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">12</span>
+        <span class="site-item-stat-count">13</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-count">6</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-count">6</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -535,6 +535,12 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
+      <a href="https://henta.github.io/tag/oELBKIKkk/">
+        <span>密码学</span>
+      </a>、
+      
+      
+      
       <a href="https://henta.github.io/tag/lg-mGLSXR/">
         <span>比特币</span>
       </a>、
@@ -543,12 +549,6 @@
       
       <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
         <span>区块链</span>
-      </a>、
-      
-      
-      
-      <a href="https://henta.github.io/tag/AHXH31IEv/">
-        <span>⚡️闪电网络</span>
       </a>
       
       
@@ -686,15 +686,19 @@ java默认使用/dev/random</li>
   </ul>
   <div class="tags">
     
+      <a href="https://henta.github.io/tag/oELBKIKkk/"># 密码学</a>
+    
       <a href="https://henta.github.io/tag/lg-mGLSXR/"># 比特币</a>
     
       <a href="https://henta.github.io/tag/9kbd3Vs4HD/"># 区块链</a>
     
-      <a href="https://henta.github.io/tag/AHXH31IEv/"># ⚡️闪电网络</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="椭圆曲线算法与其安全性探究" href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/">椭圆曲线算法与其安全性探究</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="椭圆曲线算法与其安全性探究" href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/">上一篇</a>
       
     </div>
     <div class="nav-next">
@@ -1161,6 +1165,103 @@ java默认使用/dev/random</li>
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/"" data-c="
+          &lt;h3 id=&#34;什么是椭圆曲线&#34;&gt;什么是椭圆曲线？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;数学中，y&lt;sup&gt;2&lt;/sup&gt;=x&lt;sup&gt;3&lt;/sup&gt;+ax+b这种模型，称为椭圆曲线，根据a，b的变化，椭圆曲线也会呈现不同的形状&lt;/li&gt;
+&lt;li&gt;例如b=1，a取值范围从2到-3&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/05/22/5ce4be022fcdd18765.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;li&gt;椭圆曲线相对x轴对称&lt;/li&gt;
+&lt;li&gt;椭圆曲线加法：
+&lt;ul&gt;
+&lt;li&gt;R=P+Q https://cdn.rawgit.com/andreacorbellini/ecc/920b29a/interactive/reals-add.html&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;椭圆曲线的乘法：
+&lt;ul&gt;
+&lt;li&gt;R=nP 相当于n个P相加&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;椭圆曲线的标量积：假设n有k位二进制，可以将R=np的时间复杂度从O(2&lt;sup&gt;k&lt;/sup&gt;)减少到O(logn)或者O(k)&lt;/li&gt;
+&lt;li&gt;椭圆曲线的逆元：每个成员都有一个相反数，比如对于a来说，有a+b=0，那么b就是a的逆元&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;以上知识具体网址&lt;/strong&gt;：https://zhuanlan.zhihu.com/p/36326221&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;离散对数与ecdsa&#34;&gt;离散对数与ecdsa&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;x=log&lt;sub&gt;2&lt;/sub&gt;n这种称为对数运算，上述椭圆曲线R=nP如果已知R和P求n的话，也可以算一个对数运算（绝不是除法运算，椭圆曲线的运算符定义方式和实数是不一样的）&lt;/li&gt;
+&lt;li&gt;有一个等式b = a&lt;sup&gt;k&lt;/sup&gt; mod p，如果已知a p b，求k那么这就是一个离散对数问题，离散对数问题非常难求，最易懂的方法是穷举法，用穷举法相当于a相乘k次，当k很大时，穷举法基本不可能穷举出正确的k。&lt;strong&gt;还有一些其他的求离散对数的方法&lt;/strong&gt;：https://wenku.baidu.com/view/f6b9ceb9112de2bd960590c69ec3d5bbfd0adab3.html&lt;/li&gt;
+&lt;li&gt;ecdsa（椭圆曲线签名算法）其实就是运用了离散对数的难求性，它将椭圆曲线mod n，所以对于R=nP来说，已知R和P，求n是一个非常难的问题，eckey中，Q=kG,k是私钥（32位的随机数），G是椭圆曲线的基点（已知），Q公钥很容易就可以求得，但是从公钥逆推k却是一个离散对数问题，基本不可能逆推出来。&lt;/li&gt;
+&lt;li&gt;相关知识网址：http://open.163.com/movie/2012/10/C/S/M99VIFJA6_M9EDSFLCS.html&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ecdsa椭圆曲线签名算法&#34;&gt;ECDSA（椭圆曲线签名算法）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;不同种类的ECDSA：secp256k1和ed25519，其实用的思想是一样的，只是用的椭圆曲线不同，不同的椭圆曲线离散对数难题的难度不同，ed25519号称效率比secp256k1更好。&lt;/li&gt;
+&lt;li&gt;ECDSA签名算法的工作流程
+&lt;ol&gt;
+&lt;li&gt;取一个范围在[1, n - 1]的随机数k&lt;/li&gt;
+&lt;li&gt;计算点P=kG&lt;/li&gt;
+&lt;li&gt;计算r = X&lt;sub&gt;P&lt;/sub&gt; mod n   P坐标的X轴值&lt;/li&gt;
+&lt;li&gt;如果 r == 0，执行第一步&lt;/li&gt;
+&lt;li&gt;计算s = k&lt;sup&gt;-1&lt;/sup&gt; (z + r*da) mod n （da是公钥，k&lt;sup&gt;-1&lt;/sup&gt; 是 k 对n的逆元 z是hash值）&lt;/li&gt;
+&lt;li&gt;如果s==0，执行第一步&lt;/li&gt;
+&lt;li&gt;二元组（r，s）就是签名值&lt;/li&gt;
+&lt;li&gt;通过一定格式的封装在网络上传输，不是简单的r+s&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;ECDSA签名验证流程
+&lt;ol&gt;
+&lt;li&gt;计算u1 = s&lt;sup&gt;-1&lt;/sup&gt; * z mod n&lt;/li&gt;
+&lt;li&gt;计算u2 = s&lt;sup&gt;-1&lt;/sup&gt; * r mod n&lt;/li&gt;
+&lt;li&gt;计算P = u1&lt;em&gt;G + u2&lt;/em&gt;Ha  (Ha是公钥)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;P=u1G+u2Ha=u1G+u2daG=(u1+u2da)G&lt;br&gt;
+将u1和u2带入，P=(s&lt;sup&gt;-1&lt;/sup&gt;z+s&lt;sup&gt;-1&lt;/sup&gt;rda)G=s&lt;sup&gt;-1&lt;/sup&gt;(z+rda)G&lt;br&gt;
+我们得到这个等式。&lt;br&gt;
+然后再看看这个等式：&lt;br&gt;
+s = k&lt;sup&gt;-1&lt;/sup&gt; (z + r&lt;em&gt;da) mod n&lt;br&gt;
+两边乘以(s&lt;sup&gt;-1&lt;/sup&gt; * k)&lt;br&gt;
+得到 等式 k = s&lt;sup&gt;-1&lt;/sup&gt; (z + r&lt;/em&gt;da) mod n&lt;br&gt;
+两边再乘以G，得到&lt;br&gt;
+kG = s&lt;sup&gt;-1&lt;/sup&gt;*(z + r *da)*G mod n = P&lt;br&gt;
+换句话说，如果(r,s)是有客户端私钥签名Z得到，则我们通过u1,u2计算的到的P值得x分量和r相同。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;如果r == X&lt;sub&gt;P&lt;/sub&gt; mod n，则验证正确&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;k的安全性问题&#34;&gt;k的安全性问题&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;s = k&lt;sup&gt;-1&lt;/sup&gt; (z + r&lt;em&gt;da) mod n&lt;br&gt;
+如果k不变的话&lt;br&gt;
+s1 = k&lt;sup&gt;-1&lt;/sup&gt; (z1 + r&lt;/em&gt;da) mod n等式1&lt;br&gt;
+s2= k&lt;sup&gt;-1&lt;/sup&gt; (z2 + r*da) mod n等式2&lt;br&gt;
+s1 -s2 = k&lt;sup&gt;-1&lt;/sup&gt; (z1 - z2) mod n&lt;br&gt;
+z1和z2 可以自己使用哈希算法对软件进行哈希能够获取到。s1和s2能够从前面值中获取到。所以k值就轻松的获取到了&lt;br&gt;
+k = (s1 -s2)&lt;sup&gt;-1&lt;/sup&gt; * (z1 -z2) mod n&lt;br&gt;
+而得到k之后，将k随便带入s1或者s2都很容易求出da，也就是私钥&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如果k不是固定，但是是可以预测的，那么也是同理可以很容易求出私钥，所以k很重要，一组不好的k是有几率泄漏你的私钥的&lt;/li&gt;
+&lt;li&gt;关于k有过一个惨痛的教训：所以的ps3当时签名的时候，用的是固定的k，结果没过几天就被破解了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;为什么大部分币种签名的时候得到的s和r不变呢&#34;&gt;为什么大部分币种签名的时候得到的s和r不变呢？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;按照上述流程来，签名的时候k必须是一个随机数，但是实际上，我们对同一笔输入进行签名的时候，得到的结果总是不变的，看起来就像是k固定了一样，如果k是随机的，那应该是相同输入每次签名也是不同的&lt;/li&gt;
+&lt;li&gt;事实上，比特币用了RFC6979协议：https://www.8btc.com/article/38766&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;简单说，比特币中k=SHA256(da + HASH(message));&lt;br&gt;
+也就是说，k的生成和私钥有关，这样k就是独一无二的了，其实k并不是要求一定随机，而是要求独特且不可被发现。&lt;br&gt;
+如果仅仅是针对比特币而言，这个公式已经很好了，但考虑到RFC6979面向的是密码学（不仅仅是比特币）的统一规范，要考虑更多的复杂情况（更多曲线、更多参数、更多算法等），因此，实际上的RFC6979要比上述公式复杂得多，代码实现起来也要多得多。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;算法可以复杂，代码可以很长，但原理都一样，要用私钥来保证“保密”，要用消息来保证“唯一”，再使用确定的、不可逆的方法来进行运算，最终计算出来的k值就是安全的。&lt;/p&gt;
+&lt;p&gt;RFC6979算法的完整实现，Java语言可参考SpongyCastle中HMacDSAKCalculator类,事实上，比特币也是直接用了该类生成k&lt;/p&gt;
+">椭圆曲线算法与其安全性探究</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/"" data-c="

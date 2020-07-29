@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
-<title>Henta</title>
+<title>椭圆曲线算法与其安全性探究 | Henta</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1596004535437">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,6 +38,8 @@
 
 
 
+  <meta name="description" content="椭圆曲线算法与其安全性探究" />
+  <meta name="keywords" content="密码学,比特币,区块链" />
 </head>
 
 <body>
@@ -170,10 +172,26 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  gemini">
+      class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -216,214 +234,479 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF">什么是椭圆曲线？</a></li>
+<li><a href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E4%B8%8Eecdsa">离散对数与ecdsa</a></li>
+<li><a href="#ecdsa%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95">ECDSA（椭圆曲线签名算法）</a></li>
+<li><a href="#k%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98">k的安全性问题</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%A7%E9%83%A8%E5%88%86%E5%B8%81%E7%A7%8D%E7%AD%BE%E5%90%8D%E7%9A%84%E6%97%B6%E5%80%99%E5%BE%97%E5%88%B0%E7%9A%84s%E5%92%8Cr%E4%B8%8D%E5%8F%98%E5%91%A2">为什么大部分币种签名的时候得到的s和r不变呢？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box tag-line box-shadow-wrapper">
-          <section class="section tags-section posts-expand bg-color">
-            <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          区块链
-          <small class="language" data-lan="tag">标签</small>
-        </h2>
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
+          
+        
       </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/">
+      椭圆曲线算法与其安全性探究
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-07-29 14:34:21">2020-07-29</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/oELBKIKkk/">
+        <span>密码学</span>
+      </a>、
       
       
       
+      <a href="https://henta.github.io/tag/lg-mGLSXR/">
+        <span>比特币</span>
+      </a>、
       
       
       
-      
-      <a href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              07-29
-              <small>椭圆曲线算法与其安全性探究</small>
-            </h1>
-          </div>
-        </div>
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
       </a>
       
       
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              07-29
-              <small>Schnorr签名以及其带来的随机数问题</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              07-21
-              <small>闪电网络-虫洞攻击</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              02-17
-              <small>比特币交易常见问题</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/bi-te-bi-qu-kuai-shu-ju-jie-gou/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              02-17
-              <small>比特币区块数据结构</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/bi-te-bi-si-yao/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              02-17
-              <small>比特币私钥</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              02-17
-              <small>比特币交易的数据结构</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/bi-te-bi-jiao-yi-he-qian-ming/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              02-17
-              <small>比特币交易和签名</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              02-17
-              <small>比特币挖矿原理</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>6<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>1449<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+            <div class="post-body next-md-body" id="post_body">
+              <h3 id="什么是椭圆曲线">什么是椭圆曲线？</h3>
+<ul>
+<li>数学中，y<sup>2</sup>=x<sup>3</sup>+ax+b这种模型，称为椭圆曲线，根据a，b的变化，椭圆曲线也会呈现不同的形状</li>
+<li>例如b=1，a取值范围从2到-3<br>
+<img src="https://i.loli.net/2019/05/22/5ce4be022fcdd18765.png" alt="title" loading="lazy"></li>
+<li>椭圆曲线相对x轴对称</li>
+<li>椭圆曲线加法：
+<ul>
+<li>R=P+Q https://cdn.rawgit.com/andreacorbellini/ecc/920b29a/interactive/reals-add.html</li>
+</ul>
+</li>
+<li>椭圆曲线的乘法：
+<ul>
+<li>R=nP 相当于n个P相加</li>
+</ul>
+</li>
+<li>椭圆曲线的标量积：假设n有k位二进制，可以将R=np的时间复杂度从O(2<sup>k</sup>)减少到O(logn)或者O(k)</li>
+<li>椭圆曲线的逆元：每个成员都有一个相反数，比如对于a来说，有a+b=0，那么b就是a的逆元</li>
+<li><strong>以上知识具体网址</strong>：https://zhuanlan.zhihu.com/p/36326221</li>
+</ul>
+<h3 id="离散对数与ecdsa">离散对数与ecdsa</h3>
+<ul>
+<li>x=log<sub>2</sub>n这种称为对数运算，上述椭圆曲线R=nP如果已知R和P求n的话，也可以算一个对数运算（绝不是除法运算，椭圆曲线的运算符定义方式和实数是不一样的）</li>
+<li>有一个等式b = a<sup>k</sup> mod p，如果已知a p b，求k那么这就是一个离散对数问题，离散对数问题非常难求，最易懂的方法是穷举法，用穷举法相当于a相乘k次，当k很大时，穷举法基本不可能穷举出正确的k。<strong>还有一些其他的求离散对数的方法</strong>：https://wenku.baidu.com/view/f6b9ceb9112de2bd960590c69ec3d5bbfd0adab3.html</li>
+<li>ecdsa（椭圆曲线签名算法）其实就是运用了离散对数的难求性，它将椭圆曲线mod n，所以对于R=nP来说，已知R和P，求n是一个非常难的问题，eckey中，Q=kG,k是私钥（32位的随机数），G是椭圆曲线的基点（已知），Q公钥很容易就可以求得，但是从公钥逆推k却是一个离散对数问题，基本不可能逆推出来。</li>
+<li>相关知识网址：http://open.163.com/movie/2012/10/C/S/M99VIFJA6_M9EDSFLCS.html</li>
+</ul>
+<h3 id="ecdsa椭圆曲线签名算法">ECDSA（椭圆曲线签名算法）</h3>
+<ul>
+<li>不同种类的ECDSA：secp256k1和ed25519，其实用的思想是一样的，只是用的椭圆曲线不同，不同的椭圆曲线离散对数难题的难度不同，ed25519号称效率比secp256k1更好。</li>
+<li>ECDSA签名算法的工作流程
+<ol>
+<li>取一个范围在[1, n - 1]的随机数k</li>
+<li>计算点P=kG</li>
+<li>计算r = X<sub>P</sub> mod n   P坐标的X轴值</li>
+<li>如果 r == 0，执行第一步</li>
+<li>计算s = k<sup>-1</sup> (z + r*da) mod n （da是公钥，k<sup>-1</sup> 是 k 对n的逆元 z是hash值）</li>
+<li>如果s==0，执行第一步</li>
+<li>二元组（r，s）就是签名值</li>
+<li>通过一定格式的封装在网络上传输，不是简单的r+s</li>
+</ol>
+</li>
+<li>ECDSA签名验证流程
+<ol>
+<li>计算u1 = s<sup>-1</sup> * z mod n</li>
+<li>计算u2 = s<sup>-1</sup> * r mod n</li>
+<li>计算P = u1<em>G + u2</em>Ha  (Ha是公钥)</li>
+</ol>
+<blockquote>
+<p>P=u1G+u2Ha=u1G+u2daG=(u1+u2da)G<br>
+将u1和u2带入，P=(s<sup>-1</sup>z+s<sup>-1</sup>rda)G=s<sup>-1</sup>(z+rda)G<br>
+我们得到这个等式。<br>
+然后再看看这个等式：<br>
+s = k<sup>-1</sup> (z + r<em>da) mod n<br>
+两边乘以(s<sup>-1</sup> * k)<br>
+得到 等式 k = s<sup>-1</sup> (z + r</em>da) mod n<br>
+两边再乘以G，得到<br>
+kG = s<sup>-1</sup>*(z + r *da)*G mod n = P<br>
+换句话说，如果(r,s)是有客户端私钥签名Z得到，则我们通过u1,u2计算的到的P值得x分量和r相同。</p>
+</blockquote>
+<ol start="4">
+<li>如果r == X<sub>P</sub> mod n，则验证正确</li>
+</ol>
+</li>
+</ul>
+<h3 id="k的安全性问题">k的安全性问题</h3>
+<blockquote>
+<p>s = k<sup>-1</sup> (z + r<em>da) mod n<br>
+如果k不变的话<br>
+s1 = k<sup>-1</sup> (z1 + r</em>da) mod n等式1<br>
+s2= k<sup>-1</sup> (z2 + r*da) mod n等式2<br>
+s1 -s2 = k<sup>-1</sup> (z1 - z2) mod n<br>
+z1和z2 可以自己使用哈希算法对软件进行哈希能够获取到。s1和s2能够从前面值中获取到。所以k值就轻松的获取到了<br>
+k = (s1 -s2)<sup>-1</sup> * (z1 -z2) mod n<br>
+而得到k之后，将k随便带入s1或者s2都很容易求出da，也就是私钥</p>
+</blockquote>
+<ul>
+<li>如果k不是固定，但是是可以预测的，那么也是同理可以很容易求出私钥，所以k很重要，一组不好的k是有几率泄漏你的私钥的</li>
+<li>关于k有过一个惨痛的教训：所以的ps3当时签名的时候，用的是固定的k，结果没过几天就被破解了</li>
+</ul>
+<h3 id="为什么大部分币种签名的时候得到的s和r不变呢">为什么大部分币种签名的时候得到的s和r不变呢？</h3>
+<ul>
+<li>按照上述流程来，签名的时候k必须是一个随机数，但是实际上，我们对同一笔输入进行签名的时候，得到的结果总是不变的，看起来就像是k固定了一样，如果k是随机的，那应该是相同输入每次签名也是不同的</li>
+<li>事实上，比特币用了RFC6979协议：https://www.8btc.com/article/38766</li>
+</ul>
+<blockquote>
+<p>简单说，比特币中k=SHA256(da + HASH(message));<br>
+也就是说，k的生成和私钥有关，这样k就是独一无二的了，其实k并不是要求一定随机，而是要求独特且不可被发现。<br>
+如果仅仅是针对比特币而言，这个公式已经很好了，但考虑到RFC6979面向的是密码学（不仅仅是比特币）的统一规范，要考虑更多的复杂情况（更多曲线、更多参数、更多算法等），因此，实际上的RFC6979要比上述公式复杂得多，代码实现起来也要多得多。</p>
+</blockquote>
+<p>算法可以复杂，代码可以很长，但原理都一样，要用私钥来保证“保密”，要用消息来保证“唯一”，再使用确定的、不可逆的方法来进行运算，最终计算出来的k值就是安全的。</p>
+<p>RFC6979算法的完整实现，Java语言可参考SpongyCastle中HMacDSAKCalculator类,事实上，比特币也是直接用了该类生成k</p>
+
+            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      henta
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/" title="椭圆曲线算法与其安全性探究">https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://henta.github.io/tag/oELBKIKkk/"># 密码学</a>
+    
+      <a href="https://henta.github.io/tag/lg-mGLSXR/"># 比特币</a>
+    
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/"># 区块链</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="Schnorr签名以及其带来的随机数问题" href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/">Schnorr签名以及其带来的随机数问题</a>
+        <a class="nav-mobile-next" title="Schnorr签名以及其带来的随机数问题" href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-          </section>
+            
+            
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -610,6 +893,253 @@
   }
 
 </script>
+    <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick = () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function (e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px;border-radius: 2px;`;
+      lightImg.onclick = function () {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
+</script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        window.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        window.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        window.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        window.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      window.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -1875,7 +2405,6 @@ logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=d
 
 
 <script src="/media/js/cool.js"></script>
-
 
 
 
