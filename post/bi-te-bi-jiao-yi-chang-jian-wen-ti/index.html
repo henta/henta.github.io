@@ -9,7 +9,7 @@
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
 <title>比特币交易常见问题 | Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1595385725516">
+<link rel="shortcut icon" href="/favicon.ico?v=1596004200562">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -202,7 +202,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">11</span>
+        <span class="site-item-stat-count">12</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1117,6 +1117,99 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/"" data-c="
+          &lt;h3 id=&#34;schnorr&#34;&gt;Schnorr&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;签名流程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Q = kG&lt;br&gt;
+r = hash(Q, Ha, msg) mod n&lt;br&gt;
+s = k - r * da mod n&lt;br&gt;
+其中da是私钥,Ha是公钥&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;验证流程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;s * G=Ha * hash(Q, Ha, msg)+Q&lt;br&gt;
+如果相等的话，验证成功&lt;br&gt;
+其中Ha是公钥&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;schnorr的优缺点&#34;&gt;Schnorr的优缺点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;多笔签名一起验证，提高效率
+&lt;ul&gt;
+&lt;li&gt;对于ECDSA来说，同时验证多笔签名只能一笔一笔的验证，但是对于Schnorr来说，可以多笔签名一起验证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(s1+s2+…+s1000)×G=(Q1+…+Q1000)+(hash(Q1,Ha1,msg1)×Ha1+ hash(Q2,Ha2,msg2)×Ha2+…+hash(Q1000,Ha1000,msg1000)×Ha1000)&lt;br&gt;
+椭圆曲线其实是一个阿尔贝群，虽然它的运算符号特殊，但是也符合交换律，结合律等&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;一起验证签名可以降低计算难度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对比一下一起签名和一笔一笔签名有什么不同&lt;br&gt;
+一起签名的情况下，对于1000笔签名来说，其实进行了很多加法+1001次乘法&lt;br&gt;
+如果是分开签名则要进行2000次乘法&lt;br&gt;
+椭圆曲线的乘法比加法慢的多的多，所以将乘法转为加法可以大大提升效率&lt;br&gt;
+再观察一下ECDSA，1000笔签名需要1000次倒置和2000次点乘运算，理论上整理效率不如Schnorr算法&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;个人观点：这个优点我觉得不是很重要。。。。按照btc10分钟一个块，ecdsa验证顶多慢几s,没啥大影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;秘钥聚合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;https://www.8btc.com/article/359642&lt;br&gt;
+使用schnorr签名，我们可以使用一对私钥 (pk1,pk2)，并以此生成一个共享公钥P=P1+P2=pk1×G+pk2×G，共享公钥可以用来解共享签名（r1+r2,s1+s2）&lt;br&gt;
+schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻击风险：https://bitcointechtalk.com/scaling-bitcoin-schnorr-signatures-abe3b5c275d1，现在基本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;都是用Mu-sig这个实现&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. 减少空间占用
+	- 比特币的做法：我们希望能用两个或者多个私钥共同控制比特币，目前的做法是n-of-m多重签名脚本，多重签名的个数越多，链上需要包含的签名size就越大（但是有隔离见证）
+	- 使用schnorr签名，无论多少个私钥控制签名，只需要签一个名即可，可以节省空间
+&amp;gt; 这虽然是个有点，但是这并不是很重要。。。
+2. 增强隐私性
+	- 比特币多签P2SH几乎是无隐私的，P2SH地址以3开头，这使得区块链观察者可以识别网络中所有的P2SH交易，并且确定哪些对象参与了多签交易
+	![title](https://i.loli.net/2019/05/24/5ce75c0d425c728270.png)
+	- Schnorr的秘钥聚合却可以保证用户的隐私性，因为它会将几个公钥聚合成一把，这样观察者就不知道到底有几个人参与签名，到底是谁参与签名
+	![title](https://i.loli.net/2019/05/24/5ce75d5c5c15155129.png)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;无法使用确定性k进行签名
+&lt;ul&gt;
+&lt;li&gt;比特币其实用的是一个确定性k，这个k也非常有安全保障，但是Schnorr却不能使用这种模式，如果使用可确定性k，哪怕它是和你的私钥挂钩，黑客也能通过签名获取你的私钥&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;假设有人入侵了我们的电脑并完全控制了两个私钥中的一个（假设叫da），因为是多签，攻击者拿到一个私钥暂时也无法发送交易&lt;br&gt;
+但是当我们发送交易的时候需要da和db两把私钥，我们尝试像往常一样进行交易，我们准备一个未签名的交易和Q1 = k1G的值将他转移到硬件钱包进行离线签名，返回了（r1，s1）但是因为某些原因，我们发送交易的在线钱包并没有将交易发出去，这时候我们可能需要重新签名再尝试发送交易，这次我们使用了Q2=k2G发送到硬件钱包&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;随机数&#34;&gt;随机数&lt;/h3&gt;
+&lt;p&gt;Schnorr的k必须用随机数生成，那么产生随机数就成了一个难题&lt;br&gt;
+linux上的随机数用的是/dev/random或者/dev/urandom&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;熵：可以理解为系统的操作，系统的不同操作会产生不同的熵，如键盘的输入、鼠标的移动、内存的使用、文件的使用量、进程数量等等。这些熵可以看做是哲学意义上的随机，这些熵正是linux随机数的源头&lt;br&gt;
+java默认使用/dev/random&lt;/li&gt;
+&lt;li&gt;/dev/random 在系统熵不够的情况下会阻塞，所以如果程序大量调用默认随机数，就会产生阻塞，一次阻塞个两三分钟还是很正常的&lt;/li&gt;
+&lt;li&gt;/dev/urandom 哪怕熵不够也不会阻塞&lt;/li&gt;
+&lt;li&gt;实际上/dev/random和/dev/urandom都是经过伪随机数生成器（CSPRNG）所得:http://www.linuxeden.com/a/48277&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;别问，问就是用 /dev/urandom&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://i.loli.net/2019/05/27/5ceb67e212b6e34501.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;从图中看来，其实urandom就是直接拿熵池中的数据当seed生成大量随机数，而random会判断熵池够不够数量，够数量才会用CSPRNG生成，random会保证每次用的熵不同&lt;br&gt;
+但其实哪怕是urandom，他的seed也不会是固定的，他会用新熵去“洗种”，所以urandom的安全性并不差&lt;/p&gt;
+&lt;h3 id=&#34;为什么大部分币种生成私钥的时候没有随机数问题&#34;&gt;为什么大部分币种生成私钥的时候没有随机数问题？&lt;/h3&gt;
+&lt;p&gt;其实他们也是从/dev/random拿的，不过他们只拿一次作为java程序中伪随机数生成器（类似CSPRNG）的seed，通过这个随机的seed，可以无限生成伪随机数，同一个seed产生的随机数是一样的&lt;/p&gt;
+">Schnorr签名以及其带来的随机数问题</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/"" data-c="

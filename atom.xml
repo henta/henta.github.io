@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://henta.github.io/</id>
     <title>Henta</title>
-    <updated>2020-07-22T02:47:22.967Z</updated>
+    <updated>2020-07-29T06:30:03.824Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://henta.github.io/"/>
     <link rel="self" href="https://henta.github.io/atom.xml"/>
@@ -10,6 +10,113 @@
     <logo>https://henta.github.io/images/avatar.png</logo>
     <icon>https://henta.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Henta</rights>
+    <entry>
+        <title type="html"><![CDATA[Schnorr签名以及其带来的随机数问题]]></title>
+        <id>https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/</id>
+        <link href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/">
+        </link>
+        <updated>2020-07-29T06:24:34.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="schnorr">Schnorr</h3>
+<ul>
+<li>签名流程</li>
+</ul>
+<blockquote>
+<p>Q = kG<br>
+r = hash(Q, Ha, msg) mod n<br>
+s = k - r * da mod n<br>
+其中da是私钥,Ha是公钥</p>
+</blockquote>
+<ul>
+<li>验证流程</li>
+</ul>
+<blockquote>
+<p>s * G=Ha * hash(Q, Ha, msg)+Q<br>
+如果相等的话，验证成功<br>
+其中Ha是公钥</p>
+</blockquote>
+<h3 id="schnorr的优缺点">Schnorr的优缺点</h3>
+<ul>
+<li>多笔签名一起验证，提高效率
+<ul>
+<li>对于ECDSA来说，同时验证多笔签名只能一笔一笔的验证，但是对于Schnorr来说，可以多笔签名一起验证</li>
+</ul>
+<blockquote>
+<p>(s1+s2+…+s1000)×G=(Q1+…+Q1000)+(hash(Q1,Ha1,msg1)×Ha1+ hash(Q2,Ha2,msg2)×Ha2+…+hash(Q1000,Ha1000,msg1000)×Ha1000)<br>
+椭圆曲线其实是一个阿尔贝群，虽然它的运算符号特殊，但是也符合交换律，结合律等</p>
+</blockquote>
+<ul>
+<li>一起验证签名可以降低计算难度</li>
+</ul>
+<blockquote>
+<p>对比一下一起签名和一笔一笔签名有什么不同<br>
+一起签名的情况下，对于1000笔签名来说，其实进行了很多加法+1001次乘法<br>
+如果是分开签名则要进行2000次乘法<br>
+椭圆曲线的乘法比加法慢的多的多，所以将乘法转为加法可以大大提升效率<br>
+再观察一下ECDSA，1000笔签名需要1000次倒置和2000次点乘运算，理论上整理效率不如Schnorr算法</p>
+</blockquote>
+<ul>
+<li>个人观点：这个优点我觉得不是很重要。。。。按照btc10分钟一个块，ecdsa验证顶多慢几s,没啥大影响</li>
+</ul>
+</li>
+<li>秘钥聚合</li>
+</ul>
+<blockquote>
+<p>https://www.8btc.com/article/359642<br>
+使用schnorr签名，我们可以使用一对私钥 (pk1,pk2)，并以此生成一个共享公钥P=P1+P2=pk1×G+pk2×G，共享公钥可以用来解共享签名（r1+r2,s1+s2）<br>
+schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻击风险：https://bitcointechtalk.com/scaling-bitcoin-schnorr-signatures-abe3b5c275d1，现在基本</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="schnorr">Schnorr</h3>
+<ul>
+<li>签名流程</li>
+</ul>
+<blockquote>
+<p>Q = kG<br>
+r = hash(Q, Ha, msg) mod n<br>
+s = k - r * da mod n<br>
+其中da是私钥,Ha是公钥</p>
+</blockquote>
+<ul>
+<li>验证流程</li>
+</ul>
+<blockquote>
+<p>s * G=Ha * hash(Q, Ha, msg)+Q<br>
+如果相等的话，验证成功<br>
+其中Ha是公钥</p>
+</blockquote>
+<h3 id="schnorr的优缺点">Schnorr的优缺点</h3>
+<ul>
+<li>多笔签名一起验证，提高效率
+<ul>
+<li>对于ECDSA来说，同时验证多笔签名只能一笔一笔的验证，但是对于Schnorr来说，可以多笔签名一起验证</li>
+</ul>
+<blockquote>
+<p>(s1+s2+…+s1000)×G=(Q1+…+Q1000)+(hash(Q1,Ha1,msg1)×Ha1+ hash(Q2,Ha2,msg2)×Ha2+…+hash(Q1000,Ha1000,msg1000)×Ha1000)<br>
+椭圆曲线其实是一个阿尔贝群，虽然它的运算符号特殊，但是也符合交换律，结合律等</p>
+</blockquote>
+<ul>
+<li>一起验证签名可以降低计算难度</li>
+</ul>
+<blockquote>
+<p>对比一下一起签名和一笔一笔签名有什么不同<br>
+一起签名的情况下，对于1000笔签名来说，其实进行了很多加法+1001次乘法<br>
+如果是分开签名则要进行2000次乘法<br>
+椭圆曲线的乘法比加法慢的多的多，所以将乘法转为加法可以大大提升效率<br>
+再观察一下ECDSA，1000笔签名需要1000次倒置和2000次点乘运算，理论上整理效率不如Schnorr算法</p>
+</blockquote>
+<ul>
+<li>个人观点：这个优点我觉得不是很重要。。。。按照btc10分钟一个块，ecdsa验证顶多慢几s,没啥大影响</li>
+</ul>
+</li>
+<li>秘钥聚合</li>
+</ul>
+<blockquote>
+<p>https://www.8btc.com/article/359642<br>
+使用schnorr签名，我们可以使用一对私钥 (pk1,pk2)，并以此生成一个共享公钥P=P1+P2=pk1×G+pk2×G，共享公钥可以用来解共享签名（r1+r2,s1+s2）<br>
+schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻击风险：https://bitcointechtalk.com/scaling-bitcoin-schnorr-signatures-abe3b5c275d1，现在基本</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[闪电网络-虫洞攻击]]></title>
         <id>https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/</id>
@@ -85,19 +192,6 @@
         <summary type="html"><![CDATA[<p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>本人在工作过程中发现项目有一块的事务不生效，遂进行了以下的探究。本文通过两个案例深入讲解事务失效的原因以及提供一些有效的解决方法</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[闪电网络原理]]></title>
-        <id>https://henta.github.io/post/shan-dian-wang-luo/</id>
-        <link href="https://henta.github.io/post/shan-dian-wang-luo/">
-        </link>
-        <updated>2019-12-18T06:17:44.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
-<p>闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="闪电网络基本概念和步骤">闪电网络基本概念和步骤</h3>
-<p>闪电网络就是将btc的小额交易放到链下去进行，等到双方交易结束后再将最后的账单上链，中间的交易过程无需上链，可以做到秒到账且低手续费。</p>
 ]]></content>
     </entry>
 </feed>
