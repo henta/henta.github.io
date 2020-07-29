@@ -9,7 +9,7 @@
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
 <title>比特币交易常见问题 | Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1596004200562">
+<link rel="shortcut icon" href="/favicon.ico?v=1596004366439">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1171,16 +1171,25 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
 &lt;/blockquote&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;都是用Mu-sig这个实现&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1. 减少空间占用
-	- 比特币的做法：我们希望能用两个或者多个私钥共同控制比特币，目前的做法是n-of-m多重签名脚本，多重签名的个数越多，链上需要包含的签名size就越大（但是有隔离见证）
-	- 使用schnorr签名，无论多少个私钥控制签名，只需要签一个名即可，可以节省空间
-&amp;gt; 这虽然是个有点，但是这并不是很重要。。。
-2. 增强隐私性
-	- 比特币多签P2SH几乎是无隐私的，P2SH地址以3开头，这使得区块链观察者可以识别网络中所有的P2SH交易，并且确定哪些对象参与了多签交易
-	![title](https://i.loli.net/2019/05/24/5ce75c0d425c728270.png)
-	- Schnorr的秘钥聚合却可以保证用户的隐私性，因为它会将几个公钥聚合成一把，这样观察者就不知道到底有几个人参与签名，到底是谁参与签名
-	![title](https://i.loli.net/2019/05/24/5ce75d5c5c15155129.png)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;减少空间占用
+&lt;ul&gt;
+&lt;li&gt;比特币的做法：我们希望能用两个或者多个私钥共同控制比特币，目前的做法是n-of-m多重签名脚本，多重签名的个数越多，链上需要包含的签名size就越大（但是有隔离见证）&lt;/li&gt;
+&lt;li&gt;使用schnorr签名，无论多少个私钥控制签名，只需要签一个名即可，可以节省空间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这虽然是个有点，但是这并不是很重要。。。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;增强隐私性
+&lt;ul&gt;
+&lt;li&gt;比特币多签P2SH几乎是无隐私的，P2SH地址以3开头，这使得区块链观察者可以识别网络中所有的P2SH交易，并且确定哪些对象参与了多签交易&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/05/24/5ce75c0d425c728270.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Schnorr的秘钥聚合却可以保证用户的隐私性，因为它会将几个公钥聚合成一把，这样观察者就不知道到底有几个人参与签名，到底是谁参与签名&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/05/24/5ce75d5c5c15155129.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;无法使用确定性k进行签名
 &lt;ul&gt;
