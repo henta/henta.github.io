@@ -9,7 +9,7 @@
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
 <title>Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1596009195629">
+<link rel="shortcut icon" href="/favicon.ico?v=1596437065293">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -505,12 +505,12 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>5<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>701<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>1332<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
@@ -1527,7 +1527,7 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
 &lt;li&gt;计算点P=kG&lt;/li&gt;
 &lt;li&gt;计算r = X&lt;sub&gt;P&lt;/sub&gt; mod n   P坐标的X轴值&lt;/li&gt;
 &lt;li&gt;如果 r == 0，执行第一步&lt;/li&gt;
-&lt;li&gt;计算s = k&lt;sup&gt;-1&lt;/sup&gt; (z + r*da) mod n （da是公钥，k&lt;sup&gt;-1&lt;/sup&gt; 是 k 对n的逆元 z是hash值）&lt;/li&gt;
+&lt;li&gt;计算s = k&lt;sup&gt;-1&lt;/sup&gt; (z + r*da) mod n （da是私钥，k&lt;sup&gt;-1&lt;/sup&gt; 是 k 对n的逆元 z是hash值）&lt;/li&gt;
 &lt;li&gt;如果s==0，执行第一步&lt;/li&gt;
 &lt;li&gt;二元组（r，s）就是签名值&lt;/li&gt;
 &lt;li&gt;通过一定格式的封装在网络上传输，不是简单的r+s&lt;/li&gt;
@@ -1723,8 +1723,30 @@ java默认使用/dev/random&lt;/li&gt;
 &lt;li&gt;Bob得到R之后将R交给了Alice，得到了1.02个Btc，其中0.02Btc手续费（报酬）由于Carol没有将R给Bob，Bob在100个区块后将步骤3中的HTCL取回，到这里，我们可以看到Bob将Carol的手续费给私吞了。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这就是虫洞攻击，事实上，合谋者之间有多少受害人，他们就可以获得多少受害人本应得到的手续费，目前所有使用HTLC进行建设的Layer-2都有这个问题&lt;/p&gt;
-&lt;h2 id=&#34;解决方案&#34;&gt;解决方案&lt;/h2&gt;
+&lt;h2 id=&#34;解决方案-ptlc&#34;&gt;解决方案-PTLC&lt;/h2&gt;
 &lt;p&gt;目前闪电网络团队正在试验一种新的多跳支付方式&lt;mark&gt;PTLC&lt;/mark&gt;来取代HTLC&lt;/p&gt;
+&lt;p&gt;由于目前闪电网络团队还没有定论用哪种方式实现ptlc，因此对于ptlc暂时不做深入研究，以下仅对基本原理进行解析。以下解析依托于椭圆曲线知识，如果不熟悉或者忘记了可以看一看笔者对于椭圆曲线原理讲解的文章&lt;br&gt;
+&lt;img src=&#34;https://suredbits.com/wp-content/uploads/2019/08/PaymentPoint.png&#34; alt=&#34;PTLC&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如上图所示，Alice需要经过Bob将btc发给Carol,进行分析前，需要确定以下几个共识：
+&lt;ol&gt;
+&lt;li&gt;PTLC基于椭圆曲线理论 ，a=b*G表示椭圆曲线上的乘法，知道b和G并不能倒推出a&lt;/li&gt;
+&lt;li&gt;椭圆曲线上的乘法 加减法也符合交换律和结合律，如a&lt;em&gt;G+b&lt;/em&gt;G=(a+b)*G&lt;/li&gt;
+&lt;li&gt;G是大家都知道的椭圆曲线上的一个点，在PTLC中，大家用的G都是相同的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;首先，Alice生成两个随机数x，y，Carol生成一个随机数z&lt;/li&gt;
+&lt;li&gt;Alice将(x+y)&lt;em&gt;G给了Carol，Carol将z&lt;/em&gt;G给了Alice，根据结合律,这时候Alice和Carol都能计算出(x+y+z)&lt;em&gt;G的值，但是Carol并不知道x&lt;/em&gt;G和y*G的值&lt;/li&gt;
+&lt;li&gt;现在Alice发布一个PTLC的悬赏，悬赏内容是：谁能给我(x+z)&lt;em&gt;G我就给他0.11Btc；Bob看到后将这个悬赏接下了，与Alice建立了一个PTLC合约，Alice将y&lt;/em&gt;G发给了Bob&lt;/li&gt;
+&lt;li&gt;现在Bob知道的是y*G,并不知道(x+z)*G，于是Bob找到了Carol，对他说，你把(x+z)*G的值给我，我就把Alice要求我付款的0.1个btc给你。但是Carol只知道(x+y)&lt;em&gt;G和z&lt;/em&gt;G的值，不知道Bob要的(x+z)*G，根据结合律，Carol也知道(x+y+z)*G的值，于是他把这个值给了Bob&lt;/li&gt;
+&lt;li&gt;那么现在Bob知道了y*G和(x+y+z)*G的值，根据结合律，自然可以推出(x+z)*G的值，那么现在，他可以拿着这个值找Alice要悬赏了，Bob可以如愿以偿的获得0.11Btc，对比与支付给Carol的0.1Btc，Bob赚了0.01Btc的手续费。&lt;/li&gt;
+&lt;li&gt;这个流程有意思的地方在于Carol并不能知道(x+z)&lt;em&gt;G的值，Bob到最后也没能知道x&lt;/em&gt;G、y*G、(x+y)*G的值，这可以防止在多跳网络中中间两者串通起来发动虫洞攻击，因为中间两者拥有的信息并不足以直接解除被攻击者设置的悬赏难题。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;参考资料：&lt;br&gt;
+闪电网络付款点（https://suredbits.com/payment-points-part-1/）&lt;br&gt;
+虫洞攻击：一种针对支付通道网络的攻击（https://talk.nervos.org/t/topic/2672）&lt;/p&gt;
 ">闪电网络-虫洞攻击</a>
       </div>
       
