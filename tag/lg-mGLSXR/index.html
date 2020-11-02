@@ -9,7 +9,7 @@
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
 <title>Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1604301643358">
+<link rel="shortcut icon" href="/favicon.ico?v=1604302114305">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -184,19 +184,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">18</span>
+        <span class="site-item-stat-count">19</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">6</span>
+        <span class="site-item-stat-count">7</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">6</span>
+        <span class="site-item-stat-count">7</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -242,6 +242,12 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
+      
+      
+      
+      
       
       
       
@@ -651,6 +657,109 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/yi-tai-fang/"" data-c="
+          &lt;h1 id=&#34;以太坊&#34;&gt;以太坊&lt;/h1&gt;
+&lt;h3 id=&#34;以太坊货币单位&#34;&gt;以太坊货币单位&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;为了激励网络中的计算，需要一种一致同意的转移价值方法。为了解决这个问题，以太坊设计了一种内置的货币-以太币（Ether），也就是我们所知的ETH，有时也用古英语中的Ð表示。以太币最小的单位是Wei（伟），所有货币值都以Wei的整数倍来记录。一个以太币等于10^18 Wei。以太币还有以下单位：10^9 GWei&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;倍数&lt;/th&gt;
+&lt;th&gt;单位&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;10^0&lt;/td&gt;
+&lt;td&gt;Wei（伟）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10^12&lt;/td&gt;
+&lt;td&gt;Szabo（萨博）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10^15&lt;/td&gt;
+&lt;td&gt;Finney（芬尼）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10^18&lt;/td&gt;
+&lt;td&gt;Ether（以太）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在当前状况下，任何在以太币的上下文中所使用的价值标示，比如货币、余额或者支付，都应以Wei为单位来计算。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;分叉&#34;&gt;分叉&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;基本与比特币类似，以太坊遵循一个叫做“GHOST协议(GHOST protocol.)”的数学机制。
+&lt;ul&gt;
+&lt;li&gt;简单的说，GHOST协议就是让我们必须选择一个在其上完成计算最多的路径。一个方法确定路径就是使用最近一个区块（叶子区块）的区块号，区块号代表着当前路径上总的区块数（不包含创世纪区块）。区块号越大，路径就会越长，就说明越多的挖矿算力被消耗在此路径上以达到叶子区块。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;账户&#34;&gt;账户&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;在以太坊系统中，状态是由被称为“账户”（20个字节）的对象在两个账户之间转移价值和信息的状态转换构成的。以太坊的账户包含四个部分：
+&lt;ul&gt;
+&lt;li&gt;nonce（随机数）：用于确定每笔交易只能被处理一次的计数器，这个值等于由此账户地址发出的交易数量，或者由这个账户所创建的合约数量（当这个账户有关联代码时）。&lt;/li&gt;
+&lt;li&gt;balance（账户余额）：账户目前的以太币余额&lt;/li&gt;
+&lt;li&gt;storageRoot：理论上是指Merkle Patricia树的根节点256位的Hash值。&lt;/li&gt;
+&lt;li&gt;codeHash：此账户EVM代码的hash值。对于外部拥有账户，codeHash域是一个空字符串，对于合约账户，就是代码的Hash作为codeHash保存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;以太坊分为外部账户和合约账户。外部所有的账户没有代码，人们可以通过创建和签名一笔交易从一个外部账户发送消息。每当合约账户收到一条消息，合约内部的代码就会被激活，允许它对内部存储进行读取和写入，和发送其它消息或者创建合约。
+&lt;ul&gt;
+&lt;li&gt;外部账户（EOA）：拥有一个私钥，可以拥有币，可以通过创建和用自己的私钥来对交易进行签名，来发送消息给另一个外部拥有账户或合约账户，被私钥控制且没有任何代码与之关联了。和比特币一样。&lt;/li&gt;
+&lt;li&gt;合约账户：被他们的合约代码控制且有代码与之关联，每个合约部署之后都会有一个合约账户，只能通过EOA账户操作，EOA账户可以通过编写特定的程序代码来掌控合约账户，合约账户只有在EOA账户执行一个指令才会去发生操作，自己本身不会发生操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;交易&#34;&gt;交易&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;交易数据结构：
+&lt;ul&gt;
+&lt;li&gt;nonce：与发送该交易的账户的nonce值一致。&lt;/li&gt;
+&lt;li&gt;gasPrice：表示每gas的单价为多少wei。&lt;/li&gt;
+&lt;li&gt;gasLimit：执行该条交易最大被允许使用的gas数目。&lt;/li&gt;
+&lt;li&gt;to：160位的接受者地址。当交易位创建合约时，该值位空。&lt;/li&gt;
+&lt;li&gt;value：表示发送者发送的wei的数目。该值为向接受者转移的wei的数目，或者是创建合约时作为合约账户的初始wei数目。&lt;/li&gt;
+&lt;li&gt;v,r,s：交易的签名信息，用以决定交易的发送者。&lt;/li&gt;
+&lt;li&gt;init：如果是创建合约的交易,则init表示一段不限长度的EVM-Code用以合约账户初始化的过程。&lt;/li&gt;
+&lt;li&gt;data: 调用合约的交易，会包含一段不限长度的输入信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;区块&#34;&gt;区块&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;区块头数据结构：
+&lt;ul&gt;
+&lt;li&gt;parentHash: 父节点的hash值。&lt;/li&gt;
+&lt;li&gt;ommersHash: uncle节点的hash值，这块是跟GHOST相关的。&lt;/li&gt;
+&lt;li&gt;beneficiary: 矿工address。&lt;/li&gt;
+&lt;li&gt;stateRoot: 当所有交易都执行完毕后的世界状态树的根节点。&lt;/li&gt;
+&lt;li&gt;transactionsRoot: 交易列表的根节点。&lt;/li&gt;
+&lt;li&gt;receiptsRoot: 收据的根节点。&lt;/li&gt;
+&lt;li&gt;logsBloom:日志过滤器。&lt;/li&gt;
+&lt;li&gt;difficulty:区块难度，根据上一个区块的难度以及时间戳算出来的值。&lt;/li&gt;
+&lt;li&gt;number:区块号。&lt;/li&gt;
+&lt;li&gt;gasLimit: 区块的gas数量限制，即区块中交易使用掉的gas值不应该超过该值。&lt;/li&gt;
+&lt;li&gt;gasUsed: 区块使用掉的gas数量。&lt;/li&gt;
+&lt;li&gt;timestamp: 时间戳。&lt;/li&gt;
+&lt;li&gt;extraData: 额外的数据，合法的交易对长度有限制。&lt;/li&gt;
+&lt;li&gt;mixHash: 与nonce一起用作工作量证明。&lt;/li&gt;
+&lt;li&gt;nonce: 与mixHash一起用作工作量证明。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">以太坊</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/diffie-hellman-mi-yao-jiao-huan-he-pbe/"" data-c="

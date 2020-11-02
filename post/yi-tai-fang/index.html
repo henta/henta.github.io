@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
-<title>闪电网络-虫洞攻击 | Henta</title>
+<title>以太坊 | Henta</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1604302114305">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,8 +38,8 @@
 
 
 
-  <meta name="description" content="闪电网络-虫洞攻击" />
-  <meta name="keywords" content="比特币,区块链,⚡️闪电网络" />
+  <meta name="description" content="以太坊" />
+  <meta name="keywords" content="以太坊,区块链" />
 </head>
 
 <body>
@@ -240,11 +240,14 @@
   <div class="toc-wrapper auto-number auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A">以太坊</a><br>
+*
 <ul>
-<li><a href="#htlc">HTLC</a></li>
-<li><a href="#%E8%99%AB%E6%B4%9E%E6%94%BB%E5%87%BB">虫洞攻击</a></li>
-<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-ptlc">解决方案-PTLC</a></li>
+<li><a href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A7%E5%B8%81%E5%8D%95%E4%BD%8D">以太坊货币单位</a></li>
+<li><a href="#%E5%88%86%E5%8F%89">分叉</a></li>
+<li><a href="#%E8%B4%A6%E6%88%B7">账户</a></li>
+<li><a href="#%E4%BA%A4%E6%98%93">交易</a></li>
+<li><a href="#%E5%8C%BA%E5%9D%97">区块</a></li>
 </ul>
 </li>
 </ul>
@@ -512,8 +515,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/">
-      闪电网络-虫洞攻击
+    <a class="post-title-link" href="https://henta.github.io/post/yi-tai-fang/">
+      以太坊
     </a>
   </h1>
   <div class="post-meta">
@@ -521,7 +524,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-07-21 16:32:55">2020-07-21</span>
+      <span class="publish-time" data-t="2020-11-02 15:28:11">2020-11-02</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -530,20 +533,14 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://henta.github.io/tag/lg-mGLSXR/">
-        <span>比特币</span>
+      <a href="https://henta.github.io/tag/vOExWqaen/">
+        <span>以太坊</span>
       </a>、
       
       
       
       <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
         <span>区块链</span>
-      </a>、
-      
-      
-      
-      <a href="https://henta.github.io/tag/AHXH31IEv/">
-        <span>⚡️闪电网络</span>
       </a>
       
       
@@ -557,69 +554,110 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1332<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>1215<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <h2 id="htlc">HTLC</h2>
-<p>Alice的目标是要将1btc转给Dave，但是自己并没有与之相连的通道，这时候就要找到与Dave的通道连接的节点，间接将钱支付给Dave</p>
-<ol>
-<li>Dave创建一个随机数R，并且Hash（R），我们将其称为H，然后将H传输给Alice</li>
-<li>Alice发布一个悬赏：也就是HTLC，悬赏的大致意思是:谁能将R给我，我就给谁1.02个btc</li>
-<li>Bob接下了Alice的悬赏，但是Bob并没有R，所以Bob也发布了一个悬赏：谁能将R给我，我就给谁1.01个btc</li>
-<li>Carol接下了Bob的悬赏，但是Carol也没有R，所以Carol发布悬赏：谁能将R给我，我就给谁1.00个btc，因为通道相连，Dave直接接下这个悬赏，并且将R给了Carol</li>
-<li>Carol接收到了R</li>
-<li>Carol有了R之后自然可以领取到Bob的悬赏，得到了1.01个Btc，并将R交给了Bob</li>
-<li>Bob有了R之后自然可以领取到Alice的悬赏，得到了1.02个Btc，并将R交给了Alice</li>
-</ol>
-<figure data-type="image" tabindex="1"><img src="https://henta.github.io/post-images/1595320485399.png" alt="HTLC" loading="lazy"></figure>
-<p>上述是HTLC工作的简易流程，有以下几点需要补充说明：</p>
+              <h1 id="以太坊">以太坊</h1>
+<h3 id="以太坊货币单位">以太坊货币单位</h3>
 <ul>
-<li>总的来说HTLC的工作流程是<mark>将H正向传输，将R反向传输</mark></li>
-<li>流程图中的HTLC(1.02,200,H)三个参数分别指的是
-<ul>
-<li>支付1.02个Btc</li>
-<li>如果200个块之后依然没有人将R给我，我自己则可以回收这笔交易</li>
-<li>正向传输H给后继节点</li>
-</ul>
+<li>
+<p>为了激励网络中的计算，需要一种一致同意的转移价值方法。为了解决这个问题，以太坊设计了一种内置的货币-以太币（Ether），也就是我们所知的ETH，有时也用古英语中的Ð表示。以太币最小的单位是Wei（伟），所有货币值都以Wei的整数倍来记录。一个以太币等于10^18 Wei。以太币还有以下单位：10^9 GWei</p>
+<table>
+<thead>
+<tr>
+<th>倍数</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10^0</td>
+<td>Wei（伟）</td>
+</tr>
+<tr>
+<td>10^12</td>
+<td>Szabo（萨博）</td>
+</tr>
+<tr>
+<td>10^15</td>
+<td>Finney（芬尼）</td>
+</tr>
+<tr>
+<td>10^18</td>
+<td>Ether（以太）</td>
+</tr>
+</tbody>
+</table>
 </li>
-<li>实际上，HTLC在闪电网络中的应用远没有如此简单，由于虫洞攻击并不复杂，这里并不对HTLC进行深入剖析。</li>
-</ul>
-<h2 id="虫洞攻击">虫洞攻击</h2>
-<p>我们看回到上面的图片中，可以发现如果进行正常的HTLC交易，Alice需要支付1.02个btc，Bob和Carol可以得到0.01Btc的报酬，Dave也可以正常得到1Btc。</p>
-<ul>
-<li>现在我们假设Dave和Bob是攻击者，Carol是无辜的受害者</li>
-<li>从HTLC的流程中可知Dave本应将R交给Carol，而现在Dave和Bob合谋，Dave直接将R给了Bob</li>
-<li>由于Carol一直没有得到R，在50个区块之后，他将步骤4中的HTLC取回了，Carol没有损失资金，也没有得到0.01Btc的手续费</li>
-<li>Bob得到R之后将R交给了Alice，得到了1.02个Btc，其中0.02Btc手续费（报酬）由于Carol没有将R给Bob，Bob在100个区块后将步骤3中的HTCL取回，到这里，我们可以看到Bob将Carol的手续费给私吞了。</li>
-</ul>
-<p>这就是虫洞攻击，事实上，合谋者之间有多少受害人，他们就可以获得多少受害人本应得到的手续费，目前所有使用HTLC进行建设的Layer-2都有这个问题</p>
-<h2 id="解决方案-ptlc">解决方案-PTLC</h2>
-<p>目前闪电网络团队正在试验一种新的多跳支付方式<mark>PTLC</mark>来取代HTLC</p>
-<p>由于目前闪电网络团队还没有定论用哪种方式实现ptlc，因此对于ptlc暂时不做深入研究，以下仅对基本原理进行解析。以下解析依托于椭圆曲线知识，如果不熟悉或者忘记了可以看一看笔者对于椭圆曲线原理讲解的文章<br>
-<img src="https://suredbits.com/wp-content/uploads/2019/08/PaymentPoint.png" alt="PTLC" loading="lazy"></p>
-<ul>
-<li>如上图所示，Alice需要经过Bob将btc发给Carol,进行分析前，需要确定以下几个共识：
-<ol>
-<li>PTLC基于椭圆曲线理论 ，a=b*G表示椭圆曲线上的乘法，知道b和G并不能倒推出a</li>
-<li>椭圆曲线上的乘法 加减法也符合交换律和结合律，如a<em>G+b</em>G=(a+b)*G</li>
-<li>G是大家都知道的椭圆曲线上的一个点，在PTLC中，大家用的G都是相同的</li>
-</ol>
+<li>
+<p>在当前状况下，任何在以太币的上下文中所使用的价值标示，比如货币、余额或者支付，都应以Wei为单位来计算。</p>
 </li>
 </ul>
-<ol>
-<li>首先，Alice生成两个随机数x，y，Carol生成一个随机数z</li>
-<li>Alice将(x+y)<em>G给了Carol，Carol将z</em>G给了Alice，根据结合律,这时候Alice和Carol都能计算出(x+y+z)<em>G的值，但是Carol并不知道x</em>G和y*G的值</li>
-<li>现在Alice发布一个PTLC的悬赏，悬赏内容是：谁能给我(x+z)<em>G我就给他0.11Btc；Bob看到后将这个悬赏接下了，与Alice建立了一个PTLC合约，Alice将y</em>G发给了Bob</li>
-<li>现在Bob知道的是y*G,并不知道(x+z)*G，于是Bob找到了Carol，对他说，你把(x+z)*G的值给我，我就把Alice要求我付款的0.1个btc给你。但是Carol只知道(x+y)<em>G和z</em>G的值，不知道Bob要的(x+z)*G，根据结合律，Carol也知道(x+y+z)*G的值，于是他把这个值给了Bob</li>
-<li>那么现在Bob知道了y*G和(x+y+z)*G的值，根据结合律，自然可以推出(x+z)*G的值，那么现在，他可以拿着这个值找Alice要悬赏了，Bob可以如愿以偿的获得0.11Btc，对比与支付给Carol的0.1Btc，Bob赚了0.01Btc的手续费。</li>
-<li>这个流程有意思的地方在于Carol并不能知道(x+z)<em>G的值，Bob到最后也没能知道x</em>G、y*G、(x+y)*G的值，这可以防止在多跳网络中中间两者串通起来发动虫洞攻击，因为中间两者拥有的信息并不足以直接解除被攻击者设置的悬赏难题。</li>
-</ol>
-<p>参考资料：<br>
-闪电网络付款点（https://suredbits.com/payment-points-part-1/）<br>
-虫洞攻击：一种针对支付通道网络的攻击（https://talk.nervos.org/t/topic/2672）</p>
+<h3 id="分叉">分叉</h3>
+<ul>
+<li>基本与比特币类似，以太坊遵循一个叫做“GHOST协议(GHOST protocol.)”的数学机制。
+<ul>
+<li>简单的说，GHOST协议就是让我们必须选择一个在其上完成计算最多的路径。一个方法确定路径就是使用最近一个区块（叶子区块）的区块号，区块号代表着当前路径上总的区块数（不包含创世纪区块）。区块号越大，路径就会越长，就说明越多的挖矿算力被消耗在此路径上以达到叶子区块。</li>
+</ul>
+</li>
+</ul>
+<h3 id="账户">账户</h3>
+<ul>
+<li>在以太坊系统中，状态是由被称为“账户”（20个字节）的对象在两个账户之间转移价值和信息的状态转换构成的。以太坊的账户包含四个部分：
+<ul>
+<li>nonce（随机数）：用于确定每笔交易只能被处理一次的计数器，这个值等于由此账户地址发出的交易数量，或者由这个账户所创建的合约数量（当这个账户有关联代码时）。</li>
+<li>balance（账户余额）：账户目前的以太币余额</li>
+<li>storageRoot：理论上是指Merkle Patricia树的根节点256位的Hash值。</li>
+<li>codeHash：此账户EVM代码的hash值。对于外部拥有账户，codeHash域是一个空字符串，对于合约账户，就是代码的Hash作为codeHash保存。</li>
+</ul>
+</li>
+<li>以太坊分为外部账户和合约账户。外部所有的账户没有代码，人们可以通过创建和签名一笔交易从一个外部账户发送消息。每当合约账户收到一条消息，合约内部的代码就会被激活，允许它对内部存储进行读取和写入，和发送其它消息或者创建合约。
+<ul>
+<li>外部账户（EOA）：拥有一个私钥，可以拥有币，可以通过创建和用自己的私钥来对交易进行签名，来发送消息给另一个外部拥有账户或合约账户，被私钥控制且没有任何代码与之关联了。和比特币一样。</li>
+<li>合约账户：被他们的合约代码控制且有代码与之关联，每个合约部署之后都会有一个合约账户，只能通过EOA账户操作，EOA账户可以通过编写特定的程序代码来掌控合约账户，合约账户只有在EOA账户执行一个指令才会去发生操作，自己本身不会发生操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="交易">交易</h3>
+<ul>
+<li>交易数据结构：
+<ul>
+<li>nonce：与发送该交易的账户的nonce值一致。</li>
+<li>gasPrice：表示每gas的单价为多少wei。</li>
+<li>gasLimit：执行该条交易最大被允许使用的gas数目。</li>
+<li>to：160位的接受者地址。当交易位创建合约时，该值位空。</li>
+<li>value：表示发送者发送的wei的数目。该值为向接受者转移的wei的数目，或者是创建合约时作为合约账户的初始wei数目。</li>
+<li>v,r,s：交易的签名信息，用以决定交易的发送者。</li>
+<li>init：如果是创建合约的交易,则init表示一段不限长度的EVM-Code用以合约账户初始化的过程。</li>
+<li>data: 调用合约的交易，会包含一段不限长度的输入信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="区块">区块</h3>
+<ul>
+<li>区块头数据结构：
+<ul>
+<li>parentHash: 父节点的hash值。</li>
+<li>ommersHash: uncle节点的hash值，这块是跟GHOST相关的。</li>
+<li>beneficiary: 矿工address。</li>
+<li>stateRoot: 当所有交易都执行完毕后的世界状态树的根节点。</li>
+<li>transactionsRoot: 交易列表的根节点。</li>
+<li>receiptsRoot: 收据的根节点。</li>
+<li>logsBloom:日志过滤器。</li>
+<li>difficulty:区块难度，根据上一个区块的难度以及时间戳算出来的值。</li>
+<li>number:区块号。</li>
+<li>gasLimit: 区块的gas数量限制，即区块中交易使用掉的gas值不应该超过该值。</li>
+<li>gasUsed: 区块使用掉的gas数量。</li>
+<li>timestamp: 时间戳。</li>
+<li>extraData: 额外的数据，合法的交易对长度有限制。</li>
+<li>mixHash: 与nonce一起用作工作量证明。</li>
+<li>nonce: 与mixHash一起用作工作量证明。</li>
+</ul>
+</li>
+</ul>
 
             </div>
             
@@ -632,7 +670,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/" title="闪电网络-虫洞攻击">https://henta.github.io/post/shan-dian-wang-luo-chong-dong-gong-ji/</a>
+      <a href="https://henta.github.io/post/yi-tai-fang/" title="以太坊">https://henta.github.io/post/yi-tai-fang/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -641,25 +679,19 @@
   </ul>
   <div class="tags">
     
-      <a href="https://henta.github.io/tag/lg-mGLSXR/"># 比特币</a>
+      <a href="https://henta.github.io/tag/vOExWqaen/"># 以太坊</a>
     
       <a href="https://henta.github.io/tag/9kbd3Vs4HD/"># 区块链</a>
-    
-      <a href="https://henta.github.io/tag/AHXH31IEv/"># ⚡️闪电网络</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Schnorr签名以及其带来的随机数问题" href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/">Schnorr签名以及其带来的随机数问题</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Schnorr签名以及其带来的随机数问题" href="https://henta.github.io/post/schnorr-qian-ming-yi-ji-qi-dai-lai-de-sui-ji-shu-wen-ti/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="比特币交易常见问题" href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/">比特币交易常见问题</a>
-        <a class="nav-mobile-next" title="比特币交易常见问题" href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/">下一篇</a>
+        <a class="nav-pc-next" title="Diffie-Hellman秘钥交换和PBE" href="https://henta.github.io/post/diffie-hellman-mi-yao-jiao-huan-he-pbe/">Diffie-Hellman秘钥交换和PBE</a>
+        <a class="nav-mobile-next" title="Diffie-Hellman秘钥交换和PBE" href="https://henta.github.io/post/diffie-hellman-mi-yao-jiao-huan-he-pbe/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

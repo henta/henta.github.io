@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://henta.github.io</id>
     <title>Henta</title>
-    <updated>2020-11-02T07:23:49.984Z</updated>
+    <updated>2020-11-02T07:28:36.918Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://henta.github.io"/>
     <link rel="self" href="https://henta.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://henta.github.io/images/avatar.png</logo>
     <icon>https://henta.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Henta</rights>
+    <entry>
+        <title type="html"><![CDATA[以太坊]]></title>
+        <id>https://henta.github.io/post/yi-tai-fang/</id>
+        <link href="https://henta.github.io/post/yi-tai-fang/">
+        </link>
+        <updated>2020-11-02T07:28:11.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Diffie-Hellman秘钥交换和PBE]]></title>
         <id>https://henta.github.io/post/diffie-hellman-mi-yao-jiao-huan-he-pbe/</id>
@@ -172,12 +179,5 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
         <link href="https://henta.github.io/post/bi-te-bi-jiao-yi-chang-jian-wen-ti/">
         </link>
         <updated>2020-02-17T05:19:21.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[比特币区块数据结构]]></title>
-        <id>https://henta.github.io/post/bi-te-bi-qu-kuai-shu-ju-jie-gou/</id>
-        <link href="https://henta.github.io/post/bi-te-bi-qu-kuai-shu-ju-jie-gou/">
-        </link>
-        <updated>2020-02-17T05:18:26.000Z</updated>
     </entry>
 </feed>
