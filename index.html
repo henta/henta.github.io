@@ -9,7 +9,7 @@
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
 <title>Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1604301373777">
+<link rel="shortcut icon" href="/favicon.ico?v=1604301643358">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -184,7 +184,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">14</span>
+        <span class="site-item-stat-count">18</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -234,6 +234,384 @@
         <div class="section-box gemini">
           <section class="section  posts-expand slide-down-in">
             
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/diffie-hellman-mi-yao-jiao-huan-he-pbe/">
+      Diffie-Hellman秘钥交换和PBE
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-11-02 15:20:20">2020-11-02</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/oELBKIKkk/">
+        <span>密码学</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>214<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h4 id="diffie-hellman">Diffie-Hellman</h4>
+<p>事实上，Diffie-Hellman并不是秘钥交换，它的实质是通信双方通过公开的东西共同计算出了私钥<br>
+<img src="https://i.loli.net/2019/10/10/jlXs63C7JPpqMau.png" alt="title" loading="lazy"></p>
+<ul>
+<li>从上图的流程中可以看出A 和 B是双方私有的，但是公开出来的数实际上是一个对数难题，黑客无法通过计算反推出A和B，自然也就无法推出G^(A*B) mod P这个共享秘钥了</li>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/diffie-hellman-mi-yao-jiao-huan-he-pbe/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/shu-zi-qian-ming-he-zheng-shu/">
+      数字签名和证书
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-11-02 15:18:28">2020-11-02</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/oELBKIKkk/">
+        <span>密码学</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>3<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>784<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h4 id="数字签名">数字签名</h4>
+<p>数字签名相当于盖章、签字，既可以识别篡改和伪装，还可以防止否认</p>
+<ul>
+<li>想一想消息认证码为什么会有无法识别否认的缺点，根源上在于接受者和发送者共用了同一个秘钥，都可以生成相同的MAC值，因此第三方无法证明消息是谁生成的</li>
+<li>既然知道根本原因了，那么我们只需要设计出一种方法：发送方用自己的秘钥进行消息认证加密，接受方用自己的秘钥可以对消息进行解密验证。其实这种模式很熟悉，就是公私钥技术</li>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/shu-zi-qian-ming-he-zheng-shu/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/dui-cheng-jia-mi/">
+      对称加密
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-11-02 15:17:27">2020-11-02</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/oELBKIKkk/">
+        <span>密码学</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>942<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h3 id="xor异或">XOR（异或）</h3>
+<p>异或运算是二进制的运算，运算规则如下<br>
+- 0 XOR 0=0<br>
+- 0 XOR 1=1<br>
+- 1 XOR 0=1<br>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/dui-cheng-jia-mi/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://henta.github.io/post/san-lie-han-shu/">
+      散列函数
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-11-02 15:16:43">2020-11-02</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://henta.github.io/tag/oELBKIKkk/">
+        <span>密码学</span>
+      </a>、
+      
+      
+      
+      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
+        <span>区块链</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>134<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><h4 id="sha-2">SHA-2</h4>
+<p>SHA-2包含6个版本，但是实际上这6个版本都是由SHA-256和SHA-512这两个版本衍生出来的，其中224和256因为采用了32*8的内部状态，更适合32位cpu<br>
+<img src="https://i.loli.net/2019/10/10/BErXZ2mcPWdN7oF.png" alt="title" loading="lazy"></p>
+<h4 id="ripemd-160">RIPEMD-160</h4>
+<p>RPIEMD-160能够产生160比特的散列值，RIPEMD还包括128，256，320等的其他版本，RIPEMD的强抗碰撞性已经在2004年被攻破了，但是RPIEMD-160的还没有被攻破，比特币用的就是RPIEMD-160</p>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/san-lie-han-shu/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
   <article class="post-list-box  post box-shadow-wrapper">
     <div class="article-wrapper bg-color">
       <section class="post-header">
@@ -862,402 +1240,6 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
       
     </div>
   </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-si-yao/">
-      比特币私钥
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-02-17 13:17:45">2020-02-17</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://henta.github.io/tag/lg-mGLSXR/">
-        <span>比特币</span>
-      </a>、
-      
-      
-      
-      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
-        <span>区块链</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>1<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>113<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="比特币私钥">比特币私钥</h1>
-<ul>
-<li>原始私钥是32字节，也就是256位2进制数字，换算成16进制数字就是64位长度；</li>
-<li>私钥有16进制格式、WIF格式、WIF-compressed格式（WIF压缩格式）；</li>
-<li>WIF格式经过Base58check编码并以5作为前缀，WIF-compressed格式同样经过Base58Check编码并以K或L开头；</li>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-si-yao/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou/">
-      比特币交易的数据结构
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-02-17 13:17:02">2020-02-17</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://henta.github.io/tag/lg-mGLSXR/">
-        <span>比特币</span>
-      </a>、
-      
-      
-      
-      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
-        <span>区块链</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>4<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>988<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="比特币交易的数据结构">比特币交易的数据结构</h1>
-<hr>
-<h3 id="比特币区块的结构">比特币区块的结构</h3>
-<ul>
-<li>每一个数据区块记录了5个内容：<mark>魔法数、区块大小、区块头信息、交易数量、交易详情</mark>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-jiao-yi-de-shu-ju-jie-gou/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-jiao-yi-he-qian-ming/">
-      比特币交易和签名
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-02-17 13:15:42">2020-02-17</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://henta.github.io/tag/lg-mGLSXR/">
-        <span>比特币</span>
-      </a>、
-      
-      
-      
-      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
-        <span>区块链</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>8<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>2326<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="比特币交易和签名">比特币交易和签名</h1>
-<hr>
-<h3 id="概述">概述</h3>
-<ul>
-<li>交易是比特币系统中最重要的部分</li>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-jiao-yi-he-qian-ming/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/">
-      比特币挖矿原理
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-02-17 13:14:23">2020-02-17</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://henta.github.io/tag/lg-mGLSXR/">
-        <span>比特币</span>
-      </a>、
-      
-      
-      
-      <a href="https://henta.github.io/tag/9kbd3Vs4HD/">
-        <span>区块链</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>1<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>217<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="挖矿原理">挖矿原理</h1>
-<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/01/30/5c51130ab6418.png" alt="挖矿原理示意图" loading="lazy"></figure>
-<ul>
-<li>挖矿的过程就是不断改变Nonce计算hash的过程</li>
-<li>以551675区块为例，模拟挖矿过程：
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
   
             
             
@@ -1522,6 +1504,136 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/diffie-hellman-mi-yao-jiao-huan-he-pbe/"" data-c="
+          &lt;h4 id=&#34;diffie-hellman&#34;&gt;Diffie-Hellman&lt;/h4&gt;
+&lt;p&gt;事实上，Diffie-Hellman并不是秘钥交换，它的实质是通信双方通过公开的东西共同计算出了私钥&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/10/10/jlXs63C7JPpqMau.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从上图的流程中可以看出A 和 B是双方私有的，但是公开出来的数实际上是一个对数难题，黑客无法通过计算反推出A和B，自然也就无法推出G^(A*B) mod P这个共享秘钥了&lt;/li&gt;
+&lt;li&gt;其实用椭圆曲线算法也可以实现Diffie-Hellman秘钥交换，总体流程是差不多的&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/10/10/O3osk79PWV5XCcK.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;pbe基于口令的密码&#34;&gt;PBE（基于口令的密码）&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/10/10/ZJhKk7oqeUf8gvz.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+以后我们只需要保存KEK和盐，然后通过一个口令就可以生成原始的秘钥对消息进行加密了，机器上并不会保存原始的秘钥，所以哪怕机器被盗，黑客也无法知道秘钥&lt;/p&gt;
+">Diffie-Hellman秘钥交换和PBE</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/shu-zi-qian-ming-he-zheng-shu/"" data-c="
+          &lt;h4 id=&#34;数字签名&#34;&gt;数字签名&lt;/h4&gt;
+&lt;p&gt;数字签名相当于盖章、签字，既可以识别篡改和伪装，还可以防止否认&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;想一想消息认证码为什么会有无法识别否认的缺点，根源上在于接受者和发送者共用了同一个秘钥，都可以生成相同的MAC值，因此第三方无法证明消息是谁生成的&lt;/li&gt;
+&lt;li&gt;既然知道根本原因了，那么我们只需要设计出一种方法：发送方用自己的秘钥进行消息认证加密，接受方用自己的秘钥可以对消息进行解密验证。其实这种模式很熟悉，就是公私钥技术&lt;/li&gt;
+&lt;li&gt;数字签名就是利用了公私钥技术的一种模式&lt;br&gt;
+下面是一个表格来辨析数字签名和公钥密码的不同（其实就是将公钥密码技术反过来用）&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/10/09/GFD2NICsUEgmM4r.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;数字签名的一般流程&#34;&gt;数字签名的一般流程&lt;/h4&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://i.loli.net/2019/10/09/rvPEs1dJY5leN8L.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;我们一般不对消息直接进行签名，而是对消息hash之后的值进行加密，因为hash之后的值是定长，这样签名的长度也可以固定，可以是一个比原始消息小得多的值&lt;/li&gt;
+&lt;li&gt;数字签名只是为了代表只有持有秘钥的人才可以生成信息，并且所有的人都可以认证是他生成的信息&lt;/li&gt;
+&lt;li&gt;消息认证码和数字签名都是认证符号的一种&lt;/li&gt;
+&lt;li&gt;数字签名本身并不保证消息的机密性，因为数字签名的目的根本不是这个，要保证消息的机密性还得利用其它的密码学方法对消息进行加密&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;数字签名的具体实现可以用RSA或者椭圆曲线算法（ECDSA）等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;攻击&#34;&gt;攻击&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;中间人攻击：可以看出数字签名需要公私钥，假设alice向bob发送消息，应该先发送公钥，这时候黑客截断了消息，将自己的公钥发送给了bob，bob以为这就是alice的公钥，放心的开始验证消息了，其实后面的消息都是黑客发的了，这样bob就上当了。要避免这种攻击，证书就派上用场了&lt;/li&gt;
+&lt;li&gt;比如利用RSA进行消息加密，公式是：密文=消息&lt;sup&gt;EmodN,而签名是这样的签名=消息&lt;/sup&gt;DmodN,如果黑客将alice发送的加密的消息截取到了，并通过社工的方式欺骗bob对这一段密文进行一下数字签名，那么会发生以下的情况：&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/10/09/9EAkmDZNnBb3CuL.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+这样黑客就相当于把消息解密了。所以我们需要注意不要随便答应别人对未知数据进行数字签名&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;证书&#34;&gt;证书&lt;/h4&gt;
+&lt;p&gt;数字签名虽然解决了很多问题，但是公钥的归属性是个大问题，归根结底，我们需要一个信任种子，这就有了证书机构，证书机构是具有权威性的，他可以证明哪个公钥是属于你的，而接收方通过这个证书也能判定这个公钥到底是谁的&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/10/10/O9AdaejfI2Dk4oq.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+">数字签名和证书</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/dui-cheng-jia-mi/"" data-c="
+          &lt;h3 id=&#34;xor异或&#34;&gt;XOR（异或）&lt;/h3&gt;
+&lt;p&gt;异或运算是二进制的运算，运算规则如下&lt;br&gt;
+- 0 XOR 0=0&lt;br&gt;
+- 0 XOR 1=1&lt;br&gt;
+- 1 XOR 0=1&lt;br&gt;
+- 1 XOR 1=0&lt;br&gt;
+其实就是同0异1&lt;br&gt;
+异或运算的规律:&lt;br&gt;
+- A XOR B = C 可以反推出 B XOR C=A&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这其实就是一次性密码本加密解密的过程 A是明文，B是加密密码，C是加密后的密文，解密的时候只需要知道加密密码就能解密出明文了，对于异或来说，如果知道C但是不知道B，那么A有无数种可能，所以没办法通过密文直接推出明文&lt;/li&gt;
+&lt;li&gt;一次性密码本理论上是无法破译的，但是一次性密码本的应用并不广泛，原因是秘钥的配送问题，你无法将B安全的传到接收方手中，而且明文越长，B就会越长，局限性太大&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;des&#34;&gt;DES&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Feistel网络&lt;br&gt;
+在Feistel网络中，解密的各个步骤成为轮（round），加密过程就是进行若干次轮的循环，DES是16轮的Feistel网络&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/09/27/pmekLhrQbyuNZM6.png&#34; alt=&#34;Feistel网络&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每一轮的子秘钥都不同&lt;/li&gt;
+&lt;li&gt;通过XOR的性质可以知道，在1轮中，我们只需要将右侧和子秘钥通过轮函数组合，再和加密后的左侧做XOR操作就可以得出未加密的左侧。因为右侧就是明文，轮函数不会变，所以我们只需要知道子秘钥就能解密了。&lt;/li&gt;
+&lt;li&gt;总共16轮，每轮过后左右侧都会调换，保证明文都被加密，解密过程也是一样经过16轮就行了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DES已经可以在现实的时间内暴力破解，因此有了三重DES（TDES，3DES）&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/09/27/r5f67IyiNY34hzW.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TDES其实就是进行三次DES，每次用的DES秘钥不一样&lt;/li&gt;
+&lt;li&gt;之所以设计成加密解密加密的顺序是为了兼容DES，DES解密只需要3次秘钥相同其实就相当于进行了一次解密&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aes&#34;&gt;AES&lt;/h3&gt;
+&lt;p&gt;AES用了Rijndeal算法，这个算法没有使用Feistel网络模型而是改用了SPN结构。&lt;/p&gt;
+&lt;h3 id=&#34;分组模式&#34;&gt;分组模式&lt;/h3&gt;
+&lt;p&gt;DES和AES都是分组加密，即每次只能加密一定长度的明文，想要加密更长长明文必须以组为单位进行反复。&lt;br&gt;
+DES和TDES的分组长度是64比特，而AES的分组长度是128比特&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ECB模式（电子密码本模式）&lt;br&gt;
+将明文直接分割成若干个组然后分别进行加密
+&lt;ul&gt;
+&lt;li&gt;&lt;mark&gt;这种模式有很大的弱点，目前已经不推荐使用这种模式&lt;/mark&gt;
+&lt;ol&gt;
+&lt;li&gt;如果明文中有重复，这种模式加密出来的结果也会有重复，黑客可以通过寻找规律，大大降低破解难度&lt;/li&gt;
+&lt;li&gt;因为是顺序分组，如果明文中的分组刚好是A组：转账方 B组：金额 C组：收账方，黑客并不需要通过破解密文而只需要打乱密文顺序将A和C调换位置就可以达到转账调用的目的，这非常危险（当然这一点可以通过使用消息认证码技术加以克服，但是其他模式原生就不会被这样攻击）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CBC模式（密文分组链接模式）&lt;br&gt;
+将明文分组与前一个密文分组进行XOR运算，然后再进行加密&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/09/29/uja7rIUBoJmLMVT.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;相比于ECB模式，CBC先进行了一次XOR运算，这样一来哪怕明文中有两个组是重复的，密文也不会重复&lt;/li&gt;
+&lt;li&gt;解密过程中，如果硬盘上有一个密文分组损坏了，那么也只会影响本组和下一个组的的解密（因为解密只需要上一个组的密文）：&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/09/29/FdsaXznPoV1Mp3E.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;li&gt;SSL/TSL 使用了CBC模式，TDES和AES也都有CBC模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+">对称加密</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/san-lie-han-shu/"" data-c="
+          &lt;h4 id=&#34;sha-2&#34;&gt;SHA-2&lt;/h4&gt;
+&lt;p&gt;SHA-2包含6个版本，但是实际上这6个版本都是由SHA-256和SHA-512这两个版本衍生出来的，其中224和256因为采用了32*8的内部状态，更适合32位cpu&lt;br&gt;
+&lt;img src=&#34;https://i.loli.net/2019/10/10/BErXZ2mcPWdN7oF.png&#34; alt=&#34;title&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;ripemd-160&#34;&gt;RIPEMD-160&lt;/h4&gt;
+&lt;p&gt;RPIEMD-160能够产生160比特的散列值，RIPEMD还包括128，256，320等的其他版本，RIPEMD的强抗碰撞性已经在2004年被攻破了，但是RPIEMD-160的还没有被攻破，比特币用的就是RPIEMD-160&lt;/p&gt;
+&lt;h4 id=&#34;sha-3&#34;&gt;SHA-3&lt;/h4&gt;
+&lt;p&gt;SHA-3采用了Keccak算法，有224、256、384、512这4种版本&lt;/p&gt;
+">散列函数</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/base-xi-lie/"" data-c="
