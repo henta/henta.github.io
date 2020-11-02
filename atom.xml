@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://henta.github.io</id>
     <title>Henta</title>
-    <updated>2020-08-26T10:33:59.399Z</updated>
+    <updated>2020-11-02T07:16:23.047Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://henta.github.io"/>
     <link rel="self" href="https://henta.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://henta.github.io/images/avatar.png</logo>
     <icon>https://henta.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Henta</rights>
+    <entry>
+        <title type="html"><![CDATA[Base系列]]></title>
+        <id>https://henta.github.io/post/base-xi-lie/</id>
+        <link href="https://henta.github.io/post/base-xi-lie/">
+        </link>
+        <updated>2020-11-02T07:14:32.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[椭圆曲线算法与其安全性探究]]></title>
         <id>https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/</id>
@@ -172,22 +179,5 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
         <link href="https://henta.github.io/post/bi-te-bi-wa-kuang-yuan-li/">
         </link>
         <updated>2020-02-17T05:14:23.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[spring定时任务]]></title>
-        <id>https://henta.github.io/post/spring-ding-shi-ren-wu/</id>
-        <link href="https://henta.github.io/post/spring-ding-shi-ren-wu/">
-        </link>
-        <updated>2019-12-18T07:31:25.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="spring定时任务schedule">spring定时任务Schedule</h3>
-<ul>
-<li>我们使用@Scheduled来创建定时任务，并通过在启动类上加上@EnableScheduling注解开启定时任务。 这个注解用来标注一个定时任务方法。通过看@Scheduled源码可以看出它支持多种参数：</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="spring定时任务schedule">spring定时任务Schedule</h3>
-<ul>
-<li>我们使用@Scheduled来创建定时任务，并通过在启动类上加上@EnableScheduling注解开启定时任务。 这个注解用来标注一个定时任务方法。通过看@Scheduled源码可以看出它支持多种参数：</li>
-</ul>
-]]></content>
     </entry>
 </feed>

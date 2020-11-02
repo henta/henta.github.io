@@ -9,7 +9,7 @@
 <meta name="description" content="一个码农的自我描述">
 <meta name="theme-color" content="#000">
 <title>比特币区块数据结构 | Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1598438022697">
+<link rel="shortcut icon" href="/favicon.ico?v=1604301373777">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -202,7 +202,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">13</span>
+        <span class="site-item-stat-count">14</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1084,6 +1084,62 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/base-xi-lie/"" data-c="
+          &lt;h3 id=&#34;base64&#34;&gt;BASE64&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;BASE64就是一种基于64个可打印字符来表示二进制数据的方法
+&lt;ul&gt;
+&lt;li&gt;BASE64使用了26个小写字母，26个大写字母、10个数字以及两个符号（+和/），用于在电子邮件这样的基于文本的媒介中传输二进制数据。&lt;/li&gt;
+&lt;li&gt;BASE64通常用于编码邮件中的附件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;BASE64字符集&lt;img src=&#34;https://i.loli.net/2019/03/20/5c91b8fd5104c.png&#34; alt=&#34;20190320115227-image.png&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;li&gt;BASE64的步骤
+&lt;ol&gt;
+&lt;li&gt;将每个字符转成ASCII编码（10进制）&lt;/li&gt;
+&lt;li&gt;将10进制编码转成2进制编码&lt;/li&gt;
+&lt;li&gt;将2进制编码按照6位一组进行平分&lt;/li&gt;
+&lt;li&gt;将6位一组的2进制数高位补零，然后转成10进制数&lt;/li&gt;
+&lt;li&gt;将10进制数作为索引，从BASE64编码中查找字符&lt;/li&gt;
+&lt;li&gt;转换后的结果是每3个字符的文本将编码为4个字符长度（3*8=4*6）
+&lt;ol&gt;
+&lt;li&gt;若文本为3个字符，则正好编码为4个字符长度&lt;/li&gt;
+&lt;li&gt;若文本为2个字符，则编码为3个字符，由于不足4个字符，则在尾部用一个”=“来补齐&lt;/li&gt;
+&lt;li&gt;若文本为1个字符，则编码为2个字符，由于不足4个字符，则在尾部用两个”=“来补齐&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;例子：&lt;img src=&#34;https://i.loli.net/2019/03/20/5c91b941ed3bf.png&#34; alt=&#34;20190320115336-image.png&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;base58&#34;&gt;BASE58&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;BASE58是一种基于文本的二进制编码格式，用在比特币和其他的加密货币中。这种编码格式不仅实现了数据压缩，保持了易读性，还具有错误诊断的功能。&lt;/li&gt;
+&lt;li&gt;BASE58是BASE64编码格式的子集，它舍弃了数字0和大写字母O，大写字母I和小写字母i，以及+和/&lt;/li&gt;
+&lt;li&gt;编码表&lt;img src=&#34;https://i.loli.net/2019/03/20/5c91f5c47b117.png&#34; alt=&#34;20190320161147-image.png&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;base58check&#34;&gt;BASE58Check&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Base58Check是一种常用在比特币中的Base58编码格式，增加了错误校验来检查数据在转录中出现的错误
+&lt;ul&gt;
+&lt;li&gt;校验码长4个字节，添加到需要编码的数据之后。&lt;/li&gt;
+&lt;li&gt;校验码是从需要编码的数据的哈希值中得到的，所以可以用来检测并避免转录和输入中产生的错误&lt;/li&gt;
+&lt;li&gt;使用Base58Check编码格式时，编码软件会计算原始数据的校验码并和结果数据中自带的校验码进行比对，二者不匹配则表明有错误产生，那么这个Base58Check格式的数据就是无效的。例如，一个错误比特币地址就不会被钱包认为是有效的地址，否则这种错误会造成资金的丢失。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;为了使用Base58Check编码格式对数据（数字）进行编码，首先我们要对数据添加一个称作”版本字节“的前缀，这个前缀用来明确需要编码的数据的类型。
+&lt;ul&gt;
+&lt;li&gt;例如，比特币地址的前缀是0（十六进制是Ox00），而对私钥编码时前缀是128（十六进制时Ox80）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;比特币地址生成例子：&lt;img src=&#34;https://i.loli.net/2019/03/20/5c91f7632a6ba.png&#34; alt=&#34;20190320161842-屏幕快照 2019-03-20 下午3.28.01.png&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+真正的base58check步骤是第4步及其之后&lt;/li&gt;
+&lt;/ul&gt;
+">Base系列</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://henta.github.io/post/tuo-yuan-qu-xian-suan-fa-yu-qi-an-quan-xing-tan-jiu/"" data-c="
