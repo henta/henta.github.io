@@ -9,7 +9,7 @@
 <meta name="description" content="路漫漫其修远兮，吾将上下而求索">
 <meta name="theme-color" content="#000">
 <title>Henta</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1605078208904">
+<link rel="shortcut icon" href="/favicon.ico?v=1605079836168">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -301,10 +301,20 @@
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h1 id="以太坊">以太坊</h1>
 <h3 id="以太坊货币单位">以太坊货币单位</h3>
 <ul>
+<li>
+<p>为了激励网络中的计算，需要一种一致同意的转移价值方法。为了解决这个问题，以太坊设计了一种内置的货币-以太币（Ether），也就是我们所知的ETH，有时也用古英语中的Ð表示。以太币最小的单位是Wei（伟），所有货币值都以Wei的整数倍来记录。一个以太币等于10^18 Wei。以太币还有以下单位：10^9 GWei</p>
 
                 
               <p>
@@ -384,10 +394,20 @@
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h4 id="diffie-hellman">Diffie-Hellman</h4>
 <p>事实上，Diffie-Hellman并不是秘钥交换，它的实质是通信双方通过公开的东西共同计算出了私钥<br>
 <img src="https://i.loli.net/2019/10/10/jlXs63C7JPpqMau.png" alt="title" loading="lazy"></p>
+<ul>
+<li>从上图的流程中可以看出A 和 B是双方私有的，但是公开出来的数实际上是一个对数难题，黑客无法通过计算反推出A和B，自然也就无法推出G^(A*B) mod P这个共享秘钥了</li>
 
                 
               <p>
@@ -467,10 +487,20 @@
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h4 id="数字签名">数字签名</h4>
 <p>数字签名相当于盖章、签字，既可以识别篡改和伪装，还可以防止否认</p>
 <ul>
+<li>想一想消息认证码为什么会有无法识别否认的缺点，根源上在于接受者和发送者共用了同一个秘钥，都可以生成相同的MAC值，因此第三方无法证明消息是谁生成的</li>
+<li>既然知道根本原因了，那么我们只需要设计出一种方法：发送方用自己的秘钥进行消息认证加密，接受方用自己的秘钥可以对消息进行解密验证。其实这种模式很熟悉，就是公私钥技术</li>
 
                 
               <p>
@@ -550,10 +580,20 @@
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h3 id="xor异或">XOR（异或）</h3>
 <p>异或运算是二进制的运算，运算规则如下<br>
 - 0 XOR 0=0<br>
+- 0 XOR 1=1<br>
+- 1 XOR 0=1<br>
 
                 
               <p>
@@ -639,10 +679,20 @@
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h4 id="sha-2">SHA-2</h4>
 <p>SHA-2包含6个版本，但是实际上这6个版本都是由SHA-256和SHA-512这两个版本衍生出来的，其中224和256因为采用了32*8的内部状态，更适合32位cpu<br>
 <img src="https://i.loli.net/2019/10/10/BErXZ2mcPWdN7oF.png" alt="title" loading="lazy"></p>
+<h4 id="ripemd-160">RIPEMD-160</h4>
+<p>RPIEMD-160能够产生160比特的散列值，RIPEMD还包括128，256，320等的其他版本，RIPEMD的强抗碰撞性已经在2004年被攻破了，但是RPIEMD-160的还没有被攻破，比特币用的就是RPIEMD-160</p>
 
                 
               <p>
@@ -728,10 +778,20 @@
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h3 id="base64">BASE64</h3>
 <ul>
 <li>BASE64就是一种基于64个可打印字符来表示二进制数据的方法
+<ul>
+<li>BASE64使用了26个小写字母，26个大写字母、10个数字以及两个符号（+和/），用于在电子邮件这样的基于文本的媒介中传输二进制数据。</li>
 
                 
               <p>
@@ -823,10 +883,20 @@
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h3 id="什么是椭圆曲线">什么是椭圆曲线？</h3>
 <ul>
 <li>数学中，y<sup>2</sup>=x<sup>3</sup>+ax+b这种模型，称为椭圆曲线，根据a，b的变化，椭圆曲线也会呈现不同的形状</li>
+<li>例如b=1，a取值范围从2到-3<br>
+<img src="https://i.loli.net/2019/05/22/5ce4be022fcdd18765.png" alt="title" loading="lazy"></li>
 
                 
               <p>
@@ -1040,10 +1110,20 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h2 id="htlc">HTLC</h2>
 <p>Alice的目标是要将1btc转给Dave，但是自己并没有与之相连的通道，这时候就要找到与Dave的通道连接的节点，间接将钱支付给Dave</p>
 <ol>
+<li>Dave创建一个随机数R，并且Hash（R），我们将其称为H，然后将H传输给Alice</li>
+<li>Alice发布一个悬赏：也就是HTLC，悬赏的大致意思是:谁能将R给我，我就给谁1.02个btc</li>
 
                 
               <p>
@@ -1129,10 +1209,20 @@ schnorr秘钥聚合也经历了很多版本，最初的秘钥聚合有流氓攻�
               
               
             
+              
+              
+              
+            
+              
+              
+              
+            
             
               <p><h1 id="比特币交易常见问题">比特币交易常见问题</h1>
 <h3 id="比特币私钥">比特币私钥</h3>
 <ul>
+<li>原始私钥是32字节，也就是256位2进制数字，换算成16进制数字就是64位长度；</li>
+<li>私钥有16进制格式、WIF格式、WIF-compressed格式（WIF压缩格式）；</li>
 
                 
               <p>
